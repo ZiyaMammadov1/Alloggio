@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Core_Layer.Entities;
+using Data_Layer.Concrete;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +11,15 @@ namespace Alloggio_MVC.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly DataContext _context;
+        public HomeController(DataContext context)
+        {
+            _context = context;
+        }
         public IActionResult Index()
         {
-            return View();
+            List<Slider> sliders = _context.Sliders.ToList();
+            return View(sliders);
         }
         public IActionResult Menu()
         {
