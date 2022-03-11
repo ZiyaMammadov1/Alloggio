@@ -13,7 +13,6 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
         {
             return View();
         }
-
         public IActionResult Create()
         {
             return View();
