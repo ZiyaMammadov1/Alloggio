@@ -1,4 +1,5 @@
-﻿using Core_Layer.Entities;
+﻿using Alloggio_MVC.ViewModels;
+using Core_Layer.Entities;
 using Data_Layer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,8 +19,11 @@ namespace Alloggio_MVC.Controllers
         }
         public IActionResult Index()
         {
-            List<Slider> sliders = _context.Sliders.ToList();
-            return View(sliders);
+            HomeViewModels HomeVM = new HomeViewModels
+            {
+                Sliders = _context.Sliders.ToList()
+        };
+            return View(HomeVM);
         }
         public IActionResult Menu()
         {

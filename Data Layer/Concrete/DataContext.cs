@@ -13,5 +13,11 @@ namespace Data_Layer.Concrete
 
         }
         public DbSet<Slider> Sliders { get; set; }
+        public DbSet<Room> Rooms { get; set; }
+        public DbSet<Service> Services { get; set; }
+        public DbSet<Setting> Settings { get; set; }
+        public DbSet<Subscription> Subscriptions { get; set; }
+        public DbSet<Testimonial> Testimonials { get; set; }
+
     }
 }
