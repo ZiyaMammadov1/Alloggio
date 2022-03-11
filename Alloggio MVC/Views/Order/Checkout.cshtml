@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewData["Title"] = "Checkout";
+}
+<!-- Check header begin -->
+<div class="outHeader">
+    <div class="outHeader_checkout">
+        Checkout
+    </div>
+</div>
+<!-- Check header end -->
+<!-- Billing detail begin -->
+<form action="">
+
+    <div class="billing">
+        <div class="billing_detailsLeft">
+            <div class="billing_name">
+                Billing details
+            </div>
+
+            <div class="billing_group">
+                <div class="billing_inputHeader">
+                    First name ..*
+                </div>
+                <div class="billing_inputs">
+                    <input type="text" placeholder="First name" class="billing_input">
+                </div>
+            </div>
+
+            <div class="billing_group">
+                <div class="billing_inputHeader">
+                    Last name ..*
+                </div>
+                <div class="billing_inputs">
+                    <input type="text" placeholder="Last name" class="billing_input">
+                </div>
+            </div>
+
+            <div class="billing_group">
+                <div class="billing_inputHeader">
+                    Postcode / Zip ..*
+                </div>
+                <div class="billing_inputs">
+                    <input type="text" placeholder="Postcode" class="billing_input">
+                </div>
+            </div>
+
+            <div class="billing_group">
+                <div class="billing_inputHeader">
+                    Phone ..*
+                </div>
+                <div class="billing_inputs">
+                    <input type="text" placeholder="Phone" class="billing_input">
+                </div>
+            </div>
+
+            <div class="billing_group">
+                <div class="billing_inputHeader">
+                    Email ..*
+                </div>
+                <div class="billing_inputs">
+                    <input type="text" placeholder="Email address" class="billing_input">
+                </div>
+            </div>
+
+        </div>
+        <div class="billing_detailsRight">
+            <div class="billing_name">
+                Additional information
+            </div>
+
+            <div class="billing_group">
+                <div class="billing_inputHeader">
+                    Order notes (optional)
+                </div>
+                <div class="billing_inputs">
+                    <textarea name="" id="" cols="30" rows="10" class="billing_input billing_textarea"></textarea>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="billing_btnOrder">
+        <a asp-controller="order" asp-action="receipt" class="billing_Orderbtn">Place Order</a>
+    </div>
+</form>
+<!-- Billing detail end -->

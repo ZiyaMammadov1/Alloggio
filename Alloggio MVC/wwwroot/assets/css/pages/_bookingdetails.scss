@@ -1,0 +1,481 @@
+.houseImage {
+    padding-bottom: 50px;
+
+    &_source {
+        width: 100%;
+    }
+}
+
+.detailWrap {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin: 0 auto;
+
+    &_room {
+        width: 60%;
+    }
+
+    &_suitname {
+        font-size: 43px;
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 400;
+
+    }
+
+    &_suitdescription {
+        width: 95%;
+        padding: 50px 0;
+        font-size: 17px;
+        letter-spacing: 1px;
+        font-weight: 300;
+    }
+
+    &_hr {
+        color: $fontColor;
+        margin: 0;
+    }
+
+    &_suitServices {
+        padding: 20px 0;
+    }
+
+    &_ServiceList {
+        padding: 20px 0;
+    }
+
+    &_ServiceWrap {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        padding: 10px 0;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    &_ServiceHeader {
+        font-size: 25px;
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 400;
+    }
+
+    &_Icon {
+        font-size: 22px;
+        color: $fontColor;
+    }
+
+    &_serviceName {
+        font-size: 17px;
+        font-weight: 300;
+    }
+
+    &_rulesHeader {
+        font-size: 25px;
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: bold;
+    }
+
+    &_rulesContent {
+        font-size: 17px;
+        font-weight: 300;
+        padding: 20px 0;
+    }
+
+    &_rulesLink {
+        font-size: 17px;
+        font-weight: 300;
+        @include linkReset;
+        color: rgb(194, 118, 118);
+        text-decoration: underline;
+    }
+
+    &_rulesLink:hover {
+        @include linkHover;
+    }
+
+    &_header {
+        font-size: 35px;
+        padding: 10px 0;
+        font-family: 'Cormorant Garamond', serif;
+
+    }
+
+    &_commentitem {
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        display: flex;
+        flex-direction: row;
+        column-gap: 10px;
+    }
+
+    &_commentimage {
+        width: 85px;
+        height: 85px;
+        background-color: gray;
+    }
+
+    &_commentAccountName {
+        font-size: 25px;
+
+    }
+
+    &_commentAccountContent {
+        font-size: 17px;
+        font-weight: 300;
+        padding: 10px 0 10px 25px;
+    }
+
+    &_commentAccountDateTime {
+        color: $fontColor;
+        font-size: 17px;
+        font-weight: 300;
+    }
+
+    &_typeComment {
+        width: 100%;
+        padding: 30px 0;
+    }
+
+    &_commentTextarea {
+        width: 100%;
+        height: 250px;
+        padding: 10px;
+        font-size: 17px;
+        font-weight: 300;
+        resize: none;
+    }
+
+    &_commentSubmit {
+        display: inline-block;
+        width: 150px;
+        height: 50px;
+        font-weight: 300;
+        border: 1px solid black;
+        background-color: white;
+        color: black;
+        @include linkReset;
+        font-size: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: .3s;
+
+    }
+
+    &_commentSubmit:hover {
+        background-color: $fontColor;
+        color: white;
+    }
+
+    &_MapHeader {
+        font-size: 25px;
+        font-family: 'Cormorant Garamond', serif;
+        padding: 20px 0;
+    }
+
+    &_MapContent {
+        padding: 20px 0;
+    }
+
+    &_rightSide {
+        width: 40%;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 50px;
+    }
+
+    &_reservationWrap {
+        background-color: #FAF9F5;
+        padding: 20px;
+    }
+
+    &_reservationHeader {
+        font-size: 25px;
+        font-family: 'Cormorant Garamond', serif;
+    }
+
+    &_checkHeader {
+        padding-top: 50px;
+        letter-spacing: 1px;
+        font-weight: 352;
+        font-size: 12px;
+    }
+
+    &_checkin {
+        padding: 10px 0;
+    }
+
+    &_checkinInput {
+        font-weight: 300;
+        background-color: #FAF9F5 !important;
+        height: 50PX;
+        font-size: 20px;
+    }
+
+    &_PersonForm {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    &_innerForm {
+        position: absolute;
+        background-color: #FAF9F5 !important;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding: 20px 0;
+        display: none;
+        flex-direction: column;
+    }
+
+    &_PersonItem {
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &_AllPassenger {
+        font-weight: 300;
+        font-size: 20px;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    &_item {
+        height: 40px;
+        width: 15%;
+    }
+
+    &_yourPrice {
+        padding: 20px 0 10px 0;
+    }
+
+    &_price {
+        font-size: 20px;
+        font-weight: 300;
+        padding: 0;
+    }
+
+    &_BookNow {
+        padding: 20px 0;
+    }
+
+    &_btnBookNow {
+        @include linkReset;
+        display: inline-block;
+        height: 50px;
+        border: 1px solid black;
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        letter-spacing: 1px;
+        margin: 0 auto;
+        transition: .4s linear;
+    }
+
+    &_btnBookNow:hover {
+        color: white;
+        background-color: #B56953;
+    }
+}
+
+
+.related {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px 0;
+
+    &_roomsHeader {
+        font-size: 25px;
+        font-family: 'Cormorant Garamond', serif;
+        padding: 20px 0;
+    }
+
+    &_roomsContent {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &_roomItem {
+        width: 100%;
+    }
+
+    &_roomItems {
+        width: 33%;
+    }
+
+    &_itemLink {
+        font-size: 25px;
+        font-family: 'Cormorant Garamond', serif;
+        text-decoration: none;
+        color: black;
+    }
+
+    &_itemLink:hover {
+        @include linkHover;
+    }
+
+    &_itemName {
+        padding: 20px 0;
+    }
+
+    &_itemDescription {
+        font-size: 17px;
+        letter-spacing: 1px;
+        font-weight: 300;
+    }
+
+    &_itemPrice {
+        color: $fontColor;
+        font-size: 17px;
+        font-weight: 300;
+    }
+
+    &_image {
+        width: 100%;
+        border-radius: 5px;
+        transition: .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    &_image:hover {
+        transform: scale(1.1);
+        z-index: 1;
+    }
+
+    &_itemImage {
+        width: 100%;
+    }
+
+    &_itemImage {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    body {
+        .detailWrap {
+            &_checkinInput {
+                font-size: 17px;
+            }
+
+            &_AllPassenger {
+                font-size: 17px;
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 992px) {
+    body {
+        .detailWrap {
+            flex-direction: column;
+
+            &_room {
+                width: 100%;
+            }
+
+            &_rightSide {
+                width: 100%;
+                padding: 0;
+            }
+
+            &_checkinInput {
+                font-size: 17px;
+            }
+
+            &_AllPassenger {
+                font-size: 17px;
+            }
+        }
+
+        .related {
+            &_roomsContent {
+                flex-direction: column;
+            }
+
+            &_roomItems {
+                width: 100%;
+                padding-bottom: 20px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    body {
+
+
+
+        .detailWrap {
+            flex-direction: column;
+
+            &_suitname {
+                font-size: 35px;
+            }
+
+            &_ListWrap {
+                display: flex;
+                flex-direction: column;
+            }
+
+            &_ListWrapItem {
+                width: 100%;
+            }
+
+            &_suitdescription {
+                padding: 20px 0;
+                font-size: 15px;
+            }
+
+            &_serviceName {
+                font-size: 13px;
+            }
+
+            &_room {
+                width: 100%;
+            }
+
+            &_rightSide {
+                width: 100%;
+                padding: 0;
+            }
+
+            &_checkinInput {
+                font-size: 17px;
+            }
+
+            &_AllPassenger {
+                font-size: 17px;
+            }
+
+            &_item {
+                width: 30%;
+            }
+
+            &_commentitem {
+                flex-direction: column;
+                row-gap: 20px;
+            }
+
+        }
+
+        .related {
+            &_roomsContent {
+                flex-direction: column;
+            }
+
+            &_roomItems {
+                width: 100%;
+                padding-bottom: 20px;
+            }
+        }
+    }
+}

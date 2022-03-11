@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "Receipt";
+}
+<!-- Check header begin -->
+<div class="outHeader">
+    <div class="outHeader_checkout">
+        Checkout
+    </div>
+</div>
+<!-- Check header end -->
+<!-- Order complete begin -->
+<div class="complete">
+    Thank you. Your order has been received.
+
+    <div class="complete_group">
+        Order number : <span class="complete_item">4797</span>
+        <hr>
+    </div>
+
+    <div class="complete_group">
+        Date : <span class="complete_item">March 7, 2022</span>
+        <hr>
+    </div>
+
+    <div class="complete_group">
+        Total : <span class="complete_item">65$</span>
+        <hr>
+    </div>
+
+    <div class="complete_redirect">
+        <a asp-controller="home" asp-action="index" class="complete_redirectLink">Return main page</a>
+    </div>
+
+</div>
+<!-- Order complete end -->

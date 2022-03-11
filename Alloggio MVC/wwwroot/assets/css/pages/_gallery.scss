@@ -1,0 +1,57 @@
+.showroom {
+    width: 95%;
+    margin: 0 auto;
+    padding: 50px 0;
+
+    &_wrap {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+    }
+
+    &_itemBottom {
+        display: flex;
+        flex-direction: row;
+        column-gap: 10px;
+        margin: 0 auto;
+    }
+
+    &_wrap {
+        width: 90%;
+        margin: 0 auto;
+        flex-direction: column;
+    }
+
+    &_itemTopImage {
+        width: 100%;
+    }
+
+    &_itemBottomImage {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    
+    .menuheader {
+        height: 350px;
+        &_menu{
+            font-size: 30px;
+        }
+    }
+  
+}
+
+@media only screen and (max-width: 768px) {
+    .showroom {
+        &_wrap {
+            // width: 400px;
+            margin: 0 auto;
+            flex-direction: column;
+        }
+        
+    }
+    .menuheader {
+        height: 250px;
+    }
+}

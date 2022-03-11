@@ -1,0 +1,86 @@
+.accountdetail {
+    &_wrap {
+        width: 85%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        column-gap: 20px;
+    }
+
+    form{
+        width: 50%;
+    }
+    &_orderItem{
+        padding-top: 50px;
+    }
+    &_orders{
+       
+        width: 50%;
+        font-size: 17px;
+        font-weight: 300;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+
+       
+    }
+    &_tableContent{
+        font-size: 15px;
+    }
+    &_noorder{
+        padding: 60px 10px 20px 10px;
+        font-size: 17px;
+        font-weight: 300;
+    }
+    &_orderCrud{
+        display: inline-block;
+    }
+    &_tableHead{
+        font-size: 15px;
+        font-weight: 300;
+    }
+    &_buttons{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    &_btnOut{
+        background-color: rgb(133, 7, 7);
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .accountdetail{
+        &_wrap{
+            width: 95%;
+            flex-direction: column;
+        }
+        &_orders{
+            width: 100%;
+        }
+        form{
+            width: 100%;
+        }
+        &_orderItem{
+            width: 100%;
+        }
+        &_tableHead{
+            font-size: 15px;
+        }
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .accountdetail{
+        &_buttons{
+            display: flex;
+            flex-direction: column;
+        }
+        &_btnOut{
+            width: 100%;
+        }
+        &_btnSave{
+            width: 100%;
+        }
+    }
+}

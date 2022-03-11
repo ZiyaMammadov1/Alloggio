@@ -1,0 +1,113 @@
+.menuheader {
+
+    position: relative;
+
+    height: 450px;
+
+    &_wrap {
+        width: 85%;
+        margin: 0 auto;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &_menu {
+        position: absolute;
+        font-size: 60px;
+        font-family: 'Cormorant Garamond', serif;
+        color: white;
+        top: 40%;
+    }
+}
+
+.continental {
+    width: 85%;
+    padding: 30px 0;
+    margin: 0 auto;
+
+    &_header {
+        text-align: center;
+        font-size: 43px;
+        font-family: 'Cormorant Garamond', serif;
+
+    }
+
+    &_description {
+        text-align: center;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 21px;
+        width: 50%;
+        margin: 0 auto;
+        font-weight: 300;
+        padding: 20px 0;
+    }
+}
+
+.menuWrap {
+    display: flex;
+    flex-direction: row;
+    width: 85%;
+    margin: 0 auto;
+    padding: 30px 0;
+
+    &_left {
+        width: 45%;
+        margin: 0 auto;
+        border-right: 3px solid #FBFAF5;
+    }
+
+    &_right {
+        width: 45%;
+        margin: 0 auto;
+    }
+
+    &_item {
+        padding: 10px 0;
+    }
+
+    &_itemHeader {
+        font-size: 25px;
+        font-size: 300;
+        font-family: 'Cormorant Garamond', serif;
+        padding-bottom: 10px;
+        background-color: #FBFAF5;
+        width: 50%;
+        padding-left: 10px;
+    }
+
+    &_itemDescription {
+        font-size: 17px;
+        font-weight: 300;
+        padding-left: 10px;
+
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .menuWrap {
+        flex-direction: column;
+        width: 80%;
+
+        &_left {
+            width: 100%;
+            border: none;
+        }
+        &_right {
+            width: 100%;
+        }
+        &_itemHeader{
+            width: 100%;
+        }
+    }
+
+    .menuheader{
+        img{
+            object-fit:  cover;
+        }
+    }
+
+}

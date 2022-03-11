@@ -1,0 +1,363 @@
+.headerSecond {
+    width: 100%;
+    height: 95px;
+    display: flex;
+    align-items: center;
+    font-weight: 352;
+    position: sticky;
+
+    .header-inner {
+        width: 95%;
+        margin: 0 auto;
+        @include flexRow;
+
+        &_logoWrap {
+            width: 45%;
+            line-height: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        &_logo {
+            width: 112px;
+            height: 36px;
+        }
+
+        &_nav {
+            width: 40%;
+            line-height: 40px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        &_menu {
+            @include flexRow;
+            padding: 0;
+            margin: 0;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        &_menu-item {
+            letter-spacing: 2px;
+        }
+
+        &_menu-item-link {
+            @include linkReset;
+        }
+
+        &_menu-item-link:hover {
+            @include linkHover;
+        }
+
+        &_widgets {
+            @include flexRow;
+            width: 15%;
+            justify-content: space-evenly;
+            line-height: 40px;
+            align-items: center;
+        }
+
+        &_widgets-weather {
+            @include flexRow;
+            column-gap: 10px;
+            font-size: 20px;
+        }
+
+        &_weathersIcon {
+            font-size: 17px;
+
+        }
+
+        &_weather-temperature {
+            @include flexRow;
+            @include footerContentDescriptionFont;
+
+            sup {
+                line-height: 30px;
+            }
+        }
+
+        &_basket-link {
+            @include linkReset;
+            @include footerContentDescriptionFont;
+
+        }
+
+        &_basket-link:hover {
+            @include linkHover;
+        }
+
+        &_basket {
+            font-size: 18px;
+            font-weight: 700;
+        }
+    }
+}
+
+header {
+    width: 100%;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    font-weight: 352;
+    position: sticky;
+
+    .header-inner {
+        width: 95%;
+        height: 100%;
+        margin: 0 auto;
+        @include flexRow;
+
+
+        &_left {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            width: 43%;
+        }
+
+        &_widget {
+            @include flexRow;
+            height: 100%;
+            @include flexVerticalHorizontalCenter;
+            column-gap: 3px;
+        }
+
+        &_city {
+            @include footerContentDescriptionFont;
+        }
+
+        &_weathersIcon {
+            font-size: 17px;
+            padding: 0 10px;
+        }
+
+        &_weatherTemperature {
+            @include footerContentDescriptionFont;
+        }
+
+        &_leftMenu {
+            @include flexRow;
+            margin: 0;
+            padding: 0;
+            column-gap: 30px;
+        }
+
+        &_leftMenuWrap {
+            height: 100%;
+            @include flexVerticalHorizontalCenter;
+        }
+
+        &_navigate {
+            @include flexRow;
+        }
+
+        &_menuItemLink {
+            @include linkReset;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 4px;
+        }
+
+        &_menuItemLink:hover {
+            @include linkHover;
+        }
+
+        &_centralLogo {
+            width: 110px;
+            height: 110px;
+        }
+
+        &_center {
+            padding: 0 40px;
+        }
+
+        &_right {
+            @include flexRow;
+            width: 40%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &_rightMenu {
+            @include flexRow;
+            margin: 0;
+            padding: 0;
+            column-gap: 30px;
+        }
+
+        &_rightMenuWrap {
+            height: 100%;
+            @include flexVerticalHorizontalCenter;
+        }
+
+        &_account {
+            display: flex;
+            align-items: center;
+        }
+
+        &_accountEmail {
+            @include linkReset;
+            @include footerContentDescriptionFont;
+        }
+
+        &_accountEmail:hover {
+            @include linkHover;
+        }
+
+        &_hamburger {
+            display: none;
+        }
+
+        &_hamburgerImage {
+            display: none;
+        }
+    }
+
+}
+
+.mobilemenu {
+    display: none;
+}
+
+@media only screen and (max-width: 1200px) {
+    body {
+        header {
+            height: 70px;
+
+            .header-inner {
+                width: 95%;
+                height: 100%;
+                margin: 0 auto;
+                @include flexRow;
+                justify-content: space-between;
+                position: relative;
+
+                &_widget {
+                    display: none;
+                }
+
+                &_leftMenuWrap {
+                    display: none;
+                }
+
+                &_center {
+                    display: none;
+                }
+
+                &_rightMenuWrap {
+                    display: none;
+                }
+
+                &_account {
+                    display: none;
+                }
+
+                &_hamburger {
+                    display: flex;
+                    align-items: center;
+                }
+
+                &_hambugerInner {
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 5px;
+                }
+
+                &_hamburgerItem {
+                    display: inline-block;
+                    width: 30px;
+                    height: 3px;
+                    content: "";
+                    background-color: gray;
+                }
+
+                &_hamburgerImage {
+                    display: flex;
+                    align-items: center;
+
+                }
+
+                &_hamburgerImageLink {
+                    width: 50%;
+
+                }
+
+            }
+
+
+        }
+
+        .mobilemenu {
+            display: inline-block;
+            width: 100%;
+            position: absolute;
+            background-color: #FAF9F5;
+            overflow: hidden;
+            height: 0;
+            transition: .5s;
+            &_item {
+                width: 95%;
+                margin: 0 auto;
+                padding: 15px 15px;
+            }
+
+            &_link {
+                @include linkReset;
+                font-size: 17px;
+                font-weight: 300;
+            }
+
+            &_link:hover {
+                @include linkHover;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    body {
+        .headerSecond {
+            height: 70px;
+
+            .header-inner {
+                &_nav {
+                    display: none;
+                }
+
+                &_widgets-weather {
+                    display: none;
+                }
+
+                &_basket {
+                    display: none;
+                }
+
+                &_hamburger {
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 5px;
+                }
+
+                &_hamburgerItem {
+                    display: inline-block;
+                    content: "";
+                    width: 30px;
+                    height: 3px;
+                    background-color: gray;
+
+                }
+
+                &_widgets {
+                    justify-content: end;
+
+                }
+            }
+        }
+
+
+    }
+}

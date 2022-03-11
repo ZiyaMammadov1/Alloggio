@@ -1,0 +1,26 @@
+.login{
+    width: 50%;
+    margin: 0 auto;
+    form{
+        padding: 20px 0;
+    }
+    &_forgotlink{
+        @include linkReset;
+        font-size: 17px;
+        font-weight: 300;
+        letter-spacing: 1px;
+        color: gray;
+    }
+    &_forgotlink:hover{
+        color: rgb(116, 63, 63);
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .login {
+        width: 90%;
+        &_input {
+            width: 100%;
+        }
+    }
+}

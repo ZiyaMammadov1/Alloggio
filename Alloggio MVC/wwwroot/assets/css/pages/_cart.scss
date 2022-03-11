@@ -1,0 +1,250 @@
+.cart {
+    height: 170px;
+    background-color: #FAF9F5;
+
+    &_header {
+        font-family: 'Cormorant Garamond', serif;
+        height: 170px;
+        background-color: #FAF9F5;
+        font-size: 43px;
+        display: flex;
+        align-items: center;
+        width: 85%;
+        margin: 0 auto;
+    }
+}
+
+.cartTable {
+    &_Wrap {
+        width: 85%;
+        margin: 0 auto;
+    }
+
+    &_HeaderWrap {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &_header {
+        font-size: 25px;
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 300;
+    }
+
+    &_Wrap {
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &_items {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &_headitem {
+        padding: 20px;
+        font-size: 25px;
+        font-family: 'Cormorant Garamond', serif;
+    }
+
+    &_item {
+        padding: 20px;
+        font-size: 17px;
+        font-weight: 300;
+        display: flex;
+        align-items: center;
+    }
+
+    &_suitName {
+        font-size: 25px;
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 500;
+        width: 100%;
+    }
+
+    &_suitReservation {
+        font-size: 17px;
+        width: 100%;
+    }
+
+    &_Guests {
+        font-size: 17px;
+        width: 100%;
+    }
+
+    &_close {
+        width: 3%;
+    }
+
+    &_image {
+        width: 15%;
+    }
+
+    &_image img {
+        width: 150px;
+    }
+
+    &_product {
+        width: 37%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &_price {
+        width: 15%;
+    }
+
+    &_quantity {
+        width: 15%;
+    }
+
+    &_subtotal {
+        width: 15%;
+    }
+    &_secondHead{
+        display: none;
+    }
+}
+
+.cartTotal {
+    padding: 50px 0;
+
+    &_Content {
+        display: flex;
+        flex-direction: row;
+        width: 85%;
+        margin: 0 auto;
+
+    }
+
+    &_price {
+        font-family: 'Cormorant Garamond', serif;
+        height: 50px;
+        font-size: 35px;
+        display: flex;
+        align-items: center;
+        width: 85%;
+        margin: 0 auto;
+    }
+
+    &_totalheader {
+        font-family: 'Cormorant Garamond', serif;
+        height: 50px;
+        font-size: 35px;
+        display: flex;
+        align-items: center;
+
+    }
+
+    &_header {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 25px;
+        display: flex;
+        align-items: center;
+        width: 85%;
+        margin: 0 auto;
+    }
+
+
+    &_Checkout {
+        text-decoration: none;
+        width: 250px;
+        height: 50px;
+        display: inline-block;
+        background-color: #B56953;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &_Checkout:hover {
+        color: whitesmoke;
+    }
+}
+
+.empty {
+    width: 85%;
+    margin: 0 auto;
+    height: 200px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    &_type {
+        font-size: 45px;
+        font-family: 'Cormorant Garamond', serif;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .cartTable {
+        &_header {
+            display: none;
+        }
+
+        &_items {
+            flex-direction: column;
+            width: 100%;
+        }
+        &_close {
+            width: 100%;
+        }
+
+        &_image {
+            width: 100%;
+        }
+
+        &_product {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        &_price {
+            width: 100%;
+            padding: 5px 20px;
+        }
+
+        &_quantity {
+            width: 100%;
+            padding: 5px 20px;
+
+        }
+
+        &_subtotal {
+            width: 100%;
+            padding: 5px 20px;
+
+        }
+
+        &_image img {
+            width: 300px;
+        }
+
+        &_secondHead {
+            display: inline-block;
+            font-size: 17px;
+            color: $fontColor
+        }
+
+
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .cartTotal {
+        &_Content {
+            flex-direction: column;
+        }
+
+        &_price {
+            margin: 0;
+            padding: 20px 0;
+        }
+
+    }
+
+
+}

@@ -1,0 +1,188 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+<!--Rooms header begin -->
+<div class="outHeader">
+    <div class="outHeader_checkout" style="border-bottom: 1px solid lightgray;">
+        Rooms
+    </div>
+</div>
+<!-- Rooms header end -->
+<!-- Checking begin -->
+<div class="check checkAllRoom">
+    <div class="check_Wrap">
+        <div class="check_item">
+            <div class="check_itemHeader">
+                CHECK - IN
+            </div>
+            <div class="check_calendar">
+
+                <input class="form-control check_checkinInput" placeholder="Select date" type="datetime-local">
+
+            </div>
+        </div>
+
+        <div class="check_item">
+            <div class="check_itemHeader">
+                CHECK - OUT
+            </div>
+            <div class="check_calendar">
+
+                <input class="form-control check_checkinInput" placeholder="Select date" type="datetime-local">
+
+            </div>
+        </div>
+
+        <div class="check_item">
+            <div class="check_itemHeader">
+                ROOMS:
+            </div>
+            <div class="check_calendar">
+                <select class="form-select check_checkinInput" aria-label="Default select example">
+                    <option selected disabled class="check_checkinInput">Select room</option>
+                    <option value="1" class="check_checkinInput">1 Room</option>
+                    <option value="2" class="check_checkinInput">2 Rooms</option>
+                    <option value="3" class="check_checkinInput">3 Rooms</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="check_item">
+            <div class="check_itemHeader">
+                GUESTS:
+            </div>
+            <div class="check_calendar input-group">
+
+                <div class="form-select check_checkinInput " id="guests">
+                    <p class="detailWrap_AllPassenger check_AllPassengers">Adults: 1 Children: 0 Infant: 0</p>
+
+                </div>
+                <div class="detailWrap_innerForm">
+                    <div class="detailWrap_PersonItem check_checkinInput">
+                        Adults
+
+                        <select class="form-select check_checkinInput check_items" id="SelectAdults">
+
+                            <option selected value="1" class="check_checkinInput">1</option>
+                            <option value="2" class="check_checkinInput">2 </option>
+                            <option value="3" class="check_checkinInput">3 </option>
+                        </select>
+
+                    </div>
+
+                    <div class="detailWrap_PersonItem check_checkinInput">
+                        Children
+
+                        <select class="form-select check_checkinInput check_items" id="SelectChildren">
+
+                            <option selected value="0" class="check_checkinInput">0</option>
+                            <option value="1" class="check_checkinInput">1 </option>
+                            <option value="2" class="check_checkinInput">2 </option>
+                        </select>
+                    </div>
+
+                    <div class="detailWrap_PersonItem check_checkinInput">
+                        İnfant's
+                        <select class="form-select check_checkinInput check_items" id="SelectInfant">
+
+                            <option selected value="0" class="check_checkinInput">0</option>
+                            <option value="1" class="check_checkinInput">1 </option>
+                            <option value="2" class="check_checkinInput">2 </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="check_item">
+            <div class="check_itemHeader">
+                SEARCH:
+            </div>
+            <a asp-controller="room" asp-action="index" class="check_buttonsearch">BOOK NOW</a>
+        </div>
+    </div>
+</div>
+<!-- Chechking end -->
+<!-- About room begin -->
+<div class="roomAbout">
+    <div class="roomAbout_item">
+        <div class="roomAbout_leftside">
+            <div class="roomAbout_Photo">
+                <img src="~/assets/image/suit image/img5.jpg" alt="">
+            </div>
+            <div class="roomAbout_Name">
+                Artistic Loft
+            </div>
+        </div>
+        <div class="roomAbout_rightside">
+            <div class="roomAbout_about">
+                Ut et rhoncus odio. Quisque pellentesque nisl leo, eget ultricies nibh ullamcorper ut. Curabitur
+                bibendum sed neque quis rhoncus maecenas
+                Ut et rhoncus odio. Quisque pellentesque nisl leo, eget ultricies nibh ullamcorper ut. Curabitur
+                bibendum sed neque quis rhoncus maecenas
+            </div>
+            <div class="roomAbout_size">
+                53m2 / 1-3 person
+            </div>
+            <div class="roomAbout_Booking">
+                <a asp-action="roomdetail" class="roomAbout_BookLink">BOOK NOW +</a>
+            </div>
+        </div>
+
+    </div>
+    <hr>
+
+    <div class="roomAbout_item">
+        <div class="roomAbout_leftside">
+            <div class="roomAbout_Photo">
+                <img src="~/assets/image/suit image/img3.jpg" alt="">
+            </div>
+            <div class="roomAbout_Name">
+                Golden Maria
+            </div>
+        </div>
+        <div class="roomAbout_rightside">
+            <div class="roomAbout_about">
+                Ut et rhoncus odio. Quisque pellentesque nisl leo, eget ultricies nibh ullamcorper ut. Curabitur
+                bibendum sed neq
+                bibendum sed neque quis rhoncus maecenas
+            </div>
+            <div class="roomAbout_size">
+                103m2 / 5-7 person
+            </div>
+            <div class="roomAbout_Booking">
+                <a asp-action="roomdetail" class="roomAbout_BookLink">BOOK NOW +</a>
+            </div>
+        </div>
+
+    </div>
+    <hr>
+
+    <div class="roomAbout_item">
+        <div class="roomAbout_leftside">
+            <div class="roomAbout_Photo">
+                <img src="~/assets/image/suit image/img1.jpg" alt="">
+            </div>
+            <div class="roomAbout_Name">
+                Modern Avangarde
+            </div>
+        </div>
+        <div class="roomAbout_rightside">
+            <div class="roomAbout_about">
+                icies nibh ullamcorper ut. Curabitur
+                bibendum sed neque quis rhoncus maecenas
+                Ut et rhoncus odio. Quisque pellentesque nisl leo, eget ultricies nibh ullamcorper ut. Curabitur
+                bibendum sed neque quis rhoncus maecenas
+            </div>
+            <div class="roomAbout_size">
+                70m2 / 2-4 person
+            </div>
+            <div class="roomAbout_Booking">
+                <a asp-action="roomdetail" class="roomAbout_BookLink">BOOK NOW +</a>
+            </div>
+        </div>
+
+    </div>
+    <hr>
+</div>
+<!-- About room end -->

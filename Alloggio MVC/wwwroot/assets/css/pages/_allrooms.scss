@@ -1,0 +1,107 @@
+.roomAbout {
+    width: 85%;
+    margin: 0 auto;
+    padding: 50px 0;
+
+    &_item {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &_leftside {
+        width: 50%;
+    }
+
+    &_rightside {
+        padding: 30px;
+        width: 50%;
+    }
+
+    &_Photo {
+        width: 500px;
+        height: 300px;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &_Name {
+        font-size: 35px;
+        padding: 20px 0;
+        font-style: italic;
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 300;
+    }
+
+    &_about {
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 25px;
+    }
+
+    &_size {
+        font-size: 15px;
+        font-weight: 300;
+        padding: 20px 0;
+    }
+
+    &_Booking {
+        align-items: flex-end;
+    }
+
+    &_BookLink {
+        font-size: 12px;
+        letter-spacing: 1px;
+        font-weight: 352;
+        @include linkReset;
+    }
+
+    &_BookLink:hover {
+        @include linkHover;
+    }
+}
+
+.checkAllRoom {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+@media only screen and (max-width: 1200px) {
+    .checkAllRoom {
+        position: unset;
+    }
+
+    .roomAbout {
+        &_item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &_leftside {
+            width: 100%;
+        }
+
+        &_rightside {
+            padding: 30px 0;
+            width: 100%;
+        }
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .roomAbout {
+        &_Photo {
+            width: 100%;
+            height: 100%;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+    }
+}

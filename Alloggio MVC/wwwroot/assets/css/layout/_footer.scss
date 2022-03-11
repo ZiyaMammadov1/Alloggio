@@ -1,0 +1,129 @@
+.footer-top-area {
+    background-color: $footerTopBackColor;
+    padding: 110px 0 110px 0;
+
+    &_inner {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    &_about {
+        padding-right: 10px;
+    }
+
+    &_contact {
+        padding-left: 50px;
+    }
+
+    &_aboutHeader {
+        @include footerContentHeader;
+    }
+
+    &_aboutDescription {
+        @include footerContentDescriptionFont;
+        @include footerContentDescriptionPadding;
+    }
+
+    &_aboutPartner {
+        @include footerContentThirdRow;
+    }
+
+    &_contactHeader {
+        @include footerContentHeader;
+    }
+
+    &_contactDescription {
+        @include footerContentDescriptionPadding;
+    }
+
+    &_contactDescriptionItem {
+        @include footerContentDescriptionFont;
+        margin: 0
+    }
+
+    &_contactDescriptionLink {
+        @include linkReset;
+        @include footerContentDescriptionFont;
+    }
+
+    &_contactDescriptionLink:hover {
+        @include linkHover;
+    }
+
+    &_contactShowOnMapLink {
+        @include linkReset;
+        letter-spacing: 2px;
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    &_contactShowOnMapLink:hover {
+        @include linkHover;
+    }
+
+    &_paymentHeader {
+        @include footerContentHeader;
+    }
+
+    &_paymentDescription {
+        @include footerContentDescriptionFont;
+        @include footerContentDescriptionPadding;
+    }
+
+    &_paymentItem {
+        @include linkReset;
+        color: $footerTopItemColor;
+    }
+
+    &_paymentItemLink {
+        @include footerItemLinkFontPadding
+    }
+
+    &_paymentItem:hover {
+        @include linkHover;
+    }
+
+    &_socialHeader {
+        @include footerContentHeader;
+    }
+
+    &_socialDescription {
+        @include footerContentDescriptionFont;
+        @include footerContentDescriptionPadding;
+    }
+
+    &_socialLinksItem {
+        @include linkReset;
+        color: $footerTopItemColor;
+    }
+
+    &_socialItemLink {
+        @include footerItemLinkFontPadding;
+    }
+
+    &_socialLinksItem:hover {
+        @include linkHover;
+    }
+}
+
+
+.footer-bottom-area {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    background-color: $footerBottomBackColor;
+
+    &_bottomInner {
+        width: 85%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    &_copyright {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 300;
+    }
+}

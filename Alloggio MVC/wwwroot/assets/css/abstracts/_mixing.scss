@@ -1,0 +1,54 @@
+// Mixing header begin
+@mixin linkReset {
+    text-decoration: none;
+    color: black;
+    transition: color .3s;
+}
+
+@mixin linkHover {
+    color: $fontColor;
+    cursor: pointer;
+}
+
+@mixin flexRow {
+    display: flex;
+    flex-direction: row;
+}
+
+// Mixing header end
+
+//Mixing footer begin
+@mixin footerContentHeader{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 25px;
+}
+
+@mixin footerContentThirdRow{
+    padding-top: 15px
+}
+@mixin footerContentDescriptionPadding{
+    padding: 20px 0 20px 0;
+}
+@mixin footerContentDescriptionFont{
+    font-weight: 300;
+    font-size: 17px;
+}
+@mixin footerItemLinkFontPadding{
+    font-size: 25px;
+    padding-right: 10px;
+}
+//Mixing footer end
+
+//Mixing BackToTop begin
+@mixin flexVerticalHorizontalCenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin WidthHeightFull{
+    width: 100%;
+    height: 100%;
+}
+//Mixing BackToTop end

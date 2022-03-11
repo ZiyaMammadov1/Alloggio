@@ -1,0 +1,825 @@
+//Slider begin
+.slider {
+
+    background-attachment: fixed;
+
+    &_image {
+        margin: 0 auto;
+        width: 100%;
+        height: 600px;
+        object-fit: cover;
+        position: relative;
+    }
+
+
+    &_captionHeader {
+        margin: 0 auto;
+        width: 80%;
+        font-size: 70px;
+        font-weight: 300;
+    }
+
+    &_button {
+        width: 150px;
+        height: 50px;
+        background-color: $fontColor;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid transparent;
+        position: relative;
+        transition: .3s linear;
+    }
+
+    &_buttonType {
+        @include footerContentDescriptionFont;
+        color: white;
+    }
+
+    &_button:hover {
+        background-color: black;
+        border: 1px solid white;
+    }
+}
+
+//Slider end
+
+//Chechking begin
+.check {
+    width: 100%;
+    padding: 30px 0;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    justify-content: space-around;
+    background-color: #FAF9F5;
+
+    &_Wrap{
+        display: flex;
+        flex-direction: row;
+        column-gap: 50px;
+    }
+    &_itemHeader {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 15px;
+        padding: 0 0 10px 0;
+    }
+
+    &_checkinInput {
+        font-weight: 300;
+        background-color: #FAF9F5 !important;
+        height: 50PX;
+        font-size: 20px;
+    }
+    &_innerForms{
+        display: none;
+    }
+
+    &_items {
+        width: 30%;
+    }
+    &_buttonsearch{
+        @include linkReset;
+        @include linkHover;
+        display: inline-block;
+        width: 200px;
+        height: 50px;
+        border: 1px solid black;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        transition: .2s linear;
+    }
+    &_buttonsearch:hover{
+        background-color: #B56953;
+        color:white;
+    }
+}     
+//Chechking end
+
+//suits begin
+.suit {
+    width: 100%;
+    margin: 0 auto;
+    padding: 50px 150px;
+
+    &_wrapHead {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 0;
+    }
+
+    &_wrapHeader {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 43px;
+        text-align: center;
+        width: 50%;
+    }
+
+    &_wrapDescription {
+        font-size: 23px;
+        font-weight: 300;
+        width: 80%;
+        text-align: center;
+        padding: 20px;
+    }
+
+    &_card {
+        background-color: $footerTopBackColor;
+        font-family: 'Cormorant Garamond', serif;
+        position: relative;
+        border-radius: 5px;
+    }
+
+    &_info {
+        padding: 30px;
+    }
+
+    &_cardImage {
+        padding: 20px;
+    }
+
+    &_image {
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0px 15px 30px -10px;
+        transform: rotateZ(-5deg);
+        transition: .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    &_cardImage:hover &_image {
+        transform: rotateZ(-15deg);
+
+    }
+
+    &_cardHeader {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-top: 10px;
+    }
+
+    &_name {
+        font-size: 35px;
+        font-family: 'Cormorant Garamond', serif;
+    }
+
+    &_price {
+        font-family: 'Cormorant Garamond', serif;
+        display: flex;
+        align-items: center;
+    }
+
+    &_pricespan {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 45px;
+        font-weight: 300;
+    }
+
+    &_from {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 17px;
+        color: $fontColor;
+    }
+
+    &_volume {
+        font-size: 17px;
+        font-weight: 300;
+        color: $fontColor;
+        padding-bottom: 10px;
+    }
+
+    &_description {
+        font-size: 16px;
+        font-weight: 300;
+        letter-spacing: 1px;
+        padding-bottom: 10px;
+    }
+
+    &_cardButton {
+        padding: 20px 0;
+    }
+
+    &_button {
+        @include linkReset;
+    }
+
+    &_button:hover {
+        @include linkHover;
+    }
+}
+
+//suite end
+
+//Services begin
+.services {
+    background-color: #FAF9F5;
+    padding: 50px;
+
+    &_header {
+        margin: 0 auto;
+        text-align: center;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 43px;
+    }
+
+    &_description {
+        margin: 0 auto;
+        width: 50%;
+        text-align: center;
+        padding: 20px 0;
+        font-size: 21px;
+        font-weight: 300;
+    }
+
+    &_items {
+        width: 85%;
+        margin: 0 auto;
+        padding-top: 50px;
+    }
+
+    &_columnWrap {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &_column {
+        width: 50%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    &_itemIcon {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    &_icon {
+        font-size: 50px;
+        transition: .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        color: $fontColor;
+    }
+
+    &_icon:hover {
+        transform: translateY(-7px);
+    }
+
+    &_itemTitle {
+        text-align: center;
+        font-size: 17px;
+        font-weight: 300;
+    }
+}
+
+//Services end
+
+//Testimonial begin
+.testimonial {
+    width: 90%;
+    margin: 0 auto;
+    padding: 50px 0;
+
+    &_wrap {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &_item {
+        padding-top: 10px;
+    }
+
+    &_header {
+        margin: 0 auto;
+        text-align: center;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 43px;
+        padding: 20px 0;
+    }
+
+    &_logoWrap {
+        display: flex;
+        justify-content: center;
+    }
+
+    &_logo {
+        border-radius: 50%;
+    }
+
+    &_content {
+        @include footerContentDescriptionPadding;
+    }
+
+    &_description {
+        @include footerContentDescriptionFont;
+        font-size: 20px;
+        width: 80%;
+        @include footerContentDescriptionPadding;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    &_name {
+        text-align: center;
+        color: $fontColor;
+        @include footerContentDescriptionFont;
+    }
+}
+
+//Testimonial end
+
+//Subscription begin
+.subscription {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    background-color: #F1EEE3;
+
+    &_wrap {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        column-gap: 30px;
+    }
+
+    &_emailIcon {
+        font-size: 43px;
+    }
+
+    &_type {
+        font-size: 43px;
+        font-weight: 300;
+    }
+
+    &_emailInput {
+        width: 350px;
+        height: 50px;
+        font-size: 25px;
+        font-weight: 300;
+        border: none;
+        border-bottom: 1px solid #D0CEC4;
+        background-color: #F1EEE3;
+    }
+
+    &_signButton {
+        font-size: 13px;
+        width: 150px;
+        height: 50px;
+        color: #6b3e31;
+        border: 1px solid #754234;
+        background-color: #F1EEE3;
+        letter-spacing: 1px;
+        transition: .3s linear;
+    }
+
+    &_signButton:hover {
+        background-color: #B56953;
+        color: white;
+        border: 1px solid #B56953;
+
+    }
+}
+
+//Subscription begin
+
+
+@media only screen and (max-width: 1200px) {
+    body {
+        .slider {
+            &_image {
+                height: 400px;
+            }
+
+            &_captionHeader {
+                font-size: 50px;
+            }
+        }
+
+         .check{
+             &_Wrap{
+                 flex-direction: column;
+                 row-gap: 20px;
+                 width: 80%;
+             }
+         }
+    }
+
+    body {
+        .subscription {
+            &_wrap {
+                flex-direction: column;
+                row-gap: 10px;
+            }
+        }
+
+        .footer-top-area {
+            &_inner {
+                row-gap: 20px;
+            }
+
+            &_about {
+                width: 50%;
+            }
+
+            &_contact {
+                width: 50%;
+                padding-left: 10px;
+            }
+
+            &_payment {
+                width: 50%;
+            }
+
+            &_social {
+                width: 50%;
+            }
+        }
+
+        .testimonial {
+            &_description {
+                font-size: 17px;
+            }
+
+            &_name {
+                font-size: 15px;
+            }
+        }
+
+        .services {
+            &_description {
+                font-size: 17px;
+                width: 100%;
+            }
+
+            &_icon {
+                font-size: 35px;
+                color: $fontColor;
+            }
+        }
+
+        .suit {
+            &_wrapHeader {
+                font-size: 35px;
+            }
+
+            &_wrapDescription {
+                font-size: 17px;
+                width: 100%;
+                padding: 20px 0;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    body {
+        .slider {
+            &_image {
+                height: 300px;
+            }
+
+            &_captionHeader {
+                font-size: 30px;
+            }
+        }
+
+        .subscription {
+            &_emailIcon {
+                font-size: 35px;
+            }
+
+            &_type {
+                font-size: 38px;
+            }
+
+            &_signButton {
+                font-size: 13px;
+                width: 140px;
+                height: 45px;
+            }
+
+            &_emailInput {
+                width: 300px;
+                height: 40px;
+                font-size: 25px;
+            }
+
+            &_wrap {
+                flex-direction: column;
+                row-gap: 10px;
+            }
+        }
+
+        .footer-top-area {
+            &_inner {
+                row-gap: 40px;
+            }
+
+            &_about {
+                width: 50%;
+            }
+
+            &_aboutDescription {
+                font-size: 15px;
+                padding: 10px 0 10px 0;
+            }
+
+            &_aboutPartner {
+                width: 90%;
+            }
+
+            &_aboutPartner img {
+                width: 100%;
+            }
+
+            &_contact {
+                width: 50%;
+            }
+
+            &_contactDescription {
+                padding: 10px 0 10px 0;
+            }
+
+            &__contactDescriptionItem {
+                font-size: 15px;
+            }
+
+            &_payment {
+                width: 50%;
+            }
+
+            &_paymentDescription {
+                font-size: 15px;
+                padding: 10px 0 10px 0;
+
+            }
+
+            &_social {
+                width: 50%;
+            }
+
+            &_socialDescription {
+                font-size: 15px;
+                padding: 10px 0 10px 0;
+
+            }
+        }
+
+        .testimonial {
+            padding: 30px 0;
+
+            &_wrap {
+                flex-direction: column;
+            }
+
+            &_header {
+                font-size: 35px;
+            }
+
+            &_description {
+                font-size: 17px;
+                padding: 20px 0 0 0;
+            }
+
+            &_name {
+                font-size: 15px;
+            }
+        }
+
+        .services {
+            padding: 30px;
+
+            &_header {
+                font-size: 35px;
+            }
+
+            &_description {
+                font-size: 16px;
+                width: 100%;
+            }
+        }
+
+        .suit {
+            padding: 50px;
+
+            &_wrapHeader {
+                font-size: 35px;
+                width: 100%;
+            }
+
+            &_wrapDescription {
+                font-size: 17px;
+                width: 100%;
+                padding: 20px 0;
+            }
+        }
+    }
+
+}
+
+@media only screen and (max-width: 576px) {
+    body {
+        .slider {
+            &_image {
+                height: 300px;
+            }
+
+            &_captionHeader {
+                font-size: 20px;
+            }
+
+            &_buttonType {
+                font-size: 15px;
+            }
+
+            &_button {
+                width: 100px;
+                height: 40px;
+            }
+        }
+
+        .subscription {
+            &_emailIcon {
+                font-size: 35px;
+            }
+
+            &_type {
+                font-size: 25px;
+            }
+
+            &_signButton {
+                font-size: 13px;
+                width: 140px;
+                height: 45px;
+            }
+
+            &_emailInput {
+                width: 250px;
+                height: 40px;
+                font-size: 25px;
+            }
+
+            &_wrap {
+                flex-direction: column;
+                row-gap: 10px;
+            }
+        }
+
+        .footer-top-area {
+            &_inner {
+                row-gap: 40px;
+            }
+
+            &_about {
+                width: 100%;
+                padding: 0;
+            }
+
+            &_aboutDescription {
+                font-size: 15px;
+                padding: 10px 0 10px 0;
+            }
+
+            &_aboutPartner {
+                width: 90%;
+            }
+
+            &_aboutPartner img {
+                width: 100%;
+            }
+
+            &_contact {
+                width: 100%;
+                padding: 0;
+            }
+
+            &_contactDescription {
+                padding: 10px 0 10px 0;
+            }
+
+            &__contactDescriptionItem {
+                font-size: 15px;
+            }
+
+            &_payment {
+                width: 100%;
+                padding: 0;
+            }
+
+            &_paymentDescription {
+                font-size: 15px;
+                padding: 10px 0 10px 0;
+
+            }
+
+            &_social {
+                width: 100%;
+                padding: 0;
+            }
+
+            &_socialDescription {
+                font-size: 15px;
+                padding: 10px 0 10px 0;
+
+            }
+        }
+
+        .testimonial {
+            padding: 30px 0;
+
+            &_wrap {
+                flex-direction: column;
+            }
+
+            &_header {
+                font-size: 35px;
+            }
+
+            &_description {
+                font-size: 17px;
+                padding: 20px 0 0 0;
+            }
+
+            &_name {
+                font-size: 15px;
+            }
+        }
+
+        .services {
+            padding: 30px 5px;
+
+            &_header {
+                font-size: 25px;
+            }
+
+            &_description {
+                font-size: 12px;
+                width: 100%;
+            }
+
+            &_column {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            &_icon {
+                font-size: 30px;
+            }
+
+            &_itemTitle {
+                font-size: 12px;
+            }
+            &_items{
+                padding: 0;
+            }
+        }
+
+        .suit {
+            padding: 20px;
+
+            &_wrapHeader {
+                font-size: 25px;
+                width: 100%;
+            }
+
+            &_wrapDescription {
+                font-size: 12px;
+                width: 100%;
+                padding: 20px 0;
+            }
+
+            &_name {
+                font-size: 20px;
+            }
+
+            &_volume {
+                font-size: 15px;
+            }
+
+            &_description {
+                font-size: 12px;
+            }
+
+            &_pricespan {
+                font-size: 20px;
+            }
+        }
+        .check{
+            &_AllPassengers{
+                font-size: 13px;
+            }
+            &_checkinInput{
+                font-size: 15px;
+            }
+        }
+    }
+
+}

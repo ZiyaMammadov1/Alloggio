@@ -1,0 +1,43 @@
+.backToTop {
+
+    position: absolute;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    display: none;
+
+    &_Inner {
+        width: 40px;
+        height: 40px;
+        background-color: transparent;
+        border: 1px solid $fontColor;
+        @include flexVerticalHorizontalCenter;
+    }
+
+    &_frameInner {
+        position: absolute;
+        background-color: $fontColor;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        transition: .3s cubic-bezier(0.7, 0, 0, 0.7)
+    }
+
+    &_Inner:hover &_frameInner {
+        @include WidthHeightFull;
+    }
+
+    &_Inner:hover &_icon {
+        color: white;
+        z-index: 1;
+    }
+
+    &_icon {
+        font-size: 20px;
+        color: $fontColor;
+    }
+}
+
+.backToTop:hover {
+    cursor: pointer;
+}

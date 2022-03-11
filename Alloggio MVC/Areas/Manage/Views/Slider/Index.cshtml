@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Slider";
+}
+<div class="grid-margin stretch-card" style="width:60%; height:90%; margin: 0 auto; ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title" style="font-size:30px;">Slider Table</h4>
+            <a asp-controller="slider" asp-action="create" class="btn btn-outline-linkedin">Add slider</a>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Photo</th>
+                            <th>Header</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <img src="~/assets/image/slider/img1.jpg" alt="Alternate Text" style="width:100px; height:50px; border-radius:0;" />
+                            </td>
+                            <td>Beautiful Apartment & Cozy Atmosphere</td>
+                            <td><a class="btn btn-outline-warning" asp-action="edit">Update</a></td>
+                            <td><a class="btn btn-outline-danger" asp-action="delete">Delete</a></td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

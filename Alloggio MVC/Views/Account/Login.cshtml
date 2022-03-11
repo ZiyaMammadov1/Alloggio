@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}   
+ <!-- Check header begin -->
+<div class="outHeader">
+    <div class="outHeader_checkout">
+        Log in
+    </div>
+</div>
+<!-- Check header end -->
+<!-- Login begin -->
+<div class="login">
+    <form action="">
+        <div class="register_group">
+            <div class="register_groupName">
+                Email
+            </div>
+            <div class="register_groupInput">
+                <input type="text" class="register_input">
+            </div>
+        </div>
+
+        <div class="register_group">
+            <div class="register_groupName">
+                Password
+            </div>
+            <div class="register_groupInput">
+                <input type="text" class="register_input">
+            </div>
+        </div>
+
+
+        <div class="register_group">
+            <div class="register_button">
+                <a asp-controller="account" asp-action="profile" class="register_link">Sign in</a>
+            </div>
+            <a asp-controller="account" asp-action="forgotpassword" class="login_forgotlink">Forgot password</a>
+            <a asp-controller="account" asp-action="register" class="login_forgotlink" style="padding-left:30px; text-decoration:underline; color:black">Register</a>
+
+        </div>
+
+    </form>
+
+</div>
+<!-- Login end -->
