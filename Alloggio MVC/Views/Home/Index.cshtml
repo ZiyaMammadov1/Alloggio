@@ -1,6 +1,7 @@
 ﻿
 @{
     Layout = null;
+    int counter;
 }
 @model List<Slider>
 <!DOCTYPE html>
@@ -179,29 +180,20 @@
     <div class="slider">
         <div id="carouselExampleControls" class="carousel slide">
             <div class="carousel-inner">
-                <div class="carousel-item active ">
-                    <img src="~/assets/image/slider/img1.jpg" class="d-block w-100 slider_image" alt="...">
-                    <div class="carousel-caption d-md-block slider_caption">
-                        <div class="slider_captionHeader">
-                            Beautiful Apartment & Cozy Atmosphere
-                        </div>
-                        <button class="slider_button">
-                            <div class="slider_buttonType">
-                                View More
-                            </div>
+                @(counter = 0);
+                @foreach (var item in Model)
+                {
 
-                        </button>
+                    <div class="carousel-item @(counter==0?"active":" ")">
+                        <img src="~/assets/image/slider/@item.Image" class="d-block w-100 slider_image" alt="...">
+                        <div class="carousel-caption d-md-block slider_caption">
+                            <div class="slider_captionHeader">
+                                @item.Header
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="~/assets/image/slider/img2.jpg" class="d-block w-100 slider_image" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="~/assets/image/slider/img3.jpg" class="d-block w-100 slider_image" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="~/assets/image/slider/img4.jpg" class="d-block w-100 slider_image" alt="...">
-                </div>
+                    counter++;
+                }
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                     data-bs-slide="prev">
