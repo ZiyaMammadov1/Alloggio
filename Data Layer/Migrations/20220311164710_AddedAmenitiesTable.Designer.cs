@@ -3,14 +3,16 @@ using Data_Layer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data_Layer.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220311164710_AddedAmenitiesTable")]
+    partial class AddedAmenitiesTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,9 +45,6 @@ namespace Data_Layer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -58,9 +57,6 @@ namespace Data_Layer.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PanoramaImage")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
@@ -70,28 +66,6 @@ namespace Data_Layer.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Rooms");
-                });
-
-            modelBuilder.Entity("Core_Layer.Entities.RoomAmenities", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Amenitieid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Roomid")
-                        .HasColumnType("int");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("Amenitieid");
-
-                    b.HasIndex("Roomid");
-
-                    b.ToTable("RoomAmenities");
                 });
 
             modelBuilder.Entity("Core_Layer.Entities.Service", b =>
@@ -182,21 +156,6 @@ namespace Data_Layer.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Testimonials");
-                });
-
-            modelBuilder.Entity("Core_Layer.Entities.RoomAmenities", b =>
-                {
-                    b.HasOne("Core_Layer.Entities.Amenitie", "Amenitie")
-                        .WithMany("RoomAmenities")
-                        .HasForeignKey("Amenitieid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Core_Layer.Entities.Room", "Room")
-                        .WithMany("RoomAmenities")
-                        .HasForeignKey("Roomid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

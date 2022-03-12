@@ -21,8 +21,14 @@ namespace Alloggio_MVC.Controllers
         {
             HomeViewModels HomeVM = new HomeViewModels
             {
-                Sliders = _context.Sliders.ToList()
-        };
+                Sliders = _context.Sliders.ToList(),
+                Rooms = _context.Rooms.ToList(), 
+                Services = _context.Services.ToList(), 
+                Subscriptions = _context.Subscriptions.ToList(), 
+                Testimonials = _context.Testimonials.ToList(), 
+                Settings = _context.Settings.ToDictionary(x=>x.Key, x=>x.Value)
+
+            };
             return View(HomeVM);
         }
         public IActionResult Menu()

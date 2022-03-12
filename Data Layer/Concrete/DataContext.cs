@@ -18,6 +18,7 @@ namespace Data_Layer.Concrete
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Subscription> Subscriptions { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
+        public DbSet<Amenitie> Amenities { get; set; }
 
     }
 }

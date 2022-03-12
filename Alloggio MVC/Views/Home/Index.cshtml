@@ -3,7 +3,7 @@
     Layout = null;
     int counter;
 }
-@model List<Slider>
+@model HomeViewModels
 <!DOCTYPE html>
 <html lang="en">
 
@@ -139,7 +139,7 @@
 
                 <div class="header-inner_account">
                     <a asp-controller="account" asp-action="login" class="header-inner_accountEmail">
-                       Log in
+                        Log in
                     </a>
                 </div>
             </div>
@@ -151,7 +151,7 @@
                     <span class="header-inner_hamburgerItem"></span>
                 </div>
             </div>
-            </div>
+        </div>
 
     </header>
 
@@ -181,7 +181,7 @@
         <div id="carouselExampleControls" class="carousel slide">
             <div class="carousel-inner">
                 @(counter = 0);
-                @foreach (var item in Model)
+                @foreach (var item in Model.Sliders)
                 {
 
                     <div class="carousel-item @(counter==0?"active":" ")">
@@ -434,86 +434,49 @@
     <!-- Services begin -->
     <div class="services">
         <div class="services_header">
-            Our Services
+            @Model.Settings["ServiceHeader"]
         </div>
 
         <div class="services_description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat.
+            @Model.Settings["ServiceDescription"];
         </div>
 
         <div class="services_itemWrap">
             <div class="services_items">
                 <div class="row service_columnWrap">
                     <div class="services_column">
-                        <div class="col-2 col-md-2 col-lg-2">
-                            <div class="services_item">
-                                <div class="services_itemIcon">
-                                    <i class="fa-solid fa-wifi services_icon"></i>
-                                </div>
-                                <div class="services_itemTitle">
-                                    Fast Wifi
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="col-2 col-md-2 col-lg-2">
-                            <div class="services_item">
-                                <div class="services_itemIcon">
-                                    <i class="fa-solid fa-bath services_icon"></i>
-                                </div>
-                                <div class="services_itemTitle">
-                                    Hot Bath
+                        @for (int i = 0; i < Model.Services.Count / 2; i++)
+                        {
+                            <div class="col-2 col-md-2 col-lg-2">
+                                <div class="services_item">
+                                    <div class="services_itemIcon">
+                                        @Html.Raw(Model.Services[i].Image)
+                                    </div>
+                                    <div class="services_itemTitle">
+                                        @Model.Services[i].Name
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        }
 
-                        <div class="col-2 col-md-2 col-lg-2">
-                            <div class="services_item">
-                                <div class="services_itemIcon">
-                                    <i class="fa-solid fa-mug-hot services_icon"></i>
-                                </div>
-                                <div class="services_itemTitle">
-                                    Coffee
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                     <div class="services_column">
 
-                        <div class="col-2 col-md-2 col-lg-2">
-                            <div class="services_item">
-                                <div class="services_itemIcon">
-                                    <i class="fa-solid fa-vault services_icon"></i>
-                                </div>
-                                <div class="services_itemTitle">
-                                    Safe
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-2 col-md-2 col-lg-2">
-                            <div class="services_item">
-                                <div class="services_itemIcon">
-                                    <i class="fa-solid fa-clock services_icon"></i>
-                                </div>
-                                <div class="services_itemTitle">
-                                    Alarm
+                        @for (int i = (Model.Services.Count / 2); i < Model.Services.Count; i++)
+                        {
+                            <div class="col-2 col-md-2 col-lg-2">
+                                <div class="services_item">
+                                    <div class="services_itemIcon">
+                                        @Html.Raw(Model.Services[i].Image)
+                                    </div>
+                                    <div class="services_itemTitle">
+                                        @Model.Services[i].Name
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="col-2 col-md-2 col-lg-2">
-                            <div class="services_item">
-                                <div class="services_itemIcon">
-                                    <i class="fa-solid fa-bell-concierge services_icon"></i>
-                                </div>
-                                <div class="services_itemTitle">
-                                    Services
-                                </div>
-                            </div>
-                        </div>
+                        }
                     </div>
 
                 </div>
@@ -524,57 +487,27 @@
     <!-- Testimonial begin -->
     <div class="testimonial">
         <div class="testimonial_header">
-            Testimonials
+            @Model.Settings["TestimonialHeader"]
         </div>
         <div class="testimonial_wrap">
-            <div class="testimonial_item">
-                <div class="testimonial_logoWrap">
-                    <img src="~/assets/image/testimonial/img1.png" class="testimonial_logo" alt="">
-                </div>
-                <div class="testimonial_content">
+            @foreach (var item in Model.Testimonials)
+            {
+                <div class="testimonial_item">
+                    <div class="testimonial_logoWrap">
+                        <img src="~/assets/image/testimonial/@item.Image" class="testimonial_logo" alt="">
+                    </div>
+                    <div class="testimonial_content">
 
-                    <div class="testimonial_description">
-                        Lorem ipsum dolor sit amet, con sec tetur adipiscing elit, sed do eius mod tempor inci didunt ut
-                        inde us la bore.
-                    </div>
-                    <div class="testimonial_name">
-                        Andreas Mjøs
+                        <div class="testimonial_description">
+                            @item.Description
+                        </div>
+                        <div class="testimonial_name">
+                            @item.Name
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
 
-            <div class="testimonial_item">
-                <div class="testimonial_logoWrap">
-                    <img src="~/assets/image/testimonial/img2.png" class="testimonial_logo" alt="">
-                </div>
-                <div class="testimonial_content">
-
-                    <div class="testimonial_description">
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eufugiat nulla
-                        pariatur
-                        non proident.
-                    </div>
-                    <div class="testimonial_name">
-                        Mary Cruz
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial_item">
-                <div class="testimonial_logoWrap">
-                    <img src="~/assets/image/testimonial/img3.png" class="testimonial_logo" alt="">
-                </div>
-                <div class="testimonial_content">
-
-                    <div class="testimonial_description">
-                        Sed ut perspiciatis unde omnis iste natus error sit volup accus antium do lorem que laud antium,
-                        totam si rem.
-                    </div>
-                    <div class="testimonial_name">
-                        Mia Skurdal
-                    </div>
-                </div>
-            </div>
         </div>
 
     </div>
@@ -583,16 +516,18 @@
     <div class="subscription">
         <div class="subscription_wrap">
             <div class="subscrition_icon">
-                <i class="fa-solid fa-envelope-open-text subscription_emailIcon"></i>
+                @Html.Raw(Model.Settings["SubscriptionImage"])
             </div>
             <div class="subscription_type">
-                Join our Newsletter
+                @Model.Settings["SubscriptionHeader"]
             </div>
             <div class="subscrition_input">
                 <input type="text" class="subscription_emailInput" placeholder="Email Address">
             </div>
             <div class="subscription_button">
-                <button class="subscription_signButton">SIGN ME UP</button>
+                <button class="subscription_signButton">
+                    @Model.Settings["SubscriptionBtn"]
+                </button>
             </div>
         </div>
     </div>
@@ -607,11 +542,10 @@
                         About
                     </div>
                     <div class="footer-top-area_aboutDescription">
-                        Welcome to Alloggio, where comfort is everything. Beautiful room presentations, straightforward
-                        booking & reservation options, & a whole lot more awaits here.
+                        @Model.Settings["AboutDescription"]
                     </div>
                     <div class="footer-top-area_aboutPartner">
-                        <img src="~/assets/image/partner logo/footer-clients.png" alt="">
+                        <img src="~/assets/image/partner logo/@Model.Settings["AboutImage"]" alt="">
                     </div>
                 </div>
 
@@ -622,13 +556,13 @@
                     <div class="footer-top-area_contactDescription">
                         <p class="footer-top-area_contactDescriptionItem">
                             A: <a href="#" class="footer-top-area_contactDescriptionLink">
-                                Via Venti Settembre, Roma
+                                @Model.Settings["Address"]
                             </a>
                         </p>
 
                         <p class="footer-top-area_contactDescriptionItem">
                             P: <a href="#" class="footer-top-area_contactDescriptionLink">
-                                +31 555 777 83
+                                @Model.Settings["Phone"]
                             </a>
                         </p>
 
@@ -640,12 +574,13 @@
 
                         <p class="footer-top-area_contactDescriptionItem">
                             E: <a href="#" class="footer-top-area_contactDescriptionLink">
-                                info@allogio.com
+                                @Model.Settings["Email"]
+
                             </a>
                         </p>
                     </div>
                     <div class="footer-top-area_contactShowOnMap">
-                        <a href="#" class="footer-top-area_contactShowOnMapLink">
+                        <a href=" @Model.Settings["Location"]" class="footer-top-area_contactShowOnMapLink">
                             SHOW ON MAP +
                         </a>
                     </div>
@@ -656,18 +591,18 @@
                         Payment methods
                     </div>
                     <div class="footer-top-area_paymentDescription">
-                        Pay any way you choose, we support all payment options.
+                        @Model.Settings["PaymentHeader"]
                     </div>
                     <div class="footer-top-area_paymentMethods">
-                        <a href="#" class="footer-top-area_paymentItem">
+                        <a href="@Model.Settings["Visa"]" class="footer-top-area_paymentItem">
                             <i class="fa-brands fa-cc-visa footer-top-area_paymentItemLink"></i>
                         </a>
 
-                        <a href="#" class="footer-top-area_paymentItem">
+                        <a href="@Model.Settings["PayPal"]" class="footer-top-area_paymentItem">
                             <i class="fa-brands fa-cc-paypal footer-top-area_paymentItemLink"></i>
                         </a>
 
-                        <a href="#" class="footer-top-area_paymentItem">
+                        <a href="@Model.Settings["MasterCard"]" class="footer-top-area_paymentItem">
                             <i class="fa-brands fa-cc-mastercard footer-top-area_paymentItemLink"></i>
                         </a>
                     </div>
@@ -678,19 +613,19 @@
                         Get Social
                     </div>
                     <div class="footer-top-area_socialDescription">
-                        Follow us on social media and keep in touch with Alloggio.
+                        @Model.Settings["SocialHeader"]
                     </div>
                     <div class="footer-top-area_socialLinks">
 
-                        <a href="" class="footer-top-area_socialLinksItem">
+                        <a href="@Model.Settings["Facebook"]" class="footer-top-area_socialLinksItem">
                             <i class="fa-brands fa-facebook-square footer-top-area_socialItemLink"></i>
                         </a>
 
-                        <a href="" class="footer-top-area_socialLinksItem">
+                        <a href="@Model.Settings["Twitter"]" class="footer-top-area_socialLinksItem">
                             <i class="fa-brands fa-twitter-square footer-top-area_socialItemLink"></i>
                         </a>
 
-                        <a href="" class="footer-top-area_socialLinksItem">
+                        <a href="@Model.Settings["Instagram"]" class="footer-top-area_socialLinksItem">
                             <i class="fa-brands fa-instagram-square footer-top-area_socialItemLink"></i>
                         </a>
 
@@ -702,7 +637,7 @@
         <div class="footer-bottom-area">
             <div class="footer-bottom-area_bottomInner">
                 <p class="footer-bottom-area_copyright">
-                    © Copyright Code Interactive
+                    @Model.Settings["FooterText"]
                 </p>
             </div>
         </div>
