@@ -316,117 +316,35 @@
             </div>
         </div>
         <div class="owl-carousel owl-theme">
-            <div class="suit_wrap">
-                <div class="suit_card">
-                    <div class="suit_cardImage">
-                        <img src="~/assets/image/suit image/img1.jpg" class="suit_image" alt="">
-                    </div>
-                    <div class="suit_info">
-                        <div class="suit_cardHeader">
-                            <div class="suit_name">Cozy Place</div>
-                            <div class="suit_price">
-                                <span class="suit_from">from</span>
-                                <span class="suit_pricespan">45$</span>
-                            </div>
-                        </div>
-                        <div class="suit_volume">
-                            100m2 / 2-6 person
-                        </div>
-                        <div class="suit_description">
-                            Ut et rhoncus odio. Quisque pellentesque nisl leo, eget ultricies nibh ullamcorper ut.
-                            Curabitur
-                            bibendum sed neque quis rhoncus
-                        </div>
-                        <div class="suit_cardButton">
-                            <a class="suit_button">BOOK NOW +</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="suit_wrap">
-                <div class="suit_card">
-                    <div class="suit_cardImage">
-                        <img src="~/assets/image/suit image/img2.jpg" class="suit_image" alt="">
-                    </div>
-                    <div class="suit_info">
-                        <div class="suit_cardHeader">
-                            <div class="suit_name">Modern Home</div>
-                            <div class="suit_price">
-                                <span class="suit_from">from</span>
-                                <span class="suit_pricespan">75$</span>
+            @foreach (var item in Model.Rooms)
+            {
+                <div class="suit_wrap">
+                    <div class="suit_card">
+                        <div class="suit_cardImage">
+                            <img src="~/assets/image/Room/RoomMainImage/@item.Image" class="suit_image" alt="">
+                        </div>
+                        <div class="suit_info">
+                            <div class="suit_cardHeader">
+                                <div class="suit_name">@item.Name</div>
+                                <div class="suit_price">
+                                    <span class="suit_from">from</span>
+                                    <span class="suit_pricespan">@item.Price $</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="suit_volume">
-                            75m2 / 1-2 person
-                        </div>
-                        <div class="suit_description">
-                            Ut et rhoncus odio. Quisque pellentesque nisl leo, eget ultricies nibh ullamcorper ut.
-                            Curabitur
-                            bibendum sed neque quis rhoncus
-                        </div>
-                        <div class="suit_cardButton">
-                            <a class="suit_button">BOOK NOW +</a>
+                            <div class="suit_volume">
+                                @item.Size m2 / @item.GuestRange person
+                            </div>
+                            <div class="suit_description">
+                                @item.Description
+                            </div>
+                            <div class="suit_cardButton">
+                                <a class="suit_button" asp-controller="room" asp-action="roomdetail" asp-route-id="@item.id">BOOK NOW +</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="suit_wrap">
-                <div class="suit_card">
-                    <div class="suit_cardImage">
-                        <img src="~/assets/image/suit image/img3.jpg" class="suit_image" alt="">
-                    </div>
-                    <div class="suit_info">
-                        <div class="suit_cardHeader">
-                            <div class="suit_name">Bright Suite</div>
-                            <div class="suit_price">
-                                <span class="suit_from">from</span>
-                                <span class="suit_pricespan">105$</span>
-                            </div>
-                        </div>
-                        <div class="suit_volume">
-                            50m2 / 2-4 person
-                        </div>
-                        <div class="suit_description">
-                            Ut et rhoncus odio. Quisque pellentesque nisl leo, eget ultricies nibh ullamcorper ut.
-                            Curabitur
-                            bibendum sed neque quis rhoncus
-                        </div>
-                        <div class="suit_cardButton">
-                            <a class="suit_button">BOOK NOW +</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="suit_wrap">
-                <div class="suit_card">
-                    <div class="suit_cardImage">
-                        <img src="~/assets/image/suit image/img2.jpg" class="suit_image" alt="">
-                    </div>
-                    <div class="suit_info">
-                        <div class="suit_cardHeader">
-                            <div class="suit_name">Maria's Home</div>
-                            <div class="suit_price">
-                                <span class="suit_from">from</span>
-                                <span class="suit_pricespan">50$</span>
-                            </div>
-                        </div>
-                        <div class="suit_volume">
-                            100m2 / 2-6 person
-                        </div>
-                        <div class="suit_description">
-                            Ut et rhoncus odio. Quisque pellentesque nisl leo, eget ultricies nibh ullamcorper ut.
-                            Curabitur
-                            bibendum sed neque quis rhoncus
-                        </div>
-                        <div class="suit_cardButton">
-                            <a class="suit_button">BOOK NOW +</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
 
         </div>
     </div>

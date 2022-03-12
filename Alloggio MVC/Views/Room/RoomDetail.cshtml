@@ -2,9 +2,10 @@
 @{
     ViewData["Title"] = "RoomDetail";
 }
+@model RoomDetailViewModel
 <!-- House image begin -->
 <div class="houseImage">
-    <img src="~/assets/image/HeaderImageForRoom/img1.jpg" alt="" class="houseImage_source">
+    <img src="~/assets/image/Room/RoomPanoramicPhoto/@Model.Room.PanoramaImage" alt="" class="houseImage_source">
 </div>
 <!-- House image end -->
 <!-- Detail begin -->
@@ -12,17 +13,10 @@
     <div class="detailWrap_room">
         <div class="detailWrap_suitdetail">
             <div class="detailWrap_suitname">
-                Maria’s Home
+                @Model.Room.Name
             </div>
             <div class="detailWrap_suitdescription">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam odio lorem, iaculis non felis vel,
-                faucibus efficitur dui. Aliquam erat volutpat. Quisque hendrerit massa nec lobortis mollis. Nunc eu
-                eros efficitur, convallis enim ac, ultricies nisi. Lorem ipsum dolor sit amet, consectetur
-                adipiscing.
-
-                Donec sollicitudin nulla risus, eget luctus ipsum facilisis dictum. Integer ultricies sapien libero,
-                sed congue ligula hendrerit quis. Vivamus dolor mauris, mollis nec accumsan sed, pulvinar id nisl.
-
+                @Model.Room.Description
             </div>
 
             <hr class="detailWrap_hr">
@@ -37,86 +31,35 @@
             <div class="detailWrap_ServiceList">
                 <div class="row detailWrap_ListWrap">
                     <div class="col-6 detailWrap_ListWrapItem">
-                        <div class="detailWrap_ServiceWrap">
-                            <div class="detailWrap_serviceIcon">
-                                <i class="fa-solid fa-egg detailWrap_Icon"></i>
-                            </div>
-                            <div class="detailWrap_serviceName">
-                                Breakfast
-                            </div>
-                        </div>
+                        @for (int i = 0; i < Model.Room.RoomAmenities.Count / 2; i++)
+                        {
+                            <div class="detailWrap_ServiceWrap">
+                                <div class="detailWrap_serviceIcon">
 
-                        <div class="detailWrap_ServiceWrap">
-                            <div class="detailWrap_serviceIcon">
-                                <i class="fa-solid fa-shop detailWrap_Icon"></i>
-
+                                    @Html.Raw(Model.Room.RoomAmenities[i].Amenitie.Image)
+                                </div>
+                                <div class="detailWrap_serviceName">
+                                    @Model.Room.RoomAmenities[i].Amenitie.Name
+                                </div>
                             </div>
-                            <div class="detailWrap_serviceName">
-                                Grocery shop near
-                            </div>
-                        </div>
-
-                        <div class="detailWrap_ServiceWrap">
-                            <div class="detailWrap_serviceIcon">
-                                <i class="fa-solid fa-martini-glass-empty detailWrap_Icon"></i>
-                            </div>
-                            <div class="detailWrap_serviceName">
-                                Lobby Bar
-                            </div>
-                        </div>
-
-                        <div class="detailWrap_ServiceWrap">
-                            <div class="detailWrap_serviceIcon">
-
-                                <i class="fa-solid fa-bed detailWrap_Icon"></i>
-                            </div>
-                            <div class="detailWrap_serviceName">
-                                Single Bed
-                            </div>
-                        </div>
+                        }
 
                     </div>
                     <div class="col-6 detailWrap_ListWrapItem">
 
-                        <div class="detailWrap_ServiceWrap">
-                            <div class="detailWrap_serviceIcon">
+                        @for (int i = (Model.Room.RoomAmenities.Count / 2); i < Model.Room.RoomAmenities.Count; i++)
+                        {
+                            <div class="detailWrap_ServiceWrap">
+                                <div class="detailWrap_serviceIcon">
+                                    @Html.Raw(Model.Room.RoomAmenities[i].Amenitie.Image)
 
-                                <i class="fa-solid fa-tv detailWrap_Icon"></i>
-                            </div>
-                            <div class="detailWrap_serviceName">
-                                Cable Tv
-                            </div>
-                        </div>
+                                </div>
+                                <div class="detailWrap_serviceName">
+                                    @Model.Room.RoomAmenities[i].Amenitie.Name
 
-                        <div class="detailWrap_ServiceWrap">
-                            <div class="detailWrap_serviceIcon">
-
-                                <i class="fa-solid fa-car-rear detailWrap_Icon"></i>
+                                </div>
                             </div>
-                            <div class="detailWrap_serviceName">
-                                Rent a car
-                            </div>
-                        </div>
-
-                        <div class="detailWrap_ServiceWrap">
-                            <div class="detailWrap_serviceIcon">
-
-                                <i class="fa-solid fa-mug-hot detailWrap_Icon"></i>
-                            </div>
-                            <div class="detailWrap_serviceName">
-                                Tea & Coffee
-                            </div>
-                        </div>
-
-                        <div class="detailWrap_ServiceWrap">
-                            <div class="detailWrap_serviceIcon">
-
-                                <i class="fa-solid fa-wheelchair detailWrap_Icon"></i>
-                            </div>
-                            <div class="detailWrap_serviceName">
-                                Disabled Access
-                            </div>
-                        </div>
+                        }
 
                     </div>
                 </div>
@@ -133,7 +76,7 @@
             <div class="detailWrap_rulesContent">
 
                 We have created some rules for our home to serve our customers at the highest level and keep them
-                happy with us. Please <a href="#" class="detailWrap_rulesLink">read</a> the house rules and terms of
+                happy with us. Please <a class="detailWrap_rulesLink">read</a> the house rules and terms of
                 cancellation. It is mandatory for each of our customers to follow these rules.
             </div>
             <hr class="detailWrap_hr">
@@ -176,7 +119,7 @@
                 Location
             </div>
             <div class="detailWrap_MapContent">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24313.217287197873!2d49.861912035812566!3d40.38332011840053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307daeaf28f84b%3A0x1cf9e4b780d543c1!2zQcSfIMWeyZloyZlyIEJ1bHZhcsSx!5e0!3m2!1sen!2s!4v1646294916687!5m2!1sen!2s"
+                <iframe src="@Model.Settings["EmbedLocation"]"
                         width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
 
@@ -311,59 +254,49 @@
     </div>
     <div class="row related_roomsContent">
 
-        <div class="col-4 related_roomItems">
-            <div class="related_roomItem">
-                <div class="related_itemImage">
-                    <img src="~/assets/image/related room example/img1.jpg" class="related_image" alt="">
-                </div>
-                <div class="related_itemName">
-                    <a href="#" class="related_itemLink">House Ciardi</a>
-                </div>
-                <p class="related_itemPrice">from 60$</p>
-                <div class="related_itemDescription">
-                    Ut et rhoncus odio. Quisque pellentesque nisl leo, eget ultricies nibh ullamcorper ut.
-                    Curabitur
-                    bibendum sed neque quis rhoncus maecenas.
+
+
+        @foreach (var item in Model.RelatedRoom)
+        {
+            <div class="col-4 related_roomItems">
+                <div class="related_roomItem">
+                    <div class="related_itemImage">
+                        <img src="~/assets/image/Room/RoomMainImage/@item.Image" class="related_image" alt="">
+                    </div>
+                    <div class="related_itemName">
+                        <a href="#" class="related_itemLink">@item.Name</a>
+                    </div>
+                    <p class="related_itemPrice">from @item.Price $</p>
+                    <div class="related_itemDescription">
+                        @item.Description.Substring(0, 150);
+                    </div>
                 </div>
             </div>
-        </div>
-
-
-        <div class="col-4 related_roomItems">
-            <div class="related_roomItem">
-                <div class="related_itemImage">
-                    <img src="~/assets/image/related room example/img2.jpg" class="related_image" alt="">
-                </div>
-                <div class="related_itemName">
-                    <a href="#" class="related_itemLink">Casa Mancini</a>
-                </div>
-                <p class="related_itemPrice">from 60$</p>
-                <div class="related_itemDescription">
-                    Ut et rhoncus odio. Quisque pellentesque nisl leo, eget ultricies nibh ullamcorper ut.
-                    Curabitur
-                    bibendum sed neque quis rhoncus maecenas.
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-4 related_roomItems">
-            <div class="related_roomItem">
-                <div class="related_itemImage">
-                    <img src="~/assets/image/related room example/img3.jpg" class="related_image" alt="">
-                </div>
-                <div class="related_itemName">
-                    <a href="#" class="related_itemLink">Cozy Place</a>
-                </div>
-                <p class="related_itemPrice">from 60$</p>
-                <div class="related_itemDescription">
-                    Ut et rhoncus odio. Quisque pellentesque nisl leo, eget ultricies nibh ullamcorper ut.
-                    Curabitur
-                    bibendum sed neque quis rhoncus maecenas.
-                </div>
-            </div>
-        </div>
+        }
 
     </div>
 </div>
 <!-- Related room end -->
+
+
+<!-- Modal begin -->
+<div class="rules">
+    <div class="rules_content">
+        <div class="rules_header">House Rules</div>
+        <div class="rules_rules">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sollicitudin est sit amet libero sodales interdum. Nulla pellentesque cursus consectetur. Ut a tempor lorem. Aliquam erat volutpat. Quisque eu nisi et odio placerat congue eget a urna. Morbi aliquam pharetra nisl, vitae fermentum ligula dignissim eget. Nam iaculis maximus maximus.
+
+            Sed auctor leo erat, non rutrum velit euismod vel. In ac finibus metus. Sed a ex pulvinar, faucibus nulla nec, rutrum ipsum. Cras ut ullamcorper nulla. Cras sit amet turpis dui. Nunc nulla arcu, commodo et nunc ut, fermentum gravida felis. Suspendisse iaculis dignissim felis, non scelerisque sem pretium vel.
+
+            Suspendisse eu velit massa. Quisque nisl nisi, finibus ut orci id, porta maximus ipsum. Pellentesque eget tristique justo. Nunc mattis dapibus pharetra. Pellentesque ornare, eros cursus lacinia feugiat, ante ipsum dictum felis, nec eleifend tortor sapien sodales sapien. In hac habitasse platea dictumst. Donec molestie nibh vitae turpis tincidunt elementum. Nam tincidunt nunc condimentum, ultrices ipsum at, accumsan turpis. Vivamus ultrices pretium felis, id luctus tortor egestas ac. Ut accumsan at nisi at tincidunt.
+
+            Nam et faucibus dui, vitae imperdiet elit. Proin ornare maximus lorem dapibus tempor. Vivamus dictum eget arcu quis rutrum. Fusce vel ex non odio scelerisque ultricies eget quis purus. Praesent at felis velit. Fusce porta sagittis faucibus. Nulla venenatis imperdiet arcu sed cursus.
+
+            Sed mattis tempus nibh vitae dictum. Curabitur non ex molestie magna viverra elementum eget eget risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+        </div>
+        <div class="rules_button">
+            <a class="rules_link">Ok!</a>
+        </div>
+    </div>
+</div>
+<!-- Modal end -->

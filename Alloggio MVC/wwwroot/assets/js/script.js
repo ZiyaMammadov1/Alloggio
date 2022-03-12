@@ -187,3 +187,30 @@ $(document).ready(function () {
   });
 });
 //Header one mobile end
+
+//Loader hide begin
+$(document).ready(function () {
+  setInterval(loading, 3000);
+
+  function loading() {
+    $(".loadingType").hide();
+  }
+});
+
+//Loader hide end
+
+
+//Rules begin
+$(document).ready(function () {
+   
+  $('.rules_link').click(function(){
+      $('.rules').css('display', 'none')
+      $('.rules').css('position', 'unset')
+  });
+    $('.detailWrap_rulesLink').click(function () {
+        $('.rules').css('display', 'inline-block')
+        $('.rules').css('position', 'fixed')
+
+    });
+});
+//Rules end

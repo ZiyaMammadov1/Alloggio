@@ -22,7 +22,7 @@ namespace Alloggio_MVC.Controllers
             HomeViewModels HomeVM = new HomeViewModels
             {
                 Sliders = _context.Sliders.ToList(),
-                Rooms = _context.Rooms.ToList(), 
+                Rooms = _context.Rooms.Take(4).ToList(), 
                 Services = _context.Services.ToList(), 
                 Subscriptions = _context.Subscriptions.ToList(), 
                 Testimonials = _context.Testimonials.ToList(), 
