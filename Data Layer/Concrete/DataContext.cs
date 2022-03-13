@@ -21,6 +21,7 @@ namespace Data_Layer.Concrete
         public DbSet<Amenitie> Amenities { get; set; }
         public DbSet<CookingMenus> CookingMenus { get; set; }
         public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
     }
 }
