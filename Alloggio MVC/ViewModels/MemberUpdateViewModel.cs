@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,9 +11,7 @@ namespace Alloggio_MVC.ViewModels
     {
         public string CurrentMemberName { get; set; }
 
-        [Required]
-        [StringLength(maximumLength: 20)]
-        public string Username { get; set; }
+        public string Image { get; set; }
 
         [Required]
         [StringLength(maximumLength: 30)]
@@ -38,5 +37,7 @@ namespace Alloggio_MVC.ViewModels
         [DataType(DataType.Password)]
         [Compare(nameof(NewPassword))]
         public string ConfirmPassword { get; set; }
+
+        public IFormFile UploadImage { get; set; }
     }
 }

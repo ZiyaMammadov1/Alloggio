@@ -1,7 +1,4 @@
 ﻿
-@{
-    ViewData["Title"] = "Profile";
-}
 @model MemberUpdateViewModel
 <!-- Check header begin -->
 <div class="outHeader">
@@ -13,7 +10,7 @@
 <!-- Account detail begin -->
 <div class="accountdetail">
     <div class="accountdetail_wrap">
-        <form action="profile" method="post">
+        <form action="profile" method="post" enctype="multipart/form-data">
             <input type="hidden" asp-for="CurrentMemberName" value="@User.Identity.Name" />
             <div class="accountdetail_details">
                 <div class="register_group">
@@ -25,18 +22,6 @@
                         <span class="text-danger" asp-validation-for="Fullname"></span>
                     </div>
                 </div>
-
-                <div class="register_group">
-                    <div class="register_groupName">
-                        Username
-                    </div>
-                    <div class="register_groupInput">
-                        <input type="text" class="register_input" asp-for="Username">
-                        <span class="text-danger" asp-validation-for="Username"></span>
-
-                    </div>
-                </div>
-
 
                 <div class="register_group">
                     <div class="register_groupName">
@@ -92,6 +77,23 @@
 
                     </div>
                 </div>
+
+                <div class="register_group">
+                    <div class="register_groupName">
+                        Image
+                    </div>
+                    <div class="register_groupInput">
+                        <input class="form-control register_input" type="file" id="formFile" style="border: 1px solid gray;">
+                    </div>
+                </div>
+
+                <div class="register_group">
+                    <div class="register_groupInput">
+                        <img src="~/assets/image/account/@Model.Image" alt="" style="width: 85px; height: 85px; padding-top:10px ;">
+                    </div>
+                </div>
+
+
                 <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                 <div class="register_group accountdetail_buttons">
                     <div class="register_button">

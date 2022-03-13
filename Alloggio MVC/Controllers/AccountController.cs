@@ -22,6 +22,8 @@ namespace Alloggio_MVC.Controllers
             _signInManager = signInManager;
             _context = context;
         }
+
+
         public IActionResult Register()
         {
             return View();
@@ -66,6 +68,11 @@ namespace Alloggio_MVC.Controllers
 
             return RedirectToAction("index", "home");
         }
+
+
+
+
+
         public IActionResult Login()
         {
             return View();
@@ -103,15 +110,24 @@ namespace Alloggio_MVC.Controllers
 
             return RedirectToAction("index", "home");
         }
+
+
+
+
         public async Task<IActionResult> Profile()
         {
             AppUser UserModel = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == User.Identity.Name);
+            if (UserModel == null)
+            {
+                ModelState.AddModelError("", "Member not found");
+                return View();
+            }
             MemberUpdateViewModel MemberModel = new MemberUpdateViewModel
             {
-                Username = UserModel.UserName,
                 Email = UserModel.Email,
                 Fullname = UserModel.Fullname,
-                Phone = UserModel.Phone
+                Phone = UserModel.Phone,
+                Image = UserModel.Image
 
             };
             return View(MemberModel);
@@ -122,48 +138,52 @@ namespace Alloggio_MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                return View(UpdateVM);
             }
 
             AppUser UserModel = await _userManager.FindByNameAsync(UpdateVM.CurrentMemberName);
 
             UserModel.Fullname = UpdateVM.Fullname;
-            UserModel.UserName = UpdateVM.Username;
             UserModel.Email = UpdateVM.Email;
             UserModel.Phone = UpdateVM.Phone;
 
-
-            if (!string.IsNullOrEmpty(UpdateVM.OldPassword) && await _userManager.CheckPasswordAsync(UserModel, UpdateVM.OldPassword))
+            if (string.IsNullOrEmpty(UpdateVM.Image))
             {
-               
+                UpdateVM.Image = UserModel.Image;
+            }
 
+            if (!string.IsNullOrEmpty(UpdateVM.OldPassword))
+            {
                 if (string.IsNullOrEmpty(UpdateVM.NewPassword) && string.IsNullOrEmpty(UpdateVM.ConfirmPassword))
                 {
                     ModelState.AddModelError("", "Fill all password inputs");
-                    return View();
+                    return View(UpdateVM);
                 }
-
-                if(UpdateVM.NewPassword.Trim() == UpdateVM.ConfirmPassword.Trim())
+                if (await _userManager.CheckPasswordAsync(UserModel, UpdateVM.OldPassword))
                 {
-                    var token = await _userManager.GeneratePasswordResetTokenAsync(UserModel);
-                    var result = await _userManager.ResetPasswordAsync(UserModel,token,UpdateVM.NewPassword);
-
-                    if (!result.Succeeded)
+                    if (UpdateVM.NewPassword.Trim() == UpdateVM.ConfirmPassword.Trim())
                     {
-                        foreach (var err in result.Errors)
+                        var token = await _userManager.GeneratePasswordResetTokenAsync(UserModel);
+                        var result = await _userManager.ResetPasswordAsync(UserModel, token, UpdateVM.NewPassword);
+
+                        if (!result.Succeeded)
                         {
-                            ModelState.AddModelError("", err.Description);
+                            foreach (var err in result.Errors)
+                            {
+                                ModelState.AddModelError("", err.Description);
+                            }
+                            return View(UpdateVM);
                         }
-                        return View();
                     }
                 }
-            }
-            else
-            {
+                else
+                {
+                    ModelState.AddModelError("", "Old Password is incorrect");
+                    return View(UpdateVM);
+                }
 
-                ModelState.AddModelError("", "Old Password is incorrect");
-                return View();
             }
+
 
             var processUpdate = await _userManager.UpdateAsync(UserModel);
 
@@ -173,16 +193,24 @@ namespace Alloggio_MVC.Controllers
                 {
                     ModelState.AddModelError("", err.Description);
                 }
-                return View();
+                return View(UpdateVM);
             }
 
             _context.SaveChanges();
-            return RedirectToAction("index","home");
+
+
+            return RedirectToAction("index", "home");
         }
+
+
+
+
         public IActionResult ForgotPassword()
         {
             return View();
         }
+
+
 
         public IActionResult Logout()
         {
