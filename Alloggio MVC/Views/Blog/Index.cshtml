@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Blog";
+}
+@model BlogViewModel
+<!-- Menu header begin -->
+<div class="menuheader">
+    <img src="~/assets/image/blog/@Model.Settings["BlogImage"]" alt="">
+
+    <div class="menuheader_wrap">
+        <p class="menuheader_menu">Blog</p>
+    </div>
+</div>
+<!-- Menu header end -->
+<!-- Blog begin -->
+<div class="blog">
+    @foreach (var item in Model.Blogs)
+    {
+        <div class="blog_item">
+            <div class="blog_image">
+                <img src="~/assets/image/Blog/Images/@item.Image" alt="">
+            </div>
+            <div class="blog_header">
+                @item.Header
+
+            </div>
+            <div class="blog_content">
+               @item.Content
+            </div>
+            <div class="blog_button">
+                <a asp-controller="blog" asp-action="detail" asp-route-id="@item.id" class="blog_link">Read more...</a>
+            </div>
+
+        </div>
+    }
+
+
+</div>
+<!-- Blog end -->

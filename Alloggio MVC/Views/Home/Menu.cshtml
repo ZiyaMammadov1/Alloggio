@@ -2,9 +2,10 @@
 @{
     ViewData["Title"] = "Menu";
 }
+@model CookingMenuViewModel
 <!-- Menu header begin -->
 <div class="menuheader">
-    <img src="~/assets/image/menu/menuHeader.jpg" alt="">
+    <img src="~/assets/image/menu/@Model.Settings["CookingMenuImage"]" alt="">
 
     <div class="menuheader_wrap">
         <p class="menuheader_menu">Menu Page</p>
@@ -14,109 +15,47 @@
 <!-- Continental begin -->
 <div class="continental">
     <div class="continental_header">
-        Continental
+        @Model.Settings["CookingMenu"]
     </div>
     <div class="continental_description">
-        Between 08.30 and 10.30 we serve our buffet of local and fresh products. Start your day with your favorite
-        breakfast!
+        @Model.Settings["CookingDescription"]
+
     </div>
 </div>
 <!-- Continental end -->
 <!-- Menu begin -->
 <div class="menuWrap">
     <div class="menuWrap_left">
-        <div class="menuWrap_item">
-            <div class="menuWrap_itemHeader">
-                Eggs & Bacon
+        @for (int i = 0; i < Model.Menus.Count / 2; i++)
+        {
+            <div class="menuWrap_item">
+                <div class="menuWrap_itemHeader">
+                    @Model.Menus[i].FoodName
+                </div>
+                <div class="menuWrap_itemDescription">
+                    @Model.Menus[i].FoodDescription
+                </div>
             </div>
-            <div class="menuWrap_itemDescription">
-                Praesent ut ante vel augue accumsan sagittis aenean. Vivamus non porti aliqu feli.
-            </div>
-        </div>
+        }
 
-        <div class="menuWrap_item">
-            <div class="menuWrap_itemHeader">
-                Vegan Breakfast
-            </div>
-            <div class="menuWrap_itemDescription">
-                Praesent ut ante vel augue accumsan sagittis aenean. Vivamus non porti aliqu feli.
-            </div>
-        </div>
 
-        <div class="menuWrap_item">
-            <div class="menuWrap_itemHeader">
-                Tea or Coffee
-            </div>
-            <div class="menuWrap_itemDescription">
-                Praesent ut ante vel augue accumsan sagittis aenean. Vivamus non porti aliqu feli.
-            </div>
-        </div>
-
-        <div class="menuWrap_item">
-            <div class="menuWrap_itemHeader">
-                Chia Oatmeal
-            </div>
-            <div class="menuWrap_itemDescription">
-                Praesent ut ante vel augue accumsan sagittis aenean. Vivamus non porti aliqu feli.
-            </div>
-        </div>
-
-        <div class="menuWrap_item">
-            <div class="menuWrap_itemHeader">
-                Juice
-            </div>
-            <div class="menuWrap_itemDescription">
-                Praesent ut ante vel augue accumsan sagittis aenean. Vivamus non porti aliqu feli.
-            </div>
-        </div>
 
 
     </div>
     <div class="menuWrap_right">
-        <div class="menuWrap_item">
-            <div class="menuWrap_itemHeader">
-                French Croissant
-            </div>
-            <div class="menuWrap_itemDescription">
-                Praesent ut ante vel augue accumsan sagittis aenean. Vivamus non porti aliqu feli.
-            </div>
-        </div>
 
-        <div class="menuWrap_item">
-            <div class="menuWrap_itemHeader">
-                Avocado Toast
+        @for (int i = (Model.Menus.Count / 2); i < Model.Menus.Count; i++)
+        {
+            <div class="menuWrap_item">
+                <div class="menuWrap_itemHeader">
+                    @Model.Menus[i].FoodName
+                </div>
+                <div class="menuWrap_itemDescription">
+                    @Model.Menus[i].FoodDescription
+                </div>
             </div>
-            <div class="menuWrap_itemDescription">
-                Praesent ut ante vel augue accumsan sagittis aenean. Vivamus non porti aliqu feli.
-            </div>
-        </div>
+        }
 
-        <div class="menuWrap_item">
-            <div class="menuWrap_itemHeader">
-                Cheese Plate
-            </div>
-            <div class="menuWrap_itemDescription">
-                Praesent ut ante vel augue accumsan sagittis aenean. Vivamus non porti aliqu feli.
-            </div>
-        </div>
-
-        <div class="menuWrap_item">
-            <div class="menuWrap_itemHeader">
-                Marmalade Selection
-            </div>
-            <div class="menuWrap_itemDescription">
-                Praesent ut ante vel augue accumsan sagittis aenean. Vivamus non porti aliqu feli.
-            </div>
-        </div>
-
-        <div class="menuWrap_item">
-            <div class="menuWrap_itemHeader">
-                Fruit Parfait
-            </div>
-            <div class="menuWrap_itemDescription">
-                Praesent ut ante vel augue accumsan sagittis aenean. Vivamus non porti aliqu feli.
-            </div>
-        </div>
 
     </div>
 </div>

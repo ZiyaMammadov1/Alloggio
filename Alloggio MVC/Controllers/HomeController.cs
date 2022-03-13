@@ -33,17 +33,20 @@ namespace Alloggio_MVC.Controllers
         }
         public IActionResult Menu()
         {
-            return View();
+            CookingMenuViewModel cookingVm = new CookingMenuViewModel
+            {
+                Settings = _context.Settings.ToDictionary(x => x.Key, x => x.Value),
+                Menus = _context.CookingMenus.ToList()
+            };
+            return View(cookingVm);
         }
         public IActionResult Gallery()
         {
-            return View();
+             var ModelForGallery = _context.Settings.ToDictionary(x => x.Key, x => x.Value);
+
+            return View(ModelForGallery);
         }
         public IActionResult Contact()
-        {
-            return View();
-        }
-        public IActionResult Blog()
         {
             return View();
         }

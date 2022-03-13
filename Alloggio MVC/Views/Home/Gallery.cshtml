@@ -2,9 +2,10 @@
 @{
     ViewData["Title"] = "Gallery";
 }
+@model Dictionary<string, string>
 <!-- Menu header begin -->
 <div class="menuheader">
-    <img src="~/assets/image/Gallery/head.jpg" alt="">
+    <img src="~/assets/image/Gallery/@Model["GalleryImage"]" alt="">
 
     <div class="menuheader_wrap">
         <p class="menuheader_menu">Gallery</p>
@@ -15,26 +16,26 @@
 <div class="showroom">
     <div class="showroom_wrap">
         <div class="showroom_itemTop">
-            <img src="~/assets/image/Gallery/img1.jpg" class="showroom_itemTopImage" alt="">
+            <img src="~/assets/image/Gallery/@Model["GalleryImage1"]" class="showroom_itemTopImage" alt="">
         </div>
         <div class="showroom_itemBottom">
             <div class="showroom_leftItem">
-                <img src="~/assets/image/Gallery/img2.jpg" alt="" class="showroom_itemBottomImage">
+                <img src="~/assets/image/Gallery/@Model["GalleryImage2"]" alt="" class="showroom_itemBottomImage">
             </div>
             <div class="showroom_rightItem">
-                <img src="~/assets/image/Gallery/img3.jpg" alt="" class="showroom_itemBottomImage">
+                <img src="~/assets/image/Gallery/@Model["GalleryImage3"]" alt="" class="showroom_itemBottomImage">
             </div>
         </div>
 
         <div class="showroom_itemTop">
-            <img src="~/assets/image/Gallery/img4.jpg" class="showroom_itemTopImage" alt="">
+            <img src="~/assets/image/Gallery/@Model["GalleryImage4"]" class="showroom_itemTopImage" alt="">
         </div>
         <div class="showroom_itemBottom">
             <div class="showroom_leftItem">
-                <img src="~/assets/image/Gallery/img5.jpg" alt="" class="showroom_itemBottomImage">
+                <img src="~/assets/image/Gallery/@Model["GalleryImage5"]" alt="" class="showroom_itemBottomImage">
             </div>
             <div class="showroom_rightItem">
-                <img src="~/assets/image/Gallery/img6.jpg" alt="" class="showroom_itemBottomImage">
+                <img src="~/assets/image/Gallery/@Model["GalleryImage6"]" alt="" class="showroom_itemBottomImage">
             </div>
         </div>
     </div>

@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Detail";
+}
+@model Blog
+<!-- Blog begin -->
+<div class="blog">
+    <div class="blog_item">
+        <div class="blog_image">
+            <img src="~/assets/image/Blog/Images/@Model.Image" alt="">
+        </div>
+        <div class="blog_header">
+            @Model.Header
+
+        </div>
+        <div class="blog_content blog_contentdetail">
+        @Model.Content
+        </div>
+        <div class="blog_datetime">
+            @Model.CreateAt.ToLongDateString() 
+
+        </div>
+    </div>
+
+</div>
+<!-- Blog end -->
