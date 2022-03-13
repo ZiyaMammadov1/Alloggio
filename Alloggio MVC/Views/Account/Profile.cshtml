@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Profile";
 }
+@model MemberRegisterViewModel
 <!-- Check header begin -->
 <div class="outHeader">
     <div class="outHeader_checkout">
@@ -20,16 +21,26 @@
                         Fullname
                     </div>
                     <div class="register_groupInput">
-                        <input type="text" class="register_input">
+                        <input type="text" class="register_input" asp-for="Fullname">
                     </div>
                 </div>
+
+                <div class="register_group">
+                    <div class="register_groupName">
+                        Username
+                    </div>
+                    <div class="register_groupInput">
+                        <input type="text" class="register_input" asp-for="Username">
+                    </div>
+                </div>
+
 
                 <div class="register_group">
                     <div class="register_groupName">
                         Email
                     </div>
                     <div class="register_groupInput">
-                        <input type="text" class="register_input">
+                        <input type="text" class="register_input" asp-for="Email">
                     </div>
                 </div>
 
@@ -38,7 +49,7 @@
                         Phone
                     </div>
                     <div class="register_groupInput">
-                        <input type="text" class="register_input">
+                        <input type="text" class="register_input" asp-for="Phone">
                     </div>
                 </div>
 
@@ -56,7 +67,7 @@
                         New Password
                     </div>
                     <div class="register_groupInput">
-                        <input type="password" class="register_input">
+                        <input type="password" class="register_input"   asp-for="Password">
                     </div>
                 </div>
 
@@ -65,7 +76,7 @@
                         Confirm New Password
                     </div>
                     <div class="register_groupInput">
-                        <input type="password" class="register_input">
+                        <input type="password" class="register_input" asp-for="ConfirmPassword">
                     </div>
                 </div>
 
@@ -74,7 +85,7 @@
                         <a href="#" class="register_link accountdetail_btnSave">Save Changes</a>
                     </div>
                     <div class="register_button ">
-                        <a href="#" class="register_link accountdetail_btnOut">Log out</a>
+                        <a asp-controller="account" asp-action="logout" class="register_link accountdetail_btnOut">Log out</a>
                     </div>
                 </div>
 

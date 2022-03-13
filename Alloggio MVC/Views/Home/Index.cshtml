@@ -138,9 +138,18 @@
                 </div>
 
                 <div class="header-inner_account">
-                    <a asp-controller="account" asp-action="login" class="header-inner_accountEmail">
-                        Log in
-                    </a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-controller="account" asp-action="profile" class="header-inner_accountEmail">
+                            @User.Identity.Name
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-controller="account" asp-action="login" class="header-inner_accountEmail">
+                            Log in
+                        </a>
+                    }
                 </div>
             </div>
 
