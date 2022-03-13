@@ -1,7 +1,9 @@
 ﻿using Alloggio_MVC.ViewModels;
 using Core_Layer.Entities;
+using Data_Layer.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +13,14 @@ namespace Alloggio_MVC.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly DataContext _context;
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, DataContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
         public IActionResult Register()
         {
@@ -66,9 +70,114 @@ namespace Alloggio_MVC.Controllers
         {
             return View();
         }
-        public IActionResult Profile()
+
+        [HttpPost]
+        public async Task<IActionResult> Login(MemberLoginViewModel LoginVM)
         {
-            return View();
+            if (string.IsNullOrEmpty(LoginVM.Email) || string.IsNullOrEmpty(LoginVM.Password))
+            {
+                ModelState.AddModelError("", "Fill all area");
+                return View();
+            }
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Email or Password is incorrect ");
+                return View();
+            }
+
+            AppUser member = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == LoginVM.Email);
+
+            if (member == null)
+            {
+                ModelState.AddModelError("", "Email or Password is incorrect");
+                return View();
+            }
+
+            var result = await _signInManager.PasswordSignInAsync(member, LoginVM.Password, true, false);
+
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", "Email or Password is incorrect");
+                return View();
+            }
+
+            return RedirectToAction("index", "home");
+        }
+        public async Task<IActionResult> Profile()
+        {
+            AppUser UserModel = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == User.Identity.Name);
+            MemberUpdateViewModel MemberModel = new MemberUpdateViewModel
+            {
+                Username = UserModel.UserName,
+                Email = UserModel.Email,
+                Fullname = UserModel.Fullname,
+                Phone = UserModel.Phone
+
+            };
+            return View(MemberModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Profile(MemberUpdateViewModel UpdateVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            AppUser UserModel = await _userManager.FindByNameAsync(UpdateVM.CurrentMemberName);
+
+            UserModel.Fullname = UpdateVM.Fullname;
+            UserModel.UserName = UpdateVM.Username;
+            UserModel.Email = UpdateVM.Email;
+            UserModel.Phone = UpdateVM.Phone;
+
+
+            if (!string.IsNullOrEmpty(UpdateVM.OldPassword) && await _userManager.CheckPasswordAsync(UserModel, UpdateVM.OldPassword))
+            {
+               
+
+                if (string.IsNullOrEmpty(UpdateVM.NewPassword) && string.IsNullOrEmpty(UpdateVM.ConfirmPassword))
+                {
+                    ModelState.AddModelError("", "Fill all password inputs");
+                    return View();
+                }
+
+                if(UpdateVM.NewPassword.Trim() == UpdateVM.ConfirmPassword.Trim())
+                {
+                    var token = await _userManager.GeneratePasswordResetTokenAsync(UserModel);
+                    var result = await _userManager.ResetPasswordAsync(UserModel,token,UpdateVM.NewPassword);
+
+                    if (!result.Succeeded)
+                    {
+                        foreach (var err in result.Errors)
+                        {
+                            ModelState.AddModelError("", err.Description);
+                        }
+                        return View();
+                    }
+                }
+            }
+            else
+            {
+
+                ModelState.AddModelError("", "Old Password is incorrect");
+                return View();
+            }
+
+            var processUpdate = await _userManager.UpdateAsync(UserModel);
+
+            if (!processUpdate.Succeeded)
+            {
+                foreach (var err in processUpdate.Errors)
+                {
+                    ModelState.AddModelError("", err.Description);
+                }
+                return View();
+            }
+
+            _context.SaveChanges();
+            return RedirectToAction("index","home");
         }
         public IActionResult ForgotPassword()
         {
@@ -78,7 +187,7 @@ namespace Alloggio_MVC.Controllers
         public IActionResult Logout()
         {
             _signInManager.SignOutAsync();
-            return RedirectToAction("index","home");
+            return RedirectToAction("index", "home");
         }
 
     }

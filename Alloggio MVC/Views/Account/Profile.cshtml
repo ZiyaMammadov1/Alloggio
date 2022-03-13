@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Profile";
 }
-@model MemberRegisterViewModel
+@model MemberUpdateViewModel
 <!-- Check header begin -->
 <div class="outHeader">
     <div class="outHeader_checkout">
@@ -13,15 +13,16 @@
 <!-- Account detail begin -->
 <div class="accountdetail">
     <div class="accountdetail_wrap">
-        <form action="">
+        <form action="profile" method="post">
+            <input type="hidden" asp-for="CurrentMemberName" value="@User.Identity.Name" />
             <div class="accountdetail_details">
-
                 <div class="register_group">
                     <div class="register_groupName">
                         Fullname
                     </div>
                     <div class="register_groupInput">
-                        <input type="text" class="register_input" asp-for="Fullname">
+                        <input type="text" class="register_input" asp-for="Fullname" />
+                        <span class="text-danger" asp-validation-for="Fullname"></span>
                     </div>
                 </div>
 
@@ -31,6 +32,8 @@
                     </div>
                     <div class="register_groupInput">
                         <input type="text" class="register_input" asp-for="Username">
+                        <span class="text-danger" asp-validation-for="Username"></span>
+
                     </div>
                 </div>
 
@@ -41,6 +44,8 @@
                     </div>
                     <div class="register_groupInput">
                         <input type="text" class="register_input" asp-for="Email">
+                        <span class="text-danger" asp-validation-for="Email"></span>
+
                     </div>
                 </div>
 
@@ -50,6 +55,8 @@
                     </div>
                     <div class="register_groupInput">
                         <input type="text" class="register_input" asp-for="Phone">
+                        <span class="text-danger" asp-validation-for="Phone"></span>
+
                     </div>
                 </div>
 
@@ -58,7 +65,9 @@
                         Old Password
                     </div>
                     <div class="register_groupInput">
-                        <input type="password" class="register_input">
+                        <input type="password" class="register_input" asp-for="OldPassword">
+                        <span class="text-danger" asp-validation-for="OldPassword"></span>
+
                     </div>
                 </div>
 
@@ -67,7 +76,9 @@
                         New Password
                     </div>
                     <div class="register_groupInput">
-                        <input type="password" class="register_input"   asp-for="Password">
+                        <input type="password" class="register_input" asp-for="NewPassword">
+                        <span class="text-danger" asp-validation-for="NewPassword"></span>
+
                     </div>
                 </div>
 
@@ -77,12 +88,14 @@
                     </div>
                     <div class="register_groupInput">
                         <input type="password" class="register_input" asp-for="ConfirmPassword">
+                        <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+
                     </div>
                 </div>
-
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                 <div class="register_group accountdetail_buttons">
                     <div class="register_button">
-                        <a href="#" class="register_link accountdetail_btnSave">Save Changes</a>
+                        <button type="submit" class="register_link accountdetail_btnSave">Save Changes</button>
                     </div>
                     <div class="register_button ">
                         <a asp-controller="account" asp-action="logout" class="register_link accountdetail_btnOut">Log out</a>

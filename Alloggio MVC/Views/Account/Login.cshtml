@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Login";
 }   
+@model MemberLoginViewModel
  <!-- Check header begin -->
 <div class="outHeader">
     <div class="outHeader_checkout">
@@ -11,13 +12,14 @@
 <!-- Check header end -->
 <!-- Login begin -->
 <div class="login">
-    <form action="">
+    <form action="login" method="post">
+
         <div class="register_group">
             <div class="register_groupName">
                 Email
             </div>
             <div class="register_groupInput">
-                <input type="text" class="register_input">
+                <input type="text" class="register_input" asp-for="Email">
             </div>
         </div>
 
@@ -26,14 +28,15 @@
                 Password
             </div>
             <div class="register_groupInput">
-                <input type="text" class="register_input">
+                <input type="password" class="register_input" asp-for="Password">
             </div>
         </div>
 
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
 
         <div class="register_group">
             <div class="register_button">
-                <a asp-controller="account" asp-action="profile" class="register_link">Sign in</a>
+                <button types="submit" class="register_link">Sign in</button>
             </div>
             <a asp-controller="account" asp-action="forgotpassword" class="login_forgotlink">Forgot password</a>
             <a asp-controller="account" asp-action="register" class="login_forgotlink" style="padding-left:30px; text-decoration:underline; color:black">Register</a>
