@@ -2,9 +2,10 @@
 @{
     ViewData["Title"] = "Contact";
 }
+@model Dictionary<string, string> 
 <!-- Menu header begin -->
 <div class="menuheader">
-    <img src="~/assets/image/contact/contact.jpg" alt="">
+    <img src="~/assets/image/contact/@Model["ContactImage"]" alt="">
 
     <div class="menuheader_wrap">
         <p class="menuheader_menu">Contact</p>
@@ -13,16 +14,7 @@
 <!-- Menu header end -->
 <!-- Menu begin -->
 <div class="contactWrap">
-    <div class="contactWrap_item">
-        <div class="contactWrap_itemHeader">
-            How can we help?
-        </div>
-        <div class="contactWrap_itemDescription">
-            Maecenas consectetur, diam nec posuere aliquam, libero sapien aliquet lacus, tempus cursus odio
-            dolor ac magna. Nam condimentum nulla et tortor ultrices tempor. Duis ac nisi mattis, vehicula augue
-            id aliquet.
-        </div>
-    </div>
+  
     <div class="contactWrap_Wrapcontents">
         <div class="contactWrap_left">
 
@@ -71,25 +63,19 @@
         <div class="contactWrap_right">
             <div class="contactWrap_item">
                 <div class="contactWrap_itemHeader">
-                    How can we help?
-                </div>
-                <div class="contactWrap_rightItemDescription">
-                    Maecenas consectetur, diam nec posuere aliquam, libero sapien aliquet lacus, tempus cursus odio
-                    dolor ac magna. Nam condimentum nulla et tortor ultrices tempor. Duis ac nisi mattis, vehicula
-                    augue
-                    id aliquet.
-                </div>
+                    @Model["ContactHelpHeader"]
+                    <div class="contactWrap_rightItemDescription">
+                        @Model["ContactHelpContent"]
+                    </div>
             </div>
 
             <div class="contactWrap_item">
                 <div class="contactWrap_itemHeader">
-                    Call us +31 555 777 83
+                    Call us @Model["Phone"]
                 </div>
                 <div class="contactWrap_rightItemDescription">
-                    Maecenas consectetur, diam nec posuere aliquam, libero sapien aliquet lacus, tempus cursus odio
-                    dolor ac magna. Nam condimentum nulla et tortor ultrices tempor. Duis ac nisi mattis, vehicula
-                    augue
-                    id aliquet.
+                    @Model["ContactPhoneContent"]
+
                 </div>
             </div>
         </div>
