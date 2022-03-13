@@ -1,7 +1,9 @@
+using Core_Layer.Entities;
 using Data_Layer.Concrete;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +31,15 @@ namespace Alloggio_MVC
             services.AddDbContext<DataContext>(opt =>
             opt.UseSqlServer(Configuration.GetConnectionString("Default"))
             );
+            services.AddIdentity<AppUser, IdentityRole>(c =>
+                {
+                    c.Password.RequireDigit = true;
+                    c.Password.RequireNonAlphanumeric = false;
+                    c.Password.RequiredLength = 6;
+                    c.Password.RequireUppercase = true;
+                    c.Password.RequireLowercase = true;
+                    c.User.RequireUniqueEmail = true;
+                }).AddDefaultTokenProviders().AddEntityFrameworkStores<DataContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

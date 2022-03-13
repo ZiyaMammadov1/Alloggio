@@ -1,4 +1,5 @@
 ﻿using Core_Layer.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace Data_Layer.Concrete
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext
     {
         public DataContext(DbContextOptions<DataContext> options) : base (options)
         {
@@ -22,6 +23,7 @@ namespace Data_Layer.Concrete
         public DbSet<CookingMenus> CookingMenus { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<AppUser> AppUsers{ get; set; }
 
     }
 }
