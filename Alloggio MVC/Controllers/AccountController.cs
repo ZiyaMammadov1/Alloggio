@@ -1,6 +1,8 @@
-﻿using Alloggio_MVC.ViewModels;
+﻿using Alloggio_MVC.Helpers;
+using Alloggio_MVC.ViewModels;
 using Core_Layer.Entities;
 using Data_Layer.Concrete;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,11 +18,13 @@ namespace Alloggio_MVC.Controllers
         private readonly DataContext _context;
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, DataContext context)
+        private readonly IWebHostEnvironment _env;
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, DataContext context, IWebHostEnvironment env)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
+            _env = env;
         }
 
 
@@ -136,20 +140,18 @@ namespace Alloggio_MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Profile(MemberUpdateViewModel UpdateVM)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(UpdateVM);
-            }
+         
 
             AppUser UserModel = await _userManager.FindByNameAsync(UpdateVM.CurrentMemberName);
 
             UserModel.Fullname = UpdateVM.Fullname;
             UserModel.Email = UpdateVM.Email;
             UserModel.Phone = UpdateVM.Phone;
+            UpdateVM.Image = UserModel.Image;
 
-            if (string.IsNullOrEmpty(UpdateVM.Image))
+            if (!ModelState.IsValid)
             {
-                UpdateVM.Image = UserModel.Image;
+                return View(UpdateVM);
             }
 
             if (!string.IsNullOrEmpty(UpdateVM.OldPassword))
@@ -184,7 +186,6 @@ namespace Alloggio_MVC.Controllers
 
             }
 
-
             var processUpdate = await _userManager.UpdateAsync(UserModel);
 
             if (!processUpdate.Succeeded)
@@ -196,15 +197,22 @@ namespace Alloggio_MVC.Controllers
                 return View(UpdateVM);
             }
 
-            _context.SaveChanges();
 
+            string NewFileName = "";
+            if (UpdateVM.UploadImage != null)
+            {
+                NewFileName = FileManager.Save(_env.WebRootPath, "assets/image/account", UpdateVM.UploadImage);
+                FileManager.Delete(_env.WebRootPath, "assets/image/account", UserModel.Image);
+                UserModel.Image = NewFileName;
+            }
+            else
+            {
+                UpdateVM.Image = UserModel.Image;
+            }
+            _context.SaveChanges();
 
             return RedirectToAction("index", "home");
         }
-
-
-
-
         public IActionResult ForgotPassword()
         {
             return View();
