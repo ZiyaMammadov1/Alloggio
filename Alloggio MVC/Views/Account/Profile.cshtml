@@ -84,12 +84,14 @@
                     </div>
                     <div class="register_groupInput">
                         <input class="form-control register_input" type="file" asp-for="UploadImage" style="border: 1px solid gray;">
+                        <span class="text-danger" asp-validation-for="UploadImage"></span>
                     </div>
                 </div>
 
                 <div class="register_group">
-                    <div class="register_groupInput">
-                        <img src="~/assets/image/account/@Model.Image" alt="" style="width: 85px; height: 85px; padding-top:10px ;">
+                    <div class="register_groupInput" style="position: relative;">
+                        <img src="~/assets/image/account/@Model.Image"  alt="" style="width: 85px; height: 85px; padding-top:10px; ">
+
                     </div>
                 </div>
 
@@ -186,3 +188,8 @@
     </div>
 </div>
 <!-- Account detail end -->
+
+
+
+
+   

@@ -12,7 +12,7 @@
 <!-- Check header end -->
 <!-- Register begin -->
 <div class="register">
-    <form asp-action="register" method="post">
+    <form asp-action="register" method="post" enctype="multipart/form-data">
         <div class="register_group">
             <div class="register_groupName">
                 Fullname *
@@ -77,6 +77,19 @@
 
             </div>
         </div>
+
+        <div class="register_group">
+            <div class="register_groupName">
+                Image *
+            </div>
+            <div class="register_groupInput">
+                <input class="form-control register_input" type="file" asp-for="UploadImage" style="border: 1px solid gray;">
+                <span asp-validation-for="UploadImage" class="text-danger"></span>
+
+            </div>
+        </div>
+
+
         <div class="text-danger" asp-validation-summary="ModelOnly"></div>
         <div class="register_group">
             <div class="register_button">

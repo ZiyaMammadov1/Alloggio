@@ -39,5 +39,6 @@ namespace Alloggio_MVC.ViewModels
         public string ConfirmPassword { get; set; }
 
         public IFormFile UploadImage { get; set; }
+
     }
 }

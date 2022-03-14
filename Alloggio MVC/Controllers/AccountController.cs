@@ -55,8 +55,32 @@ namespace Alloggio_MVC.Controllers
                 Email = RegisterVm.Email,
                 UserName = RegisterVm.Username,
                 Phone = RegisterVm.Phone
-
             };
+
+            if (RegisterVm.UploadImage != null)
+            {
+                if (RegisterVm.UploadImage.ContentType == "image/jpeg" || RegisterVm.UploadImage.ContentType == "image/png" || RegisterVm.UploadImage.ContentType == "image/jpg")
+                {
+                    if (RegisterVm.UploadImage.Length < 2097152)
+                    {
+                        string NewFileName = FileManager.Save(_env.WebRootPath, "assets/image/account", RegisterVm.UploadImage);
+                        member.Image = NewFileName;
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("UploadImage", "Image size can't be larger than 2mb");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("UploadImage", "Image must be in png, jpg formats");
+                    return View();
+                }
+
+
+            }
+
+
             var result = await _userManager.CreateAsync(member, RegisterVm.Password);
 
             if (!result.Succeeded)
@@ -140,14 +164,16 @@ namespace Alloggio_MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Profile(MemberUpdateViewModel UpdateVM)
         {
-         
 
             AppUser UserModel = await _userManager.FindByNameAsync(UpdateVM.CurrentMemberName);
 
             UserModel.Fullname = UpdateVM.Fullname;
             UserModel.Email = UpdateVM.Email;
             UserModel.Phone = UpdateVM.Phone;
-            UpdateVM.Image = UserModel.Image;
+            if (UpdateVM.UploadImage == null)
+            {
+                UpdateVM.Image = UserModel.Image;
+            }
 
             if (!ModelState.IsValid)
             {
@@ -199,20 +225,48 @@ namespace Alloggio_MVC.Controllers
 
 
             string NewFileName = "";
+
             if (UpdateVM.UploadImage != null)
             {
-                NewFileName = FileManager.Save(_env.WebRootPath, "assets/image/account", UpdateVM.UploadImage);
-                FileManager.Delete(_env.WebRootPath, "assets/image/account", UserModel.Image);
-                UserModel.Image = NewFileName;
+
+                if (UpdateVM.UploadImage.ContentType == "image/jpeg" || UpdateVM.UploadImage.ContentType == "image/png" || UpdateVM.UploadImage.ContentType == "image/jpg")
+                {
+
+                    UpdateVM.Image = UserModel.Image;
+                    if (UpdateVM.UploadImage.Length < 2097152)
+                    {
+                        NewFileName = FileManager.Save(_env.WebRootPath, "assets/image/account", UpdateVM.UploadImage);
+                        FileManager.Delete(_env.WebRootPath, "assets/image/account", UserModel.Image);
+                        UserModel.Image = NewFileName;
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("UploadImage", "Image size can't be larger than 2mb");
+                        return View(UpdateVM);
+                    }
+                }
+                else
+                {
+
+                    UpdateVM.Image = UserModel.Image;
+                    ModelState.AddModelError("UploadImage", "Image must be in png, jpg formats");
+                    return View(UpdateVM);
+                }
+
+
             }
             else
             {
                 UpdateVM.Image = UserModel.Image;
             }
+
             _context.SaveChanges();
 
             return RedirectToAction("index", "home");
         }
+
+
+
         public IActionResult ForgotPassword()
         {
             return View();

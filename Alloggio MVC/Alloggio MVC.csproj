@@ -6,9 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\assets\image\New folder\**" />
+    <Content Remove="wwwroot\assets\image\New folder\**" />
+    <EmbeddedResource Remove="wwwroot\assets\image\New folder\**" />
+    <None Remove="wwwroot\assets\image\New folder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="wwwroot\assets\image\account\" />
-    <Folder Include="wwwroot\assets\image\New folder\" />
   </ItemGroup>
 
   <ItemGroup>
