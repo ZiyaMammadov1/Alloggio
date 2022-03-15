@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Alloggio_MVC.Helpers
+namespace Alloggio_MVC.Helpers.FileManager
 {
     public class FileManager
     {

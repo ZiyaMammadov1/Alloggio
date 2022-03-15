@@ -1,5 +1,6 @@
 ﻿using Alloggio_MVC.Helpers;
 using Alloggio_MVC.Helpers.EmailSender;
+using Alloggio_MVC.Helpers.FileManager;
 using Alloggio_MVC.ViewModels;
 using Core_Layer.Entities;
 using Data_Layer.Concrete;

@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@inject LayoutService layoutService
+@{
+    var settings = layoutService.GetSettings();
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -36,7 +40,6 @@
     <link rel="stylesheet" href="~/assets/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css">
     <script src="~/assets/OwlCarousel2-2.3.4/dist/owl.carousel.min.js" defer></script>
     <!-- Owl Carousel end -->
-
     <!--Toaster begin-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
@@ -163,11 +166,10 @@
                         About
                     </div>
                     <div class="footer-top-area_aboutDescription">
-                        Welcome to Alloggio, where comfort is everything. Beautiful room presentations, straightforward
-                        booking & reservation options, & a whole lot more awaits here.
+                        @settings["AboutDescription"]
                     </div>
                     <div class="footer-top-area_aboutPartner">
-                        <img src="~/assets/image/partner logo/footer-clients.png" alt="">
+                        <img src="~/assets/image/partner logo/@settings["AboutImage"]" alt="">
                     </div>
                 </div>
 
@@ -178,13 +180,13 @@
                     <div class="footer-top-area_contactDescription">
                         <p class="footer-top-area_contactDescriptionItem">
                             A: <a href="#" class="footer-top-area_contactDescriptionLink">
-                                Via Venti Settembre, Roma
+                                @settings["Address"]
                             </a>
                         </p>
 
                         <p class="footer-top-area_contactDescriptionItem">
                             P: <a href="#" class="footer-top-area_contactDescriptionLink">
-                                +31 555 777 83
+                                @settings["Phone"]
                             </a>
                         </p>
 
@@ -196,12 +198,13 @@
 
                         <p class="footer-top-area_contactDescriptionItem">
                             E: <a href="#" class="footer-top-area_contactDescriptionLink">
-                                info@allogio.com
+                                @settings["Email"]
+
                             </a>
                         </p>
                     </div>
                     <div class="footer-top-area_contactShowOnMap">
-                        <a href="#" class="footer-top-area_contactShowOnMapLink">
+                        <a href="@settings["Location"]" class="footer-top-area_contactShowOnMapLink">
                             SHOW ON MAP +
                         </a>
                     </div>
@@ -212,18 +215,18 @@
                         Payment methods
                     </div>
                     <div class="footer-top-area_paymentDescription">
-                        Pay any way you choose, we support all payment options.
+                        @settings["PaymentHeader"]
                     </div>
                     <div class="footer-top-area_paymentMethods">
-                        <a href="#" class="footer-top-area_paymentItem">
+                        <a href=" @settings["Visa"]" class="footer-top-area_paymentItem">
                             <i class="fa-brands fa-cc-visa footer-top-area_paymentItemLink"></i>
                         </a>
 
-                        <a href="#" class="footer-top-area_paymentItem">
+                        <a href=" @settings["PayPal"]" class="footer-top-area_paymentItem">
                             <i class="fa-brands fa-cc-paypal footer-top-area_paymentItemLink"></i>
                         </a>
 
-                        <a href="#" class="footer-top-area_paymentItem">
+                        <a href=" @settings["MasterCard"]" class="footer-top-area_paymentItem">
                             <i class="fa-brands fa-cc-mastercard footer-top-area_paymentItemLink"></i>
                         </a>
                     </div>
@@ -234,19 +237,19 @@
                         Get Social
                     </div>
                     <div class="footer-top-area_socialDescription">
-                        Follow us on social media and keep in touch with Alloggio.
+                        @settings["SocialHeader"]
                     </div>
                     <div class="footer-top-area_socialLinks">
 
-                        <a href="" class="footer-top-area_socialLinksItem">
+                        <a href="@settings["Facebook"]" class="footer-top-area_socialLinksItem">
                             <i class="fa-brands fa-facebook-square footer-top-area_socialItemLink"></i>
                         </a>
 
-                        <a href="" class="footer-top-area_socialLinksItem">
+                        <a href="@settings["Twitter"]" class="footer-top-area_socialLinksItem">
                             <i class="fa-brands fa-twitter-square footer-top-area_socialItemLink"></i>
                         </a>
 
-                        <a href="" class="footer-top-area_socialLinksItem">
+                        <a href="@settings["Instagram"]" class="footer-top-area_socialLinksItem">
                             <i class="fa-brands fa-instagram-square footer-top-area_socialItemLink"></i>
                         </a>
 
@@ -258,7 +261,7 @@
         <div class="footer-bottom-area">
             <div class="footer-bottom-area_bottomInner">
                 <p class="footer-bottom-area_copyright">
-                    © Copyright Code Interactive
+                    @settings["FooterText"]
                 </p>
             </div>
         </div>
@@ -280,13 +283,14 @@
 <style>
     .validation-summary-errors ul li {
         font-family: 'Cormorant Garamond', serif;
-        font-size:22px;
+        font-size: 22px;
         padding: 5px 0;
     }
+
     span.text-danger {
         font-family: 'Cormorant Garamond', serif;
         font-size: 22px;
-        font-weight:400;
+        font-weight: 400;
         padding: 5px 10px;
     }
 </style>

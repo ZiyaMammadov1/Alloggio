@@ -1,4 +1,5 @@
 using Alloggio_MVC.Helpers.EmailSender;
+using Alloggio_MVC.Helpers.LayoutService;
 using Core_Layer.Entities;
 using Data_Layer.Concrete;
 using Microsoft.AspNetCore.Builder;
@@ -41,6 +42,7 @@ namespace Alloggio_MVC
                     c.Password.RequireLowercase = true;
                     c.User.RequireUniqueEmail = true;
                 }).AddDefaultTokenProviders().AddEntityFrameworkStores<DataContext>();
+            services.AddScoped<LayoutService>();
 
             services.AddScoped<IEmailSender, GmailSender>(x =>
              new GmailSender(
