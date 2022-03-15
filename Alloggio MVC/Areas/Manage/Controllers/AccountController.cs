@@ -1,8 +1,10 @@
 ﻿using Alloggio_MVC.Areas.Manage.ViewModels;
 using Core_Layer.Entities;
 using Data_Layer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,26 +18,16 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
         private readonly DataContext _context;
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AccountController(DataContext context, UserManager<AppUser> userManager, SignInManager<AppUser> signManager)
+
+        public AccountController(DataContext context, UserManager<AppUser> userManager, SignInManager<AppUser> signManager, RoleManager<IdentityRole> roleManager)
         {
             _context = context;
             _userManager = userManager;
             _signManager = signManager;
+            _roleManager = roleManager;
         }
-        public async Task<IActionResult> Index()
-        {
-            AppUser Superadmin = new AppUser
-            {
-                UserName = "Superadmin",
-                Fullname = "Super Admin",
-                Email = "Superadmin@outlook.com"
-            };
-            var createresult = await _userManager.CreateAsync(Superadmin, "Admin123");
-
-            return Ok(createresult.Errors);
-        }
-
         public IActionResult Login()
         {
             return View();
@@ -49,7 +41,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
                 return View(AdminLoginVM);
             }
 
-            AppUser Admin = await _userManager.FindByNameAsync(AdminLoginVM.Username);
+            AppUser Admin = await _userManager.Users.FirstOrDefaultAsync(x=>x.UserName == AdminLoginVM.Username && x.IsAdmin);
 
             if (Admin == null)
             {
@@ -57,7 +49,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
                 return View(AdminLoginVM);
             }
 
-            if ( !await _userManager.CheckPasswordAsync(Admin, AdminLoginVM.Password))
+            if (!await _userManager.CheckPasswordAsync(Admin, AdminLoginVM.Password))
             {
                 ModelState.AddModelError("", "Username or Password incorrect");
                 return View(AdminLoginVM);
@@ -65,7 +57,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
 
             var singIn = await _signManager.PasswordSignInAsync(Admin, AdminLoginVM.Password, false, false);
 
-            return RedirectToAction("index","dashboard");
+            return RedirectToAction("index", "dashboard");
         }
     }
 }

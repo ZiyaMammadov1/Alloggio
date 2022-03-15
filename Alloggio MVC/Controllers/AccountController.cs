@@ -45,7 +45,7 @@ namespace Alloggio_MVC.Controllers
                 return View();
             }
 
-            AppUser member = await _userManager.FindByNameAsync(RegisterVm.Username);
+            AppUser member = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == RegisterVm.Username && !x.IsAdmin);
 
             if (member != null)
             {
@@ -58,7 +58,8 @@ namespace Alloggio_MVC.Controllers
                 Fullname = RegisterVm.Fullname,
                 Email = RegisterVm.Email,
                 UserName = RegisterVm.Username,
-                Phone = RegisterVm.Phone
+                Phone = RegisterVm.Phone,
+                IsAdmin = false
             };
 
             if (RegisterVm.UploadImage != null)
@@ -86,6 +87,8 @@ namespace Alloggio_MVC.Controllers
 
 
             var result = await _userManager.CreateAsync(member, RegisterVm.Password);
+
+            var resultUser = await _userManager.AddToRoleAsync(member, "User");
 
             if (!result.Succeeded)
             {

@@ -1,7 +1,12 @@
-﻿
+﻿@inject UserManager<AppUser> userManager
 @{
     Layout = null;
     int counter;
+    AppUser member = null;
+    if (User.Identity.IsAuthenticated)
+    {
+        member = userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin);
+    }
 }
 @model HomeViewModels
 <!DOCTYPE html>
@@ -138,10 +143,10 @@
                 </div>
 
                 <div class="header-inner_account">
-                    @if (User.Identity.IsAuthenticated)
+                    @if (member != null)
                     {
                         <a asp-controller="account" asp-action="profile" class="header-inner_accountEmail">
-                            @User.Identity.Name
+                            @member.Email
                         </a>
                     }
                     else
