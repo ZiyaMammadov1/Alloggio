@@ -448,14 +448,16 @@
             <div class="subscription_type">
                 @Model.Settings["SubscriptionHeader"]
             </div>
-            <div class="subscrition_input">
-                <input type="text" class="subscription_emailInput" placeholder="Email Address">
-            </div>
-            <div class="subscription_button">
-                <button class="subscription_signButton">
-                    @Model.Settings["SubscriptionBtn"]
-                </button>
-            </div>
+            <form action="home" method="post" style="display:flex">
+                <div class="subscrition_input">
+                    <input type="text" class="subscription_emailInput" placeholder="Email Address" asp-for="SubscriptionEmail">
+                </div>
+                <div class="subscription_button">
+                    <button type="submit" class="subscription_signButton">
+                        @Model.Settings["SubscriptionBtn"]
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
     <!-- Subscription end -->

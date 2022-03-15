@@ -104,8 +104,6 @@ namespace Alloggio_MVC.Controllers
 
 
 
-
-
         public IActionResult Login()
         {
             return View();
@@ -307,6 +305,8 @@ namespace Alloggio_MVC.Controllers
             return RedirectToAction("index","home");
         }
 
+
+
         public IActionResult ResetPassword(string userid, string token)
         {
             if(userid == null || token == null)
@@ -316,7 +316,7 @@ namespace Alloggio_MVC.Controllers
             var model = new ChangePasswordViewModel { Token = token };
             return View();
         }
-
+        
         [HttpPost]
         public async Task<IActionResult> ResetPassword(ChangePasswordViewModel ChangePasswordVm)
         {
@@ -344,6 +344,8 @@ namespace Alloggio_MVC.Controllers
 
             return RedirectToAction("login","account");
         }
+
+
 
         public IActionResult Logout()
         {

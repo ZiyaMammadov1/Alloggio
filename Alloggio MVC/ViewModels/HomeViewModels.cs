@@ -11,9 +11,10 @@ namespace Alloggio_MVC.ViewModels
         public List<Slider> Sliders { get; set; }
         public List<Room> Rooms { get; set; }
         public List<Service> Services { get; set; }
-        public List<Subscription> Subscriptions{ get; set; }
         public List<Testimonial> Testimonials{ get; set; }
         public Dictionary<string, string> Settings { get; set; }
+        
+        public string SubscriptionEmail { get; set; }
 
     }
 }

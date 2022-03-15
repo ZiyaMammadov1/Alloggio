@@ -16,21 +16,54 @@ namespace Alloggio_MVC.Controllers
         public HomeController(DataContext context)
         {
             _context = context;
+            
         }
         public IActionResult Index()
         {
             HomeViewModels HomeVM = new HomeViewModels
             {
                 Sliders = _context.Sliders.ToList(),
-                Rooms = _context.Rooms.Take(4).ToList(), 
-                Services = _context.Services.ToList(), 
-                Subscriptions = _context.Subscriptions.ToList(), 
-                Testimonials = _context.Testimonials.ToList(), 
-                Settings = _context.Settings.ToDictionary(x=>x.Key, x=>x.Value)
+                Rooms = _context.Rooms.Take(4).ToList(),
+                Services = _context.Services.ToList(),
+                Testimonials = _context.Testimonials.ToList(),
+                Settings = _context.Settings.ToDictionary(x => x.Key, x => x.Value)
 
             };
             return View(HomeVM);
         }
+
+        [HttpPost]
+        public IActionResult Index(HomeViewModels HomeVM)
+        {
+
+            if (HomeVM.SubscriptionEmail != null)
+            {
+                Subscription email = new Subscription
+                {
+                    Email = HomeVM.SubscriptionEmail
+                };
+
+                _context.Subscriptions.Add(email);
+                _context.SaveChanges();
+
+                return RedirectToAction("index", "home");
+
+            }
+            HomeViewModels newHomeVM = new HomeViewModels
+            {
+                Sliders = _context.Sliders.ToList(),
+                Rooms = _context.Rooms.Take(4).ToList(),
+                Services = _context.Services.ToList(),
+                Testimonials = _context.Testimonials.ToList(),
+                Settings = _context.Settings.ToDictionary(x => x.Key, x => x.Value)
+
+            };
+            return View(newHomeVM);
+        }
+
+
+
+
         public IActionResult Menu()
         {
             CookingMenuViewModel cookingVm = new CookingMenuViewModel
@@ -40,12 +73,16 @@ namespace Alloggio_MVC.Controllers
             };
             return View(cookingVm);
         }
+
+
+
         public IActionResult Gallery()
         {
              var ModelForGallery = _context.Settings.ToDictionary(x => x.Key, x => x.Value);
 
             return View(ModelForGallery);
         }
-      
+
+       
     }
 }
