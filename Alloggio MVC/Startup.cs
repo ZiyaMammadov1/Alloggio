@@ -1,3 +1,4 @@
+using Alloggio_MVC.Helpers.EmailSender;
 using Core_Layer.Entities;
 using Data_Layer.Concrete;
 using Microsoft.AspNetCore.Builder;
@@ -40,6 +41,15 @@ namespace Alloggio_MVC
                     c.Password.RequireLowercase = true;
                     c.User.RequireUniqueEmail = true;
                 }).AddDefaultTokenProviders().AddEntityFrameworkStores<DataContext>();
+
+            services.AddScoped<IEmailSender, GmailSender>(x =>
+             new GmailSender(
+                 Configuration["GmailSender:Host"],
+                 Configuration.GetValue<int>("GmailSender:Port"),
+                 Configuration.GetValue<bool>("GmailSender:EnableSSL"),
+                 Configuration["GmailSender:Username"],
+                 Configuration["GmailSender:Password"])
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

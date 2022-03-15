@@ -1,4 +1,5 @@
 ﻿using Alloggio_MVC.Helpers;
+using Alloggio_MVC.Helpers.EmailSender;
 using Alloggio_MVC.ViewModels;
 using Core_Layer.Entities;
 using Data_Layer.Concrete;
@@ -19,12 +20,14 @@ namespace Alloggio_MVC.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IWebHostEnvironment _env;
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, DataContext context, IWebHostEnvironment env)
+        private readonly IEmailSender _emailSender;
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, DataContext context, IWebHostEnvironment env, IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
             _env = env;
+            _emailSender = emailSender;
         }
 
 
@@ -94,7 +97,9 @@ namespace Alloggio_MVC.Controllers
 
             await _signInManager.SignInAsync(member, true);
 
-            return RedirectToAction("index", "home");
+            TempData["Success"] = "Create your profile";
+
+            return RedirectToAction("login", "account");
         }
 
 
@@ -135,6 +140,7 @@ namespace Alloggio_MVC.Controllers
                 ModelState.AddModelError("", "Email or Password is incorrect");
                 return View();
             }
+
 
             return RedirectToAction("index", "home");
         }
@@ -262,7 +268,9 @@ namespace Alloggio_MVC.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("index", "home");
+            TempData["Success"] = "Profile update successfully";
+
+            return RedirectToAction("profile", "account");
         }
 
 
@@ -272,7 +280,70 @@ namespace Alloggio_MVC.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel forgotPasswordVM)
+        {
+            if (string.IsNullOrEmpty(forgotPasswordVM.Email))
+            {
+                ModelState.AddModelError("Email","Enter email address");
+                return View();
+            }
+            AppUser member = await _userManager.FindByEmailAsync(forgotPasswordVM.Email);
 
+            if(member == null)
+            {
+                ModelState.AddModelError("Email", "No user were found matching this email");
+                return View();
+            }
+
+            var ResetCode = await _userManager.GeneratePasswordResetTokenAsync(member);
+
+            var ResetUrl = Url.Action("ResetPassword","Account", new { 
+                userid = member.Id,
+                token = ResetCode
+            });
+
+            await _emailSender.SendEmailAsync(forgotPasswordVM.Email, "Alloggio Hotel", $"<a href='https://localhost:44323{ResetUrl}'>Click</a> for change Password");
+            return RedirectToAction("index","home");
+        }
+
+        public IActionResult ResetPassword(string userid, string token)
+        {
+            if(userid == null || token == null)
+            {
+                return RedirectToAction("index","home");
+            }
+            var model = new ChangePasswordViewModel { Token = token };
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ChangePasswordViewModel ChangePasswordVm)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(ChangePasswordVm);
+            }
+            var user = await _userManager.FindByEmailAsync(ChangePasswordVm.Email);
+            if(user == null)
+            {
+                ModelState.AddModelError("","User not found");
+                return View();
+            }
+            var result = await _userManager.ResetPasswordAsync(user, ChangePasswordVm.Token, ChangePasswordVm.NewPassword);
+
+            if (!result.Succeeded)
+            {
+                foreach (var err in result.Errors)
+                {
+                    ModelState.AddModelError("",err.Description);
+                    return View();
+                }
+            }
+            TempData["Success"] = "Password changed";
+
+            return RedirectToAction("login","account");
+        }
 
         public IActionResult Logout()
         {
