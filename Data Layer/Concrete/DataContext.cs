@@ -24,6 +24,7 @@ namespace Data_Layer.Concrete
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<AppUser> AppUsers{ get; set; }
+        public DbSet<Comment> UserComments { get; set; }
 
     }
 }

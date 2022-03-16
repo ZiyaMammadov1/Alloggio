@@ -1,0 +1,13 @@
+﻿@model Comment
+<form id="comment-form" asp-action="comment" asp-controller="room" method="post">
+    <input type="hidden" name="roomId" value="@Model.RoomId" />
+
+    <div class="detailWrap_typeComment">
+        <textarea placeholder="Comment *" name="Text" asp-for="Text" class="detailWrap_commentTextarea"></textarea>
+        <span class="text-danger" asp-validation-for="Text"></span>
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <button type="submit" class="detailWrap_commentSubmit">Post comment</button>
+    </div>
+    <hr class="detailWrap_hr">
+
+</form>

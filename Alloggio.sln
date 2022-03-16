@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alloggio MVC", "Alloggio MVC\Alloggio MVC.csproj", "{B28F226B-549F-487F-81D5-D900B218AADE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core Layer", "Core Layer\Core Layer.csproj", "{4CED4E8E-2547-4FBE-B5A7-3E5002AB61AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core Layer", "Core Layer\Core Layer.csproj", "{4CED4E8E-2547-4FBE-B5A7-3E5002AB61AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data Layer", "Data Layer\Data Layer.csproj", "{430A630F-82F9-423B-979D-A831143BCFC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data Layer", "Data Layer\Data Layer.csproj", "{430A630F-82F9-423B-979D-A831143BCFC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

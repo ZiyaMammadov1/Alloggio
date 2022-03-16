@@ -82,221 +82,226 @@
             <hr class="detailWrap_hr">
         </div>
 
+
+        
         <div class="detailWrap_comments">
             <div class="detailWrap_header">
                 Comments
             </div>
-            <div class="detailWrap_commentitem">
-                <div class="detailWrap_commentimage">
-                    <img src="~/assets/image/account/img1.png" alt="">
-                </div>
-                <div class="detailWrap_CommentAccountWrap">
-                    <div class="detailWrap_commentAccountName">
-                        John Fowler
+            @if (Model.AllComment.Count != 0 ) {
+            @foreach (var item in Model.AllComment)
+            {
+                <div class="detailWrap_commentitem">
+                    <div class="detailWrap_commentimage">
+                        <img src="~/assets/image/account/@item.Image" alt="" style="width:85px; height:85px;">
                     </div>
-                    <div class="detailWrap_commentAccountContent">
-                        Vel illum qui dolorem eum fugiat quo voluptas nulla pariatur. Vel illum qui dolorem eum fugiat quo voluptas nulla pariatur. Vel illum qui dolorem eum fugiat quo voluptas nulla pariatur. Vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.
-                    </div>
-
-                    <div class="detailWrap_commentAccountDateTime">
-                        April 2, 2020
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="detailWrap_typeComment">
-                <textarea placeholder="Comment *" class="detailWrap_commentTextarea"></textarea>
-
-                <a href="#" class="detailWrap_commentSubmit">Post comment</a>
-            </div>
-            <hr class="detailWrap_hr">
-        </div>
-
-        <div class="detailWrap_maps">
-
-            <div class="detailWrap_MapHeader">
-                Location
-            </div>
-            <div class="detailWrap_MapContent">
-                <iframe src="@Model.Settings["EmbedLocation"]"
-                        width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="detailWrap_rightSide">
-        <div class="detailWrap_reservation">
-            <div class="detailWrap_reservationWrap">
-
-                <div class="detailWrap_reservationHeader">
-                    Your Reservation
-                </div>
-
-                <div class="detailWrap_inputs">
-                    <div class="detailWrap_checkHeader">
-                        CHECK - IN:
-                    </div>
-                    <div class="detailWrap_checkin">
-
-                        <input class="form-control detailWrap_checkinInput" placeholder="Select date"
-                               type="datetime-local">
-
-                    </div>
-                </div>
-
-                <div class="detailWrap_inputs">
-                    <div class="detailWrap_checkHeader">
-                        CHECK - OUT:
-                    </div>
-                    <div class="detailWrap_checkin ">
-
-                        <input class="form-control detailWrap_checkinInput" placeholder="Select date"
-                               type="datetime-local">
-
-                    </div>
-                </div>
-
-                <div class="detailWrap_inputs">
-                    <div class="detailWrap_checkHeader">
-                        ROOMS:
-                    </div>
-                    <div class="detailWrap_checkin ">
-                        <select class="form-select detailWrap_checkinInput" aria-label="Default select example">
-                            <option selected disabled class="detailWrap_checkinInput">Select room</option>
-                            <option value="1" class="detailWrap_checkinInput">1 Room</option>
-                            <option value="2" class="detailWrap_checkinInput">2 Rooms</option>
-                            <option value="3" class="detailWrap_checkinInput">3 Rooms</option>
-                        </select>
-
-                    </div>
-                </div>
-
-                <div class="detailWrap_inputs">
-                    <div class="detailWrap_checkHeader">
-                        GUESTS:
-                    </div>
-                    <div class="detailWrap_checkin input-group">
-
-                        <div class="form-select detailWrap_checkinInput detailWrap_PersonForm" id="guests">
-                            <p class="detailWrap_AllPassenger">Adults: 1 Children: 0 Infant: 0</p>
-
+                    <div class="detailWrap_CommentAccountWrap">
+                        <div class="detailWrap_commentAccountName">
+                           @item.AppUser.Fullname
                         </div>
-                        <div class="detailWrap_innerForm">
-                            <div class="detailWrap_PersonItem detailWrap_checkinInput">
-                                Adults
+                        <div class="detailWrap_commentAccountContent">
+                           @item.Text
+                        </div>
 
-                                <select class="form-select detailWrap_checkinInput detailWrap_item"
-                                        id="SelectAdults">
-
-                                    <option selected value="1" class="detailWrap_checkinInput">1</option>
-                                    <option value="2" class="detailWrap_checkinInput">2 </option>
-                                    <option value="3" class="detailWrap_checkinInput">3 </option>
-                                </select>
-
-                            </div>
-
-                            <div class="detailWrap_PersonItem detailWrap_checkinInput">
-                                Children
-
-                                <select class="form-select detailWrap_checkinInput detailWrap_item"
-                                        id="SelectChildren">
-
-                                    <option selected value="0" class="detailWrap_checkinInput">0</option>
-                                    <option value="1" class="detailWrap_checkinInput">1 </option>
-                                    <option value="2" class="detailWrap_checkinInput">2 </option>
-                                </select>
-                            </div>
-
-                            <div class="detailWrap_PersonItem detailWrap_checkinInput">
-                                İnfant's
-                                <select class="form-select detailWrap_checkinInput detailWrap_item"
-                                        id="SelectInfant">
-
-                                    <option selected value="0" class="detailWrap_checkinInput">0</option>
-                                    <option value="1" class="detailWrap_checkinInput">1 </option>
-                                    <option value="2" class="detailWrap_checkinInput">2 </option>
-                                </select>
-                            </div>
+                        <div class="detailWrap_commentAccountDateTime">
+                           @item.CreatedAt.ToLongDateString()
                         </div>
                     </div>
-                </div>
 
-                <div class="detailWrap_inputs">
-                    <div class="detailWrap_reservationHeader detailWrap_yourPrice">
-                        Your price
-                    </div>
-                    <div class="detailWrap_price detailWrap_checkHeader">
-                        $ 87 / per room
-                    </div>
                 </div>
+                }
+            }
 
-                <div class="detailWrap_inputs detailWrap_BookNow">
-                    <a href="#" class="detailWrap_btnBookNow">
-                        BOOK NOW
-                    </a>
+            @Html.Partial("_CommentPartialView", Model.Comment)
+
+
+
+
+
+        </div>
+
+            <div class="detailWrap_maps">
+
+                <div class="detailWrap_MapHeader">
+                    Location
+                </div>
+                <div class="detailWrap_MapContent">
+                    <iframe src="@Model.Settings["EmbedLocation"]"
+                            width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
 
             </div>
+
         </div>
 
+        <div class="detailWrap_rightSide">
+            <div class="detailWrap_reservation">
+                <div class="detailWrap_reservationWrap">
 
-    </div>
-
-</div>
-<!-- Detail End -->
-<!-- Related room begin -->
-<div class="related">
-    <div class="related_roomsHeader">
-        Related Rooms
-    </div>
-    <div class="row related_roomsContent">
-
-
-
-        @foreach (var item in Model.RelatedRoom)
-        {
-            <div class="col-4 related_roomItems">
-                <div class="related_roomItem">
-                    <div class="related_itemImage">
-                        <img src="~/assets/image/Room/RoomMainImage/@item.Image" class="related_image" alt="">
+                    <div class="detailWrap_reservationHeader">
+                        Your Reservation
                     </div>
-                    <div class="related_itemName">
-                        <a href="#" class="related_itemLink">@item.Name</a>
+
+                    <div class="detailWrap_inputs">
+                        <div class="detailWrap_checkHeader">
+                            CHECK - IN:
+                        </div>
+                        <div class="detailWrap_checkin">
+
+                            <input class="form-control detailWrap_checkinInput" placeholder="Select date"
+                                   type="datetime-local">
+
+                        </div>
                     </div>
-                    <p class="related_itemPrice">from @item.Price $</p>
-                    <div class="related_itemDescription">
-                        @item.Description.Substring(0, 150);
+
+                    <div class="detailWrap_inputs">
+                        <div class="detailWrap_checkHeader">
+                            CHECK - OUT:
+                        </div>
+                        <div class="detailWrap_checkin ">
+
+                            <input class="form-control detailWrap_checkinInput" placeholder="Select date"
+                                   type="datetime-local">
+
+                        </div>
                     </div>
+
+                    <div class="detailWrap_inputs">
+                        <div class="detailWrap_checkHeader">
+                            ROOMS:
+                        </div>
+                        <div class="detailWrap_checkin ">
+                            <select class="form-select detailWrap_checkinInput" aria-label="Default select example">
+                                <option selected disabled class="detailWrap_checkinInput">Select room</option>
+                                <option value="1" class="detailWrap_checkinInput">1 Room</option>
+                                <option value="2" class="detailWrap_checkinInput">2 Rooms</option>
+                                <option value="3" class="detailWrap_checkinInput">3 Rooms</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="detailWrap_inputs">
+                        <div class="detailWrap_checkHeader">
+                            GUESTS:
+                        </div>
+                        <div class="detailWrap_checkin input-group">
+
+                            <div class="form-select detailWrap_checkinInput detailWrap_PersonForm" id="guests">
+                                <p class="detailWrap_AllPassenger">Adults: 1 Children: 0 Infant: 0</p>
+
+                            </div>
+                            <div class="detailWrap_innerForm">
+                                <div class="detailWrap_PersonItem detailWrap_checkinInput">
+                                    Adults
+
+                                    <select class="form-select detailWrap_checkinInput detailWrap_item"
+                                            id="SelectAdults">
+
+                                        <option selected value="1" class="detailWrap_checkinInput">1</option>
+                                        <option value="2" class="detailWrap_checkinInput">2 </option>
+                                        <option value="3" class="detailWrap_checkinInput">3 </option>
+                                    </select>
+
+                                </div>
+
+                                <div class="detailWrap_PersonItem detailWrap_checkinInput">
+                                    Children
+
+                                    <select class="form-select detailWrap_checkinInput detailWrap_item"
+                                            id="SelectChildren">
+
+                                        <option selected value="0" class="detailWrap_checkinInput">0</option>
+                                        <option value="1" class="detailWrap_checkinInput">1 </option>
+                                        <option value="2" class="detailWrap_checkinInput">2 </option>
+                                    </select>
+                                </div>
+
+                                <div class="detailWrap_PersonItem detailWrap_checkinInput">
+                                    İnfant's
+                                    <select class="form-select detailWrap_checkinInput detailWrap_item"
+                                            id="SelectInfant">
+
+                                        <option selected value="0" class="detailWrap_checkinInput">0</option>
+                                        <option value="1" class="detailWrap_checkinInput">1 </option>
+                                        <option value="2" class="detailWrap_checkinInput">2 </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detailWrap_inputs">
+                        <div class="detailWrap_reservationHeader detailWrap_yourPrice">
+                            Your price
+                        </div>
+                        <div class="detailWrap_price detailWrap_checkHeader">
+                            $ 87 / per room
+                        </div>
+                    </div>
+
+                    <div class="detailWrap_inputs detailWrap_BookNow">
+                        <a href="#" class="detailWrap_btnBookNow">
+                            BOOK NOW
+                        </a>
+                    </div>
+
                 </div>
             </div>
-        }
+
+
+        </div>
 
     </div>
-</div>
-<!-- Related room end -->
-
-
-<!-- Modal begin -->
-<div class="rules">
-    <div class="rules_content">
-        <div class="rules_header">House Rules</div>
-        <div class="rules_rules">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sollicitudin est sit amet libero sodales interdum. Nulla pellentesque cursus consectetur. Ut a tempor lorem. Aliquam erat volutpat. Quisque eu nisi et odio placerat congue eget a urna. Morbi aliquam pharetra nisl, vitae fermentum ligula dignissim eget. Nam iaculis maximus maximus.
-
-            Sed auctor leo erat, non rutrum velit euismod vel. In ac finibus metus. Sed a ex pulvinar, faucibus nulla nec, rutrum ipsum. Cras ut ullamcorper nulla. Cras sit amet turpis dui. Nunc nulla arcu, commodo et nunc ut, fermentum gravida felis. Suspendisse iaculis dignissim felis, non scelerisque sem pretium vel.
-
-            Suspendisse eu velit massa. Quisque nisl nisi, finibus ut orci id, porta maximus ipsum. Pellentesque eget tristique justo. Nunc mattis dapibus pharetra. Pellentesque ornare, eros cursus lacinia feugiat, ante ipsum dictum felis, nec eleifend tortor sapien sodales sapien. In hac habitasse platea dictumst. Donec molestie nibh vitae turpis tincidunt elementum. Nam tincidunt nunc condimentum, ultrices ipsum at, accumsan turpis. Vivamus ultrices pretium felis, id luctus tortor egestas ac. Ut accumsan at nisi at tincidunt.
-
-            Nam et faucibus dui, vitae imperdiet elit. Proin ornare maximus lorem dapibus tempor. Vivamus dictum eget arcu quis rutrum. Fusce vel ex non odio scelerisque ultricies eget quis purus. Praesent at felis velit. Fusce porta sagittis faucibus. Nulla venenatis imperdiet arcu sed cursus.
-
-            Sed mattis tempus nibh vitae dictum. Curabitur non ex molestie magna viverra elementum eget eget risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+    <!-- Detail End -->
+    <!-- Related room begin -->
+    <div class="related">
+        <div class="related_roomsHeader">
+            Related Rooms
         </div>
-        <div class="rules_button">
-            <a class="rules_link">Ok!</a>
+        <div class="row related_roomsContent">
+
+
+
+            @foreach (var item in Model.RelatedRoom)
+            {
+                <div class="col-4 related_roomItems">
+                    <div class="related_roomItem">
+                        <div class="related_itemImage">
+                            <img src="~/assets/image/Room/RoomMainImage/@item.Image" class="related_image" alt="">
+                        </div>
+                        <div class="related_itemName">
+                            <a href="#" class="related_itemLink">@item.Name</a>
+                        </div>
+                        <p class="related_itemPrice">from @item.Price $</p>
+                        <div class="related_itemDescription">
+                            @item.Description.Substring(0, 150);
+                        </div>
+                    </div>
+                </div>
+            }
+
         </div>
     </div>
-</div>
-<!-- Modal end -->
+    <!-- Related room end -->
+    <!-- Modal begin -->
+    <div class="rules">
+        <div class="rules_content">
+            <div class="rules_header">House Rules</div>
+            <div class="rules_rules">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sollicitudin est sit amet libero sodales interdum. Nulla pellentesque cursus consectetur. Ut a tempor lorem. Aliquam erat volutpat. Quisque eu nisi et odio placerat congue eget a urna. Morbi aliquam pharetra nisl, vitae fermentum ligula dignissim eget. Nam iaculis maximus maximus.
+
+                Sed auctor leo erat, non rutrum velit euismod vel. In ac finibus metus. Sed a ex pulvinar, faucibus nulla nec, rutrum ipsum. Cras ut ullamcorper nulla. Cras sit amet turpis dui. Nunc nulla arcu, commodo et nunc ut, fermentum gravida felis. Suspendisse iaculis dignissim felis, non scelerisque sem pretium vel.
+
+                Suspendisse eu velit massa. Quisque nisl nisi, finibus ut orci id, porta maximus ipsum. Pellentesque eget tristique justo. Nunc mattis dapibus pharetra. Pellentesque ornare, eros cursus lacinia feugiat, ante ipsum dictum felis, nec eleifend tortor sapien sodales sapien. In hac habitasse platea dictumst. Donec molestie nibh vitae turpis tincidunt elementum. Nam tincidunt nunc condimentum, ultrices ipsum at, accumsan turpis. Vivamus ultrices pretium felis, id luctus tortor egestas ac. Ut accumsan at nisi at tincidunt.
+
+                Nam et faucibus dui, vitae imperdiet elit. Proin ornare maximus lorem dapibus tempor. Vivamus dictum eget arcu quis rutrum. Fusce vel ex non odio scelerisque ultricies eget quis purus. Praesent at felis velit. Fusce porta sagittis faucibus. Nulla venenatis imperdiet arcu sed cursus.
+
+                Sed mattis tempus nibh vitae dictum. Curabitur non ex molestie magna viverra elementum eget eget risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+            </div>
+            <div class="rules_button">
+                <a class="rules_link">Ok!</a>
+            </div>
+        </div>
+    </div>
+    <!-- Modal end -->

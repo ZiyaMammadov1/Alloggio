@@ -11,5 +11,6 @@ namespace Core_Layer.Entities
         public string Phone { get; set; }
         public string Image { get; set; }
         public bool IsAdmin { get; set; }
+        public List<Comment> UserComments { get; set; }
     }
 }
