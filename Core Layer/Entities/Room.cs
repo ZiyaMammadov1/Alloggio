@@ -17,6 +17,8 @@ namespace Core_Layer.Entities
         public int BedCount { get; set; }
         public List<RoomAmenities> RoomAmenities { get; set; }
         public List<Comment> UserComments { get; set; }
+        public List<OrderRooms> OrderRooms { get; set; }
+
 
 
     }

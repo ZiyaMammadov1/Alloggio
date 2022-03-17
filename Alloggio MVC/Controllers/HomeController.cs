@@ -18,6 +18,8 @@ namespace Alloggio_MVC.Controllers
             _context = context;
             
         }
+
+
         public IActionResult Index()
         {
             ViewBag.SelectRoom = _context.BedCount.ToList();

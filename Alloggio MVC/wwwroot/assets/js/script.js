@@ -86,44 +86,46 @@ $(document).ready(function () {
 
 // Guests Selects begin
 $(document).ready(function () {
-  $("#SelectAdults").change(function () {
+    $(".HelloAdult").change(function () {
     var Passengers =
       "Adults: " +
-      $("#SelectAdults").val() +
+      $(".aAdult").val() +
       " " +
       "Children: " +
-      $("#SelectChildren").val() +
+      $(".aChildren").val() +
       " " +
       "Infant: " +
-      $("#SelectInfant").val();
+      $(".aInfant").val();
     $(".detailWrap_AllPassenger").html(Passengers);
-  });
+    });
 
-  $("#SelectChildren").change(function () {
-    var Passengers =
-      "Adults: " +
-      $("#SelectAdults").val() +
-      " " +
-      "Children: " +
-      $("#SelectChildren").val() +
-      " " +
-      "Infant: " +
-      $("#SelectInfant").val();
-    $(".detailWrap_AllPassenger").html(Passengers);
-  });
+    $(".HelloChildren").change(function () {
+        var Passengers =
+            "Adults: " +
+            $(".aAdult").val() +
+            " " +
+            "Children: " +
+            $(".aChildren").val() +
+            " " +
+            "Infant: " +
+            $(".aInfant").val();
+        $(".detailWrap_AllPassenger").html(Passengers);
+    });
 
-  $("#SelectInfant").change(function () {
-    var Passengers =
-      "Adults: " +
-      $("#SelectAdults").val() +
-      " " +
-      "Children: " +
-      $("#SelectChildren").val() +
-      " " +
-      "Infant: " +
-      $("#SelectInfant").val();
-    $(".detailWrap_AllPassenger").html(Passengers);
-  });
+    $(".HelloInfant").change(function () {
+        var Passengers =
+            "Adults: " +
+            $(".aAdult").val() +
+            " " +
+            "Children: " +
+            $(".aChildren").val() +
+            " " +
+            "Infant: " +
+            $(".aInfant").val();
+        $(".detailWrap_AllPassenger").html(Passengers);
+    });
+
+ 
 });
 // Guests Selects end
 

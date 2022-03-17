@@ -1,114 +1,89 @@
 ﻿@model Checking
-<div class="check">
-    <div class="check_Wrap">
-        <div class="check_item">
-            <div class="check_itemHeader">
-                CHECK - IN
-            </div>
-            <div class="check_calendar">
+    <form asp-controller="room" asp-action="index" method="get">
+        <div class="check">
+            <div class="check_Wrap">
+                <div class="check_item">
+                    <div class="check_itemHeader">
+                        CHECK - IN
+                    </div>
+                    <div class="check_calendar">
 
-                <input class="form-control check_checkinInput" id="mainCheckIn" placeholder="Select date" type="datetime-local" value="@(Model.CheckIn)">
+                        <input class="form-control check_checkinInput" name="checkin" id="mainCheckIn" placeholder="Select date"  type="datetime-local" value="@(Model.CheckIn)">
 
-            </div>
-        </div>
-
-        <div class="check_item">
-            <div class="check_itemHeader">
-                CHECK - OUT
-            </div>
-            <div class="check_calendar">
-
-                <input class="form-control check_checkinInput" id="mainCheckOut" placeholder="Select date" type="datetime-local" value="@Model.CheckOut">
-
-            </div>
-        </div>
-
-        <div class="check_item">
-            <div class="check_itemHeader">
-                ROOMS:
-            </div>
-            <div class="check_calendar">
-                <select class="form-control" asp-for="SelectRoom" asp-items="@(new SelectList(ViewBag.SelectRoom,"BedCount","BedCount"))">
-                </select>
-                @*SelectList(ViewBag.SelectRoom,"Option.Value","Option.Text")*@
-            </div>
-        </div>
-        <div class="check_item">
-            <div class="check_itemHeader">
-                GUESTS:
-            </div>
-            <div class="check_calendar input-group">
-
-                <div class="form-select check_checkinInput " id="guests">
-                    <p class="detailWrap_AllPassenger check_AllPassengers">Adults: 1 Children: 0 Infant: 0</p>
-
+                    </div>
                 </div>
-                <div class="detailWrap_innerForm">
-                    <div class="detailWrap_PersonItem check_checkinInput">
-                        Adults
 
-                        <select class="form-select check_checkinInput check_items" id="SelectAdults">
+                <div class="check_item">
+                    <div class="check_itemHeader">
+                        CHECK - OUT
+                    </div>
+                    <div class="check_calendar">
 
-                            <option selected value="1" class="check_checkinInput">1</option>
-                            <option value="2" class="check_checkinInput">2 </option>
-                            <option value="3" class="check_checkinInput">3 </option>
-                            <option value="4" class="check_checkinInput">4</option>
-                            <option value="5" class="check_checkinInput">5 </option>
-                            <option value="6" class="check_checkinInput">6 </option>
-                        </select>
+                        <input class="form-control check_checkinInput" name="checkout" id="mainCheckOut" placeholder="Select date" type="datetime-local" value="@Model.CheckOut">
 
                     </div>
+                </div>
 
-                    <div class="detailWrap_PersonItem check_checkinInput">
-                        Children
 
-                        <select class="form-select check_checkinInput check_items" id="SelectChildren">
-
-                            <option selected value="0" class="check_checkinInput">0</option>
-                            <option value="1" class="check_checkinInput">1 </option>
-                            <option value="2" class="check_checkinInput">2 </option>
-                            <option value="3" class="check_checkinInput">3 </option>
-                            <option value="4" class="check_checkinInput">4 </option>
-                            <option value="5" class="check_checkinInput">5 </option>
-                        </select>
+                <div class="check_item">
+                    <div class="check_itemHeader">
+                        GUESTS:
                     </div>
+                    <div class="check_calendar input-group">
 
-                    <div class="detailWrap_PersonItem check_checkinInput">
-                        İnfant's
-                        <select class="form-select check_checkinInput check_items" id="SelectInfant">
+                        <div class="form-select check_checkinInput " id="guests">
+                            <p class="detailWrap_AllPassenger check_AllPassengers">Adults: 1 Children: 0 Infant: 0</p>
 
+                        </div>
+                        <div class="detailWrap_innerForm">
+                            <div class="detailWrap_PersonItem check_checkinInput">
+                                Adults
 
-                            <option selected value="0" class="check_checkinInput">0</option>
-                            <option value="1" class="check_checkinInput">1 </option>
-                            <option value="2" class="check_checkinInput">2 </option>
-                            <option value="3" class="check_checkinInput">3 </option>
-                            <option value="4" class="check_checkinInput">4 </option>
-                            <option value="5" class="check_checkinInput">5 </option>
-                        </select>
+                                <input type="number" name="adults" min="1" class="HelloAdult aAdult" value="1" placeholder="1" />
+
+                            </div>
+
+                            <div class="detailWrap_PersonItem check_checkinInput">
+                                Children
+
+                                <input type="number" min="0" name="childrens" class="HelloChildren aChildren" value="0" placeholder="0" />
+
+                            </div>
+
+                            <div class="detailWrap_PersonItem check_checkinInput">
+                                İnfant's
+
+                                <input type="number" min="0" name="infants" class="HelloInfant aInfant" value="0" placeholder="0" />
+
+                            </div>
+                        </div>
                     </div>
+                </div>
+                <div class="check_item">
+                    <div class="check_itemHeader">
+                        SEARCH:
+                    </div>
+                    <button type="submit" class="check_buttonsearch">BOOK NOW</button>
                 </div>
             </div>
         </div>
-        <div class="check_item">
-            <div class="check_itemHeader">
-                SEARCH:
-            </div>
-            <a asp-controller="room" asp-action="index" class="check_buttonsearch">BOOK NOW</a>
-        </div>
-    </div>
-</div>
+    </form>
 
-<style>
-    select {
-        font-weight: 300 !important;
-        background-color: #FAF9F5 !important;
-        height: 50PX;
-        font-family: 'Josefin Sans', sans-serif;
-        font-size: 20px !important;
-    }
+
+    <style>
+        .HelloAdult, .HelloChildren, .HelloInfant {
+            font-weight: 300 !important;
+            background-color: #FAF9F5 !important;
+            height: 50px;
+            padding: 0 10px;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 20px !important;
+            width: 30%;
+            border: 1px solid rgb(206, 212, 218);
+        }
 
         select option {
             font-weight: 300;
             font-size: 20px;
         }
-</style>
+    </style>

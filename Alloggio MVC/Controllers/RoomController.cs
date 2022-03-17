@@ -20,11 +20,16 @@ namespace Alloggio_MVC.Controllers
             _context = context;
             _userManager = userManager;
         }
-        public IActionResult Index()
+        public IActionResult Index(int adults, int children, int infant, DateTime checkin, DateTime checkout)
         {
+            int TotalGuests = (adults + children + infant);
+                
+            int BedCount = TotalGuests - TotalGuests/5;
             List<Room> rooms = _context.Rooms.ToList();
             return View(rooms);
         }
+
+
         public IActionResult RoomDetail(int id)
         {
 

@@ -26,5 +26,7 @@ namespace Data_Layer.Concrete
         public DbSet<AppUser> AppUsers{ get; set; }
         public DbSet<Comment> UserComments { get; set; }
         public DbSet<BedCountForRooms> BedCount { get; set; }
+        public DbSet<Order> Orders{ get; set; }
+        public DbSet<OrderRooms> OrderRooms{ get; set; }
     }
 }
