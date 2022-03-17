@@ -1,6 +1,7 @@
 ﻿using Core_Layers.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
@@ -10,6 +11,22 @@ namespace Core_Layer.Entities
     {
         public int id { get; set; }
         public bool IsDeleted { get; set; }
+
+        [Required]
+        [StringLength(maximumLength:30)]
+        public string FullName { get; set; }
+
+
+        [Required]
+        [StringLength(maximumLength: 30)]
+        public string Phone { get; set; }
+
+
+        [Required]
+        [StringLength(maximumLength: 30)]
+        public string Email { get; set; }
+
+
         public DateTime CreateAt{ get; set; }
         public DateTime ModifiedAt { get; set; }
         public string AppUserId { get; set; }

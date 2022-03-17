@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Checkout";
 }
+@model Order
 <!-- Check header begin -->
 <div class="outHeader">
     <div class="outHeader_checkout">
@@ -20,30 +21,15 @@
 
             <div class="billing_group">
                 <div class="billing_inputHeader">
-                    First name ..*
+                    Full name ..*
                 </div>
                 <div class="billing_inputs">
-                    <input type="text" placeholder="First name" class="billing_input">
+                    <input type="text" asp-for="FullName" placeholder="First name" class="billing_input">
                 </div>
             </div>
 
-            <div class="billing_group">
-                <div class="billing_inputHeader">
-                    Last name ..*
-                </div>
-                <div class="billing_inputs">
-                    <input type="text" placeholder="Last name" class="billing_input">
-                </div>
-            </div>
+          
 
-            <div class="billing_group">
-                <div class="billing_inputHeader">
-                    Postcode / Zip ..*
-                </div>
-                <div class="billing_inputs">
-                    <input type="text" placeholder="Postcode" class="billing_input">
-                </div>
-            </div>
 
             <div class="billing_group">
                 <div class="billing_inputHeader">
