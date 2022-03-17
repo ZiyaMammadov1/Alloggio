@@ -20,13 +20,21 @@ namespace Alloggio_MVC.Controllers
         }
         public IActionResult Index()
         {
+            ViewBag.SelectRoom = _context.BedCount.ToList();
+            Checking checkForm = new Checking
+            {
+                CheckIn = DateTime.UtcNow,
+                CheckOut = DateTime.UtcNow.AddDays(1)
+            };
+
             HomeViewModels HomeVM = new HomeViewModels
             {
                 Sliders = _context.Sliders.ToList(),
                 Rooms = _context.Rooms.Take(4).ToList(),
                 Services = _context.Services.ToList(),
                 Testimonials = _context.Testimonials.ToList(),
-                Settings = _context.Settings.ToDictionary(x => x.Key, x => x.Value)
+                Settings = _context.Settings.ToDictionary(x => x.Key, x => x.Value),
+                MainChecking = checkForm
 
             };
             return View(HomeVM);

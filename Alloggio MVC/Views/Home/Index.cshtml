@@ -39,16 +39,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js " defer></script>
     <!-- jQuery end -->
     <!-- Flat  begin -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css" >
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/confetti.css" >
+
     <!-- Flat  end -->
-    <!-- Bootstrap datetime begin -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"
-            defer>
-    </script>
-    <!-- Bootstrap datetime end -->
     <!-- Owl Carousel begin -->
     <link rel="stylesheet" href="~/assets/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="~/assets/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css">
@@ -223,98 +218,7 @@
     </div>
     <!-- Slider end -->
     <!-- Checking begin -->
-    <div class="check">
-        <div class="check_Wrap">
-            <div class="check_item">
-                <div class="check_itemHeader">
-                    CHECK - IN
-                </div>
-                <div class="check_calendar">
-
-                    <input class="form-control check_checkinInput" placeholder="Select date" type="datetime-local">
-
-                </div>
-            </div>
-
-            <div class="check_item">
-                <div class="check_itemHeader">
-                    CHECK - OUT
-                </div>
-                <div class="check_calendar">
-
-                    <input class="form-control check_checkinInput" placeholder="Select date" type="datetime-local">
-
-                </div>
-            </div>
-
-            <div class="check_item">
-                <div class="check_itemHeader">
-                    ROOMS:
-                </div>
-                <div class="check_calendar">
-                    <select class="form-select check_checkinInput" aria-label="Default select example">
-                        <option selected disabled class="check_checkinInput">Select room</option>
-                        <option value="1" class="check_checkinInput">1 Room</option>
-                        <option value="2" class="check_checkinInput">2 Rooms</option>
-                        <option value="3" class="check_checkinInput">3 Rooms</option>
-                    </select>
-
-                </div>
-            </div>
-            <div class="check_item">
-                <div class="check_itemHeader">
-                    GUESTS:
-                </div>
-                <div class="check_calendar input-group">
-
-                    <div class="form-select check_checkinInput " id="guests">
-                        <p class="detailWrap_AllPassenger check_AllPassengers">Adults: 1 Children: 0 Infant: 0</p>
-
-                    </div>
-                    <div class="detailWrap_innerForm">
-                        <div class="detailWrap_PersonItem check_checkinInput">
-                            Adults
-
-                            <select class="form-select check_checkinInput check_items" id="SelectAdults">
-
-                                <option selected value="1" class="check_checkinInput">1</option>
-                                <option value="2" class="check_checkinInput">2 </option>
-                                <option value="3" class="check_checkinInput">3 </option>
-                            </select>
-
-                        </div>
-
-                        <div class="detailWrap_PersonItem check_checkinInput">
-                            Children
-
-                            <select class="form-select check_checkinInput check_items" id="SelectChildren">
-
-                                <option selected value="0" class="check_checkinInput">0</option>
-                                <option value="1" class="check_checkinInput">1 </option>
-                                <option value="2" class="check_checkinInput">2 </option>
-                            </select>
-                        </div>
-
-                        <div class="detailWrap_PersonItem check_checkinInput">
-                            İnfant's
-                            <select class="form-select check_checkinInput check_items" id="SelectInfant">
-
-                                <option selected value="0" class="check_checkinInput">0</option>
-                                <option value="1" class="check_checkinInput">1 </option>
-                                <option value="2" class="check_checkinInput">2 </option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="check_item">
-                <div class="check_itemHeader">
-                    SEARCH:
-                </div>
-                <a asp-controller="room" asp-action="index" class="check_buttonsearch">BOOK NOW</a>
-            </div>
-        </div>
-    </div>
+    @Html.Partial("_MainChecking", Model.MainChecking)
     <!-- Chechking end -->
     <!-- Suits section begin -->
     <div class="suit">
@@ -350,7 +254,7 @@
                                 @item.Size m2 / @item.GuestRange person
                             </div>
                             <div class="suit_description">
-                                @item.Description.Substring(0,150) ...
+                                @item.Description.Substring(0, 150) ...
                             </div>
                             <div class="suit_cardButton">
                                 <a class="suit_button" asp-controller="room" asp-action="roomdetail" asp-route-id="@item.id">BOOK NOW +</a>
@@ -587,5 +491,4 @@
     </div>
 
 </body>
-
 </html>

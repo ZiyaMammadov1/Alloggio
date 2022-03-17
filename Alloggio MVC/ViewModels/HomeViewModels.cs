@@ -13,7 +13,7 @@ namespace Alloggio_MVC.ViewModels
         public List<Service> Services { get; set; }
         public List<Testimonial> Testimonials{ get; set; }
         public Dictionary<string, string> Settings { get; set; }
-        
+        public Checking MainChecking { get; set; }
         public string SubscriptionEmail { get; set; }
 
     }

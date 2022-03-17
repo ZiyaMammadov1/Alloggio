@@ -48,11 +48,29 @@ $(document).ready(function () {
 
 //DatetimePicker begin
 $(document).ready(function () {
-  var dt = new Date();
-  var year = dt.get;
-  flatpickr("input[type=datetime-local]", {
-    defaultDate: new Date(),
-  });
+  var DateTime = new Date();
+
+    flatpickr("#mainCheckIn", {
+        minDate: "today",
+        enableTime: false,
+        dateFormat: "F, d Y",
+        defaultDate: new Date(),
+        onChange: function () {
+            console.log($("#mainCheckIn").val());
+            
+        }
+    });
+
+    flatpickr("#mainCheckOut", {
+        minDate: "today",
+        enableTime: false,
+        dateFormat: "F, d Y",
+        defaultDate: new Date(DateTime.getUTCFullYear(), DateTime.getUTCMonth(), DateTime.getUTCDate()+1),
+        onChange: function () {
+            console.log($("#mainCheckOut").val());
+
+        }
+    });
 });
 //DatetimePicker end
 
@@ -243,4 +261,8 @@ $(document).ready(function () {
     }
 });
 //Toastr js end 
+
+
+
+
 
