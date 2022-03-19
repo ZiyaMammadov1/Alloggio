@@ -10,7 +10,7 @@
 <!-- House image end -->
 <!-- Detail begin -->
 <div class="detailWrap">
-    <div class="detailWrap_room">
+    <div class="detailWrap_room" style="width:80%; margin:0 auto">
         <div class="detailWrap_suitdetail">
             <div class="detailWrap_suitname">
                 @Model.Room.Name
@@ -18,6 +18,7 @@
             <div class="detailWrap_suitdescription">
                 @Model.Room.Description
             </div>
+
 
             <hr class="detailWrap_hr">
 
@@ -67,6 +68,14 @@
 
             <hr class="detailWrap_hr">
 
+            <div class="detailWrap_inputs detailWrap_BookNow">
+                <a href="#" class="detailWrap_btnBookNow">
+                    BOOK NOW
+                </a>
+            </div>
+
+            <hr class="detailWrap_hr">
+
         </div>
 
         <div class="detailWrap_rules">
@@ -83,32 +92,33 @@
         </div>
 
 
-        
+
         <div class="detailWrap_comments">
             <div class="detailWrap_header">
                 Comments
             </div>
-            @if (Model.AllComment.Count != 0 ) {
-            @foreach (var item in Model.AllComment)
+            @if (Model.AllComment.Count != 0)
             {
-                <div class="detailWrap_commentitem">
-                    <div class="detailWrap_commentimage">
-                        <img src="~/assets/image/account/@item.Image" alt="" style="width:85px; height:85px;">
-                    </div>
-                    <div class="detailWrap_CommentAccountWrap">
-                        <div class="detailWrap_commentAccountName">
-                           @item.AppUser.Fullname
+                @foreach (var item in Model.AllComment)
+                {
+                    <div class="detailWrap_commentitem">
+                        <div class="detailWrap_commentimage">
+                            <img src="~/assets/image/account/@item.Image" alt="" style="width:85px; height:85px;">
                         </div>
-                        <div class="detailWrap_commentAccountContent">
-                           @item.Text
+                        <div class="detailWrap_CommentAccountWrap">
+                            <div class="detailWrap_commentAccountName">
+                                @item.AppUser.Fullname
+                            </div>
+                            <div class="detailWrap_commentAccountContent">
+                                @item.Text
+                            </div>
+
+                            <div class="detailWrap_commentAccountDateTime">
+                                @item.CreatedAt.ToLongDateString()
+                            </div>
                         </div>
 
-                        <div class="detailWrap_commentAccountDateTime">
-                           @item.CreatedAt.ToLongDateString()
-                        </div>
                     </div>
-
-                </div>
                 }
             }
 
@@ -120,138 +130,21 @@
 
         </div>
 
-            <div class="detailWrap_maps">
+        <div class="detailWrap_maps">
 
-                <div class="detailWrap_MapHeader">
-                    Location
-                </div>
-                <div class="detailWrap_MapContent">
-                    <iframe src="@Model.Settings["EmbedLocation"]"
-                            width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                </div>
-
+            <div class="detailWrap_MapHeader">
+                Location
+            </div>
+            <div class="detailWrap_MapContent">
+                <iframe src="@Model.Settings["EmbedLocation"]"
+                        width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
 
         </div>
+       
+    </div>
 
-        <div class="detailWrap_rightSide">
-            <div class="detailWrap_reservation">
-                <div class="detailWrap_reservationWrap">
-
-                    <div class="detailWrap_reservationHeader">
-                        Your Reservation
-                    </div>
-
-                    <div class="detailWrap_inputs">
-                        <div class="detailWrap_checkHeader">
-                            CHECK - IN:
-                        </div>
-                        <div class="detailWrap_checkin">
-
-                            <input class="form-control detailWrap_checkinInput" placeholder="Select date"
-                                   type="datetime-local">
-
-                        </div>
-                    </div>
-
-                    <div class="detailWrap_inputs">
-                        <div class="detailWrap_checkHeader">
-                            CHECK - OUT:
-                        </div>
-                        <div class="detailWrap_checkin ">
-
-                            <input class="form-control detailWrap_checkinInput" placeholder="Select date"
-                                   type="datetime-local">
-
-                        </div>
-                    </div>
-
-                    <div class="detailWrap_inputs">
-                        <div class="detailWrap_checkHeader">
-                            ROOMS:
-                        </div>
-                        <div class="detailWrap_checkin ">
-                            <select class="form-select detailWrap_checkinInput" aria-label="Default select example">
-                                <option selected disabled class="detailWrap_checkinInput">Select room</option>
-                                <option value="1" class="detailWrap_checkinInput">1 Room</option>
-                                <option value="2" class="detailWrap_checkinInput">2 Rooms</option>
-                                <option value="3" class="detailWrap_checkinInput">3 Rooms</option>
-                            </select>
-
-                        </div>
-                    </div>
-
-                    <div class="detailWrap_inputs">
-                        <div class="detailWrap_checkHeader">
-                            GUESTS:
-                        </div>
-                        <div class="detailWrap_checkin input-group">
-
-                            <div class="form-select detailWrap_checkinInput detailWrap_PersonForm" id="guests">
-                                <p class="detailWrap_AllPassenger">Adults: 1 Children: 0 Infant: 0</p>
-
-                            </div>
-                            <div class="detailWrap_innerForm">
-                                <div class="detailWrap_PersonItem detailWrap_checkinInput">
-                                    Adults
-
-                                    <select class="form-select detailWrap_checkinInput detailWrap_item"
-                                            id="SelectAdults">
-
-                                        <option selected value="1" class="detailWrap_checkinInput">1</option>
-                                        <option value="2" class="detailWrap_checkinInput">2 </option>
-                                        <option value="3" class="detailWrap_checkinInput">3 </option>
-                                    </select>
-
-                                </div>
-
-                                <div class="detailWrap_PersonItem detailWrap_checkinInput">
-                                    Children
-
-                                    <select class="form-select detailWrap_checkinInput detailWrap_item"
-                                            id="SelectChildren">
-
-                                        <option selected value="0" class="detailWrap_checkinInput">0</option>
-                                        <option value="1" class="detailWrap_checkinInput">1 </option>
-                                        <option value="2" class="detailWrap_checkinInput">2 </option>
-                                    </select>
-                                </div>
-
-                                <div class="detailWrap_PersonItem detailWrap_checkinInput">
-                                    İnfant's
-                                    <select class="form-select detailWrap_checkinInput detailWrap_item"
-                                            id="SelectInfant">
-
-                                        <option selected value="0" class="detailWrap_checkinInput">0</option>
-                                        <option value="1" class="detailWrap_checkinInput">1 </option>
-                                        <option value="2" class="detailWrap_checkinInput">2 </option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="detailWrap_inputs">
-                        <div class="detailWrap_reservationHeader detailWrap_yourPrice">
-                            Your price
-                        </div>
-                        <div class="detailWrap_price detailWrap_checkHeader">
-                            $ 87 / per room
-                        </div>
-                    </div>
-
-                    <div class="detailWrap_inputs detailWrap_BookNow">
-                        <a href="#" class="detailWrap_btnBookNow">
-                            BOOK NOW
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-
-
-        </div>
-
+    
     </div>
     <!-- Detail End -->
     <!-- Related room begin -->
