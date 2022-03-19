@@ -11,98 +11,6 @@
 </div>
 <!-- Rooms header end -->
 <!-- Checking begin -->
-<div class="check checkAllRoom">
-    <div class="check_Wrap">
-        <div class="check_item">
-            <div class="check_itemHeader">
-                CHECK - IN
-            </div>
-            <div class="check_calendar">
-
-                <input class="form-control check_checkinInput" placeholder="Select date" type="datetime-local">
-
-            </div>
-        </div>
-
-        <div class="check_item">
-            <div class="check_itemHeader">
-                CHECK - OUT
-            </div>
-            <div class="check_calendar">
-
-                <input class="form-control check_checkinInput" placeholder="Select date" type="datetime-local">
-
-            </div>
-        </div>
-
-        <div class="check_item">
-            <div class="check_itemHeader">
-                ROOMS:
-            </div>
-            <div class="check_calendar">
-                <select class="form-select check_checkinInput" aria-label="Default select example">
-                    <option selected disabled class="check_checkinInput">Select room</option>
-                    <option value="1" class="check_checkinInput">1 Room</option>
-                    <option value="2" class="check_checkinInput">2 Rooms</option>
-                    <option value="3" class="check_checkinInput">3 Rooms</option>
-                </select>
-
-            </div>
-        </div>
-        <div class="check_item">
-            <div class="check_itemHeader">
-                GUESTS:
-            </div>
-            <div class="check_calendar input-group">
-
-                <div class="form-select check_checkinInput " id="guests">
-                    <p class="detailWrap_AllPassenger check_AllPassengers">Adults: 1 Children: 0 Infant: 0</p>
-
-                </div>
-                <div class="detailWrap_innerForm">
-                    <div class="detailWrap_PersonItem check_checkinInput">
-                        Adults
-
-                        <select class="form-select check_checkinInput check_items" id="SelectAdults">
-
-                            <option selected value="1" class="check_checkinInput">1</option>
-                            <option value="2" class="check_checkinInput">2 </option>
-                            <option value="3" class="check_checkinInput">3 </option>
-                        </select>
-
-                    </div>
-
-                    <div class="detailWrap_PersonItem check_checkinInput">
-                        Children
-
-                        <select class="form-select check_checkinInput check_items" id="SelectChildren">
-
-                            <option selected value="0" class="check_checkinInput">0</option>
-                            <option value="1" class="check_checkinInput">1 </option>
-                            <option value="2" class="check_checkinInput">2 </option>
-                        </select>
-                    </div>
-
-                    <div class="detailWrap_PersonItem check_checkinInput">
-                        İnfant's
-                        <select class="form-select check_checkinInput check_items" id="SelectInfant">
-
-                            <option selected value="0" class="check_checkinInput">0</option>
-                            <option value="1" class="check_checkinInput">1 </option>
-                            <option value="2" class="check_checkinInput">2 </option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="check_item">
-            <div class="check_itemHeader">
-                SEARCH:
-            </div>
-            <a asp-controller="room" asp-action="index" class="check_buttonsearch">BOOK NOW</a>
-        </div>
-    </div>
-</div>
 <!-- Chechking end -->
 <!-- About room begin -->
 <div class="roomAbout">
@@ -119,13 +27,13 @@
             </div>
             <div class="roomAbout_rightside">
                 <div class="roomAbout_about">
-                   @item.Description
+                    @item.Description
                 </div>
                 <div class="roomAbout_size">
                     @item.Size m2 / @item.GuestRange person
                 </div>
                 <div class="roomAbout_Booking">
-                    <a  asp-controller="room" asp-action="roomdetail" asp-route-id="@item.id" class="roomAbout_BookLink">BOOK NOW +</a>
+                    <a asp-controller="room" asp-action="roomdetail" asp-route-id="@item.id" class="roomAbout_BookLink">BOOK NOW +</a>
                 </div>
             </div>
 
@@ -135,4 +43,23 @@
 
 
 </div>
-<!-- About room end -->
+
+
+    <style>
+        .HelloAdult, .HelloChildren, .HelloInfant {
+            font-weight: 300 !important;
+            background-color: #FAF9F5 !important;
+            height: 50px;
+            padding: 0 10px;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 20px !important;
+            width: 30%;
+            border: 1px solid rgb(206, 212, 218);
+        }
+
+        select option {
+            font-weight: 300;
+            font-size: 20px;
+        }
+    </style>
+

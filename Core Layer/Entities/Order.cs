@@ -26,6 +26,10 @@ namespace Core_Layer.Entities
         [StringLength(maximumLength: 30)]
         public string Email { get; set; }
 
+       
+        
+        [StringLength(maximumLength: 300)]
+        public string Note { get; set; }
 
         public DateTime CreateAt{ get; set; }
         public DateTime ModifiedAt { get; set; }

@@ -20,13 +20,44 @@ namespace Alloggio_MVC.Controllers
             _context = context;
             _userManager = userManager;
         }
-        public IActionResult Index(int adults, int children, int infant, DateTime checkin, DateTime checkout)
+        public IActionResult Index(int adults, int children, int infant, DateTime checkin, DateTime checkout, int room)
         {
-            int TotalGuests = (adults + children + infant);
-                
-            int BedCount = TotalGuests - TotalGuests/5;
-            List<Room> rooms = _context.Rooms.ToList();
-            return View(rooms);
+            List<Room> roomlistforBedCount = _context.Rooms
+                .Where(x => x.BedCount == room).ToList();
+            List<OrderRooms> AvailableRoomsId = new List<OrderRooms>();
+            List<Room> AvailableRooms = new List<Room>();
+            List<OrderRooms> SelectOrderRoom = new List<OrderRooms>();
+            if (roomlistforBedCount != null)
+            {
+                SelectOrderRoom = _context.OrderRooms
+                     .Where(x => x.Room.BedCount == room)
+                     .OrderByDescending(x => x.id)
+                     .Take(10)
+                     .ToList();
+            }
+            else
+            {
+                return RedirectToAction("404 Not found");
+            }
+
+
+            foreach (var SelectItem in SelectOrderRoom)
+            {
+                if ((checkin > SelectItem.CheckOut && checkout > SelectItem.CheckOut) || (checkin < SelectItem.CheckIn && checkout < SelectItem.CheckIn))
+                {
+                    AvailableRoomsId.Add(SelectItem);
+                }
+            }
+
+
+            foreach (var Item in AvailableRoomsId)
+            {
+                var AvailableRoom = _context.Rooms
+                                     .Where(x => x.id == Item.RoomId)
+                                     .ToList();
+                AvailableRooms.AddRange(AvailableRoom);
+            }
+            return View(AvailableRooms);
         }
 
 
@@ -37,7 +68,7 @@ namespace Alloggio_MVC.Controllers
             {
                 Room = _context.Rooms
                 .Include(x => x.RoomAmenities).ThenInclude(x => x.Amenitie)
-                .Include(x => x.UserComments).ThenInclude(x=>x.AppUser)
+                .Include(x => x.UserComments).ThenInclude(x => x.AppUser)
                 .FirstOrDefault(x => x.id == id),
                 Settings = _context.Settings.ToDictionary(x => x.Key, x => x.Value),
                 Comment = new Comment { RoomId = id }
@@ -68,12 +99,12 @@ namespace Alloggio_MVC.Controllers
             AppUser member = null;
             if (User.Identity.IsAuthenticated)
             {
-                member = _userManager.Users.FirstOrDefault(x=>x.UserName == User.Identity.Name && !x.IsAdmin);
+                member = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin);
             }
 
             if (member == null)
             {
-                return RedirectToAction("login","acocunt");
+                return RedirectToAction("login", "acocunt");
             }
 
             RoomDetailViewModel RoomDetailMV = new RoomDetailViewModel
@@ -106,7 +137,7 @@ namespace Alloggio_MVC.Controllers
                 return View("roomdetail", RoomDetailMV);
             }
 
-            if(_context.UserComments.Where(x=>x.RoomId== RoomDetailMV.Room.id).Any(x=>x.AppUserId == member.Id))
+            if (_context.UserComments.Where(x => x.RoomId == RoomDetailMV.Room.id).Any(x => x.AppUserId == member.Id))
             {
                 ModelState.AddModelError("", "This user has already commented");
                 return View("roomdetail", RoomDetailMV);

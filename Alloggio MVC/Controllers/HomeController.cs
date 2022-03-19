@@ -26,7 +26,8 @@ namespace Alloggio_MVC.Controllers
             Checking checkForm = new Checking
             {
                 CheckIn = DateTime.UtcNow,
-                CheckOut = DateTime.UtcNow.AddDays(1)
+                CheckOut = DateTime.UtcNow.AddDays(1),
+                
             };
 
             HomeViewModels HomeVM = new HomeViewModels

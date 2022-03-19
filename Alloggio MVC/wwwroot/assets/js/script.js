@@ -48,7 +48,7 @@ $(document).ready(function () {
 
 //DatetimePicker begin
 $(document).ready(function () {
-  var DateTime = new Date();
+    var DateTime = new Date();
 
     flatpickr("#mainCheckIn", {
         minDate: "today",
@@ -57,7 +57,7 @@ $(document).ready(function () {
         defaultDate: new Date(),
         onChange: function () {
             console.log($("#mainCheckIn").val());
-            
+
         }
     });
 
@@ -71,6 +71,10 @@ $(document).ready(function () {
 
         }
     });
+
+  
+
+ 
 });
 //DatetimePicker end
 

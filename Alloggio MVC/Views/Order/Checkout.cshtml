@@ -11,7 +11,10 @@
 </div>
 <!-- Check header end -->
 <!-- Billing detail begin -->
-<form action="">
+
+@* USER OLDUGU HALDA YUXARIDA MELUMATLARINIZI YOXLAYIN DEYE BIR BILDIRIS CIXSIN *@
+
+<form asp-action="checkout" method="post">
 
     <div class="billing">
         <div class="billing_detailsLeft">
@@ -36,7 +39,7 @@
                     Phone ..*
                 </div>
                 <div class="billing_inputs">
-                    <input type="text" placeholder="Phone" class="billing_input">
+                    <input type="text" asp-for="Phone" placeholder="Phone" class="billing_input">
                 </div>
             </div>
 
@@ -45,7 +48,7 @@
                     Email ..*
                 </div>
                 <div class="billing_inputs">
-                    <input type="text" placeholder="Email address" class="billing_input">
+                    <input type="text" asp-for="Email" placeholder="Email address" class="billing_input">
                 </div>
             </div>
 
@@ -60,14 +63,14 @@
                     Order notes (optional)
                 </div>
                 <div class="billing_inputs">
-                    <textarea name="" id="" cols="30" rows="10" class="billing_input billing_textarea"></textarea>
+                    <textarea id="" cols="30" rows="10" asp-for="Note" class="billing_input billing_textarea"></textarea>
                 </div>
             </div>
         </div>
 
     </div>
     <div class="billing_btnOrder">
-        <a asp-controller="order" asp-action="receipt" class="billing_Orderbtn">Place Order</a>
+        <button type="submit" class="billing_Orderbtn">Place Order</button>
     </div>
 </form>
 <!-- Billing detail end -->

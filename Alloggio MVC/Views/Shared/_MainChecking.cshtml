@@ -1,89 +1,101 @@
 ﻿@model Checking
-    <form asp-controller="room" asp-action="index" method="get">
-        <div class="check">
-            <div class="check_Wrap">
-                <div class="check_item">
-                    <div class="check_itemHeader">
-                        CHECK - IN
-                    </div>
-                    <div class="check_calendar">
-
-                        <input class="form-control check_checkinInput" name="checkin" id="mainCheckIn" placeholder="Select date"  type="datetime-local" value="@(Model.CheckIn)">
-
-                    </div>
+<form asp-controller="room" asp-action="index" method="get">
+    <div class="check">
+        <div class="check_Wrap">
+            <div class="check_item">
+                <div class="check_itemHeader">
+                    CHECK - IN
                 </div>
+                <div class="check_calendar">
 
-                <div class="check_item">
-                    <div class="check_itemHeader">
-                        CHECK - OUT
-                    </div>
-                    <div class="check_calendar">
+                    <input class="form-control check_checkinInput" name="checkin" id="mainCheckIn" placeholder="Select date" type="datetime-local">
 
-                        <input class="form-control check_checkinInput" name="checkout" id="mainCheckOut" placeholder="Select date" type="datetime-local" value="@Model.CheckOut">
-
-                    </div>
-                </div>
-
-
-                <div class="check_item">
-                    <div class="check_itemHeader">
-                        GUESTS:
-                    </div>
-                    <div class="check_calendar input-group">
-
-                        <div class="form-select check_checkinInput " id="guests">
-                            <p class="detailWrap_AllPassenger check_AllPassengers">Adults: 1 Children: 0 Infant: 0</p>
-
-                        </div>
-                        <div class="detailWrap_innerForm">
-                            <div class="detailWrap_PersonItem check_checkinInput">
-                                Adults
-
-                                <input type="number" name="adults" min="1" class="HelloAdult aAdult" value="1" placeholder="1" />
-
-                            </div>
-
-                            <div class="detailWrap_PersonItem check_checkinInput">
-                                Children
-
-                                <input type="number" min="0" name="childrens" class="HelloChildren aChildren" value="0" placeholder="0" />
-
-                            </div>
-
-                            <div class="detailWrap_PersonItem check_checkinInput">
-                                İnfant's
-
-                                <input type="number" min="0" name="infants" class="HelloInfant aInfant" value="0" placeholder="0" />
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="check_item">
-                    <div class="check_itemHeader">
-                        SEARCH:
-                    </div>
-                    <button type="submit" class="check_buttonsearch">BOOK NOW</button>
                 </div>
             </div>
+
+            <div class="check_item">
+                <div class="check_itemHeader">
+                    CHECK - OUT
+                </div>
+                <div class="check_calendar">
+
+                    <input class="form-control check_checkinInput" name="checkout" id="mainCheckOut" placeholder="Select date" type="datetime-local">
+
+                </div>
+            </div>
+            <div class="check_item">
+                <div class="check_itemHeader">
+                    ROOMS:
+                </div>
+                <div class="check_calendar">
+                    <select class="form-select check_checkinInput" name="room" asp-for="SelectedRoom" asp-items="@(new SelectList(ViewBag.SelectRoom,"BedCount","BedCount"))">
+                        
+                    </select>
+
+                </div>
+            </div>
+
+            <div class="check_item">
+                <div class="check_itemHeader">
+                    GUESTS:
+                </div>
+                <div class="check_calendar input-group">
+
+                    <div class="form-select check_checkinInput " id="guests">
+                        <p class="detailWrap_AllPassenger check_AllPassengers">Adults: 1 Children: 0 Infant: 0</p>
+
+                    </div>
+                    <div class="detailWrap_innerForm">
+                        <div class="detailWrap_PersonItem check_checkinInput">
+                            Adults
+
+                            <input type="number" name="adults" min="1" class="HelloAdult aAdult" value="1" placeholder="1" />
+
+                        </div>
+
+                        <div class="detailWrap_PersonItem check_checkinInput">
+                            Children
+
+                            <input type="number" min="0" name="childrens" class="HelloChildren aChildren" value="0" placeholder="0" />
+
+                        </div>
+
+                        <div class="detailWrap_PersonItem check_checkinInput">
+                            İnfant's
+
+                            <input type="number" min="0" name="infants" class="HelloInfant aInfant" value="0" placeholder="0" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="check_item">
+                <div class="check_itemHeader">
+                    SEARCH:
+                </div>
+                <button type="submit" class="check_buttonsearch">BOOK NOW</button>
+            </div>
         </div>
-    </form>
+    </div>
+</form>
 
 
-    <style>
-        .HelloAdult, .HelloChildren, .HelloInfant {
-            font-weight: 300 !important;
-            background-color: #FAF9F5 !important;
-            height: 50px;
-            padding: 0 10px;
-            font-family: 'Josefin Sans', sans-serif;
-            font-size: 20px !important;
-            width: 30%;
-            border: 1px solid rgb(206, 212, 218);
-        }
+<style>
 
-        select option {
-            font-weight: 300;
-            font-size: 20px;
-        }
-    </style>
+    .HelloAdult, .HelloChildren, .HelloInfant {
+        font-weight: 300 !important;
+        background-color: #FAF9F5 !important;
+        height: 50px;
+        padding: 0 10px;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 20px !important;
+        width: 30%;
+        border: 1px solid rgb(206, 212, 218);
+    }
+
+    select option {
+        font-weight: 300;
+        font-size: 20px;
+    }
+   
+</style>

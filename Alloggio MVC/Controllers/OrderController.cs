@@ -27,34 +27,37 @@ namespace Alloggio_MVC.Controllers
             {
              new OrderRooms()
              {
-                CheckIn = DateTime.Parse("3.17.2022"),
-                CheckOut = DateTime.Parse("3.17.2022"),
+                CheckIn = DateTime.Now,
+                CheckOut = DateTime.Now,
                 RoomId = 3,
                 Count =1
              }
             };
 
-            Order order = new Order
+            //if(Gelen modeline icerisinde AppUser var ise)
+            AppUser member = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
+
+            Order order = new Order()
             {
-                AppUserId = "3c5c09e5-7dea-496e-915c-d446aa2bc04c"
+                FullName = member.Fullname,
+                Phone = member.Phone,
+                Email = member.Email,
+                CreateAt = DateTime.UtcNow,
+                IsDeleted = false,
+                OrderStatus = Core_Layers.Enums.OrderStatus.Pending,
+                OrderRooms = rooms,
+                TotalPrice = 100
             };
-              //if(Gelen modeline icerisinde AppUser var ise)
-            AppUser member = _userManager.Users.FirstOrDefault(x=>x.Id == order.AppUserId);
-
-            order.FirstName = member.Fullname;
-            order.LastName = "";
-            order.Phone = member.Phone;
-            order.Email = member.Email;
-            order.CreateAt = DateTime.UtcNow;
-            order.IsDeleted = false;
-            order.OrderStatus = Core_Layers.Enums.OrderStatus.Pending;
-            order.OrderRooms = rooms;
-            order.TotalPrice = 100;
-
 
             return View(order);
         }
-        public IActionResult  Receipt()
+
+        [HttpPost]
+        public IActionResult Checkout(Order order)
+        {
+            return Ok(order);
+        }
+        public IActionResult Receipt()
         {
             return View();
         }
