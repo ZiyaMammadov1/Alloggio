@@ -18,5 +18,8 @@ namespace Core_Layer.Entities
         public decimal Price { get; set; }
         public Order Order { get; set; }
         public Room Room { get; set; }
+        public int Adult { get; set; }
+        public int Children { get; set; }
+        public int Infant { get; set; }
     }
 }

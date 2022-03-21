@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "Basket";
+    double total = 0;
 }
 @model List<BasketItem>
 <!-- Cart header begin -->
@@ -24,9 +25,10 @@
         </div>
         <hr>
 
-
+         
         @foreach (var item in Model)
         {
+            @(total = total + (item.Room.Price * item.Count));
             <div class="cartTable_items">
                 <div class="cartTable_close cartTable_item" id="removecookie">
                     <a asp-controller="order" asp-action="deleteorder" asp-route-id="@item.Id" >
@@ -87,7 +89,7 @@ else {
             Total:
         </div>
         <div class="cartTotal_price">
-            145$
+          @total
         </div>
         <div class="cartTotal_buttonCheckout">
             <a asp-controller="order" asp-action="checkout" class="cartTotal_Checkout">PROCEED TO CHECKOUT</a>

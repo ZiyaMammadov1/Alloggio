@@ -4,14 +4,16 @@ using Data_Layer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data_Layer.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220321083015_AddNoteColumnIntoBasketItemTable")]
+    partial class AddNoteColumnIntoBasketItemTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -255,22 +257,13 @@ namespace Data_Layer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Adult")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CheckIn")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("CheckOut")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Children")
-                        .HasColumnType("int");
-
                     b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Infant")
                         .HasColumnType("int");
 
                     b.Property<int>("OrderId")

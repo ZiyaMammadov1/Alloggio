@@ -1,4 +1,5 @@
-﻿using Core_Layer.Entities;
+﻿using Alloggio_MVC.ViewModels;
+using Core_Layer.Entities;
 using Data_Layer.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -28,10 +29,10 @@ namespace Alloggio_MVC.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 AppUser member = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
-                data = _context.BasketItems.Include(x=>x.Room).Where(x => x.AppUserId == member.Id).ToList();
+                data = _context.BasketItems.Include(x => x.Room).Where(x => x.AppUserId == member.Id).ToList();
                 return View(data);
             }
-        
+
             return View(data);
         }
 
@@ -96,39 +97,115 @@ namespace Alloggio_MVC.Controllers
 
         public IActionResult Checkout()
         {
-            List<OrderRooms> rooms = new List<OrderRooms>()
+            AppUser member = _userManager.Users.FirstOrDefault(x=>x.UserName == User.Identity.Name);
+            if(member == null)
             {
-             new OrderRooms()
-             {
-                CheckIn = DateTime.Now,
-                CheckOut = DateTime.Now,
-                RoomId = 3,
-                Count =1
-             }
+                return NotFound();
+            }
+            Order order = new Order { 
+            AppUser = member
             };
-
-            //if(Gelen modeline icerisinde AppUser var ise)
-            AppUser member = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
-
-            Order order = new Order()
-            {
-                FullName = member.Fullname,
-                Phone = member.Phone,
-                Email = member.Email,
-                CreateAt = DateTime.UtcNow,
-                IsDeleted = false,
-                OrderStatus = Core_Layers.Enums.OrderStatus.Pending,
-                OrderRooms = rooms,
-                TotalPrice = 100
-            };
-
             return View(order);
+        }
+
+        private BasketViewModel _getBasket(AppUser member)
+        {
+            BasketViewModel basketVM = new BasketViewModel
+            {
+                BasketItems = new List<RoomBasketViewModel>()
+            };
+
+            List<BasketItemViewModel> items = new List<BasketItemViewModel>();
+
+
+            items = _context.BasketItems.Where(x => x.AppUserId == member.Id).Select(c => new BasketItemViewModel { Roomid = c.RoomId, Count = c.Count, CheckIn = c.CheckIn, CheckOut = c.CheckOut, Adult = c.Adults, Children = c.Childrens, Infant = c.Infants }).ToList();
+
+
+
+            foreach (var item in items)
+            {
+                Room room = _context.Rooms.FirstOrDefault(x => x.id == item.Roomid);
+                RoomBasketViewModel bookItem = new RoomBasketViewModel
+                {
+                    Room = room,
+                    Count = item.Count,
+                    CheckIn = item.CheckIn,
+                    CheckOut = item.CheckOut,
+                    Adult = item.Adult,
+                    Children = item.Children,
+                    Infant = item.Infant
+                };
+
+                double totalPrice = room.Price;
+                basketVM.TotalPrice += totalPrice * item.Count;
+
+                basketVM.BasketItems.Add(bookItem);
+            }
+
+            return basketVM;
         }
 
         [HttpPost]
         public IActionResult Checkout(Order order)
         {
-            return Ok(order);
+
+
+            AppUser member = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
+            if (member == null)
+            {
+                return NotFound();
+            }
+
+            List<BasketItem> BasketItems = _context.BasketItems.Include(x => x.Room).Where(x => x.AppUserId == member.Id).ToList();
+
+
+            CheckoutViewModel checkoutVM = new CheckoutViewModel
+            {
+                Basket = _getBasket(member),
+                Order = order
+            };
+
+            if (!ModelState.IsValid)
+                return View("Checkout", checkoutVM.Order.AppUser);
+
+            if (checkoutVM.Basket.BasketItems.Count == 0)
+            {
+                ModelState.AddModelError("", "You must chose any product!");
+                return View("Checkout", checkoutVM.Order);
+            }
+
+            order.AppUserId = member?.Id;
+            order.CreateAt = DateTime.UtcNow.AddHours(4);
+            order.ModifiedAt = DateTime.UtcNow.AddHours(4);
+            order.OrderStatus = Core_Layers.Enums.OrderStatus.Pending;
+            
+
+
+            order.OrderRooms = new List<OrderRooms>();
+
+            foreach (var item in checkoutVM.Basket.BasketItems)
+            {
+                OrderRooms orderItem = new OrderRooms
+                {
+                    RoomId = item.Room.id,
+                    Price = item.Room.Price,
+                    Count = item.Count,
+                    CheckIn= item.CheckIn,
+                    CheckOut = item.CheckOut,
+                    Adult = item.Adult,
+                    Children = item.Children,
+                    Infant = item.Infant
+                };
+
+                order.OrderRooms.Add(orderItem);
+                order.TotalPrice += orderItem.Price * orderItem.Count;
+            }
+
+            _context.Orders.Add(order);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("profile", "account");
         }
         public IActionResult Receipt()
         {

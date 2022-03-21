@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewData["Title"] = "Slider";
+}
+@model List<BasketItem>
+<div class="grid-margin stretch-card" style="width:80%; height:90%; margin: 0 auto; ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title" style="font-size:30px;">Order Table</h4>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Username</th>
+                            <th>Room</th>
+                            <th>Count</th>
+                            <th>CheckIn</th>
+                            <th>CheckOut</th>
+                            <th>Adult</th>
+                            <th>Children</th>
+                            <th>Infant</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    @item.AppUser.Fullname
+                                </td>
+                                <td>
+                                    @item.Room.Name
+                                </td>
+                                <td>
+                                    @item.Count
+                                </td>
+                                <td>
+                                    @item.CheckIn
+                                </td>
+                                <td>
+                                    @item.CheckOut
+                                </td>
+                                <td>
+                                   @item.Adults
+                                </td>
+                                <td>
+                                    @item.Childrens
+                                </td>
+                                <td>
+                                    @item.Infants
+                                </td>
+                                <td><a class="btn btn-outline-primary" asp-action="acceptorder" asp-route-id="@item.Id">Accept</a></td>
+                                <td><a class="btn btn-outline-danger" asp-action="rejectorder" asp-route-id="@item.Id">Reject</a></td>
+
+                            </tr>
+                        </tbody>
+
+
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

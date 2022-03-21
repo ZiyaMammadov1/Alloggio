@@ -47,6 +47,10 @@ namespace Alloggio_MVC.Controllers
                 return RedirectToAction("404 Not found");
             }
 
+            if(SelectOrderRoom.Count == 0)
+            {
+                return View(roomlistforBedCount);
+            }
 
             foreach (var SelectItem in SelectOrderRoom)
             {

@@ -18,5 +18,6 @@ namespace Core_Layer.Entities
         public int Adults { get; set; }
         public int Childrens { get; set; }
         public int Infants { get; set; }
+        public string Note { get; set; }
     }
 }
