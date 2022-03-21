@@ -20,17 +20,14 @@ namespace Alloggio_MVC.Controllers
             _context = context;
             _userManager = userManager;
         }
-        public IActionResult Index(int adults, int children, int infant, DateTime checkin, DateTime checkout, int room)
+        public IActionResult Index(int adults, int childrens, int infants, DateTime checkin, DateTime checkout, int room)
         {
-            Checking checkInfo = new Checking()
-            {
-                CheckIn = checkin,
-                CheckOut = checkout,
-                Adult = adults,
-                Children = children,
-                Infant = infant,
-                SelectedRoom = room
-            };
+            ViewBag.Checkin = checkin;
+            ViewBag.Checkout = checkout;
+            ViewBag.Adults = adults;
+            ViewBag.Childrens = childrens;
+            ViewBag.Infants = infants;
+
             List<Room> AllRoom = _context.Rooms.ToList();
             List<Room> roomlistforBedCount = _context.Rooms
                 .Where(x => x.BedCount == room).ToList();
@@ -78,9 +75,15 @@ namespace Alloggio_MVC.Controllers
             List<Room> rooms = _context.Rooms.ToList();
             return View(rooms);
         }
-        public IActionResult RoomDetail(int id)
+
+     
+        public IActionResult RoomDetail(int adults, int childrens, int infants, DateTime checkIn, DateTime checkOut, int id)
         {
-          
+            ViewBag.Checkin = checkIn;
+            ViewBag.Checkout = checkOut;
+            ViewBag.Adults = adults;
+            ViewBag.Childrens = childrens;
+            ViewBag.Infants = infants;
 
             RoomDetailViewModel RoomDetailMV = new RoomDetailViewModel
             {

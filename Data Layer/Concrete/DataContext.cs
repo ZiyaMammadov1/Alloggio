@@ -28,5 +28,6 @@ namespace Data_Layer.Concrete
         public DbSet<BedCountForRooms> BedCount { get; set; }
         public DbSet<Order> Orders{ get; set; }
         public DbSet<OrderRooms> OrderRooms{ get; set; }
+        public DbSet<BasketItem> BasketItems { get; set; }
     }
 }

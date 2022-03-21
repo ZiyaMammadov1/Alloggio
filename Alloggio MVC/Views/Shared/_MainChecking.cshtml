@@ -8,7 +8,7 @@
                 </div>
                 <div class="check_calendar">
 
-                    <input class="form-control check_checkinInput" name="checkin" id="mainCheckIn" placeholder="Select date" type="datetime-local">
+                    <input class="form-control check_checkinInput" name="checkin" asp-for="CheckIn" id="mainCheckIn" placeholder="Select date" type="datetime-local">
 
                 </div>
             </div>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="check_calendar">
 
-                    <input class="form-control check_checkinInput" name="checkout" id="mainCheckOut" placeholder="Select date" type="datetime-local">
+                    <input class="form-control check_checkinInput" name="checkout" asp-for="CheckOut" id="mainCheckOut" placeholder="Select date" type="datetime-local">
 
                 </div>
             </div>
@@ -49,21 +49,21 @@
                         <div class="detailWrap_PersonItem check_checkinInput">
                             Adults
 
-                            <input type="number" name="adults" min="1" class="HelloAdult aAdult" value="1" placeholder="1" />
+                            <input type="number" name="adults" min="1" asp-for="Adult" class="HelloAdult aAdult"  placeholder="0" />
 
                         </div>
 
                         <div class="detailWrap_PersonItem check_checkinInput">
                             Children
 
-                            <input type="number" min="0" name="childrens" class="HelloChildren aChildren" value="0" placeholder="0" />
+                            <input type="number" min="0" name="childrens" asp-for="Children" class="HelloChildren aChildren"placeholder="0" />
 
                         </div>
 
                         <div class="detailWrap_PersonItem check_checkinInput">
                             İnfant's
 
-                            <input type="number" min="0" name="infants" class="HelloInfant aInfant" value="0" placeholder="0" />
+                            <input type="number" min="0" name="infants" asp-for="Infant" class="HelloInfant aInfant"  placeholder="0" />
 
                         </div>
                     </div>

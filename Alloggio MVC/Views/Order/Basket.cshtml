@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Basket";
 }
-
+@model List<BasketItem>
 <!-- Cart header begin -->
 <div class="cart">
     <div class="cart_header">
@@ -10,6 +10,7 @@
     </div>
 </div>
 <!-- Cart header end -->
+@if(Model.Count != 0) { 
 <!-- Cart table begin -->
 <div class="cartTable">
     <div class="cartTable_Wrap">
@@ -23,65 +24,58 @@
         </div>
         <hr>
 
+
+        @foreach (var item in Model)
+        {
+            <div class="cartTable_items">
+                <div class="cartTable_close cartTable_item" id="removecookie">
+                    <a asp-controller="order" asp-action="deleteorder" asp-route-id="@item.Id" >
+                        <i class="fa-solid fa-x" style="color:black"></i>
+                    </a>
+                
+                </div>
+                <div class="cartTable_image cartTable_item">
+                    <img src="~/assets/image/Room/RoomMainImage/@item.Room.Image" alt="">
+                </div>
+                <div class="cartTable_product cartTable_item">
+                    <div class="cartTable_suitName">
+                        @item.Room.Name
+                    </div>
+                    <div class="cartTable_suitReservation">
+                        Reservation:
+                        @item.CheckIn.ToLongDateString() To @item.CheckOut.ToLongDateString() (@(item.CheckOut.Day -item.CheckIn.Day) night)
+
+                    </div>
+                    <div class="cartTable_Guests">
+                        Guests:
+                            Adults: @item.Adults
+                            Children: @item.Childrens
+                            Infant: @item.Infants
+                     
+
+                    </div>
+                </div>
+                <div class="cartTable_price cartTable_item">@item.Room.Price <span class="cartTable_secondHead">/Price</span></div>
+                <div class="cartTable_quantity cartTable_item">@item.Count <span class="cartTable_secondHead">/Quantity</span></div>
+                <div class="cartTable_subtotal cartTable_item">@(item.Room.Price* item.Count) <span class="cartTable_secondHead">/Subtotal</span></div>
+            </div>
+            <hr>
+        }
         <!-- Item1 begin -->
-        <div class="cartTable_items">
-            <div class="cartTable_close cartTable_item"><i class="fa-solid fa-x"></i></div>
-            <div class="cartTable_image cartTable_item">
-                <img src="~/assets/image/cart item/img1.jpg" alt="">
-            </div>
-            <div class="cartTable_product cartTable_item">
-                <div class="cartTable_suitName">
-                    Artistic Loft
-                </div>
-                <div class="cartTable_suitReservation">
-                    Reservation:
-                    Sat, 05 Mar 2022/Sun, 06 Mar 2022(1 night)
-                </div>
-                <div class="cartTable_Guests">
-                    Guests:
-                    1 Adult
-                </div>
-            </div>
-            <div class="cartTable_price cartTable_item">43$ <span class="cartTable_secondHead">/Price</span></div>
-            <div class="cartTable_quantity cartTable_item">2 <span class="cartTable_secondHead">/Quantity</span></div>
-            <div class="cartTable_subtotal cartTable_item">43$ <span class="cartTable_secondHead">/Subtotal</span></div>
-        </div>
-        <hr>
         <!-- Item1 begin -->
-        <!-- Item2 begin -->
-        <div class="cartTable_items">
-            <div class="cartTable_close cartTable_item"><i class="fa-solid fa-x"></i></div>
-            <div class="cartTable_image cartTable_item">
-                <img src="~/assets/image/cart item/img2.jpg" alt="">
-            </div>
-            <div class="cartTable_product cartTable_item">
-                <div class="cartTable_suitName">
-                    Modern Design
-                </div>
-                <div class="cartTable_suitReservation">
-                    Reservation:
-                    Dec, 25 Sep 2022/Sun, 21 Mar 2021(~ night)
-                </div>
-                <div class="cartTable_Guests">
-                    Guests:
-                    2 Adult, 1 Children, 1 Infant
-                </div>
-            </div>
-            <div class="cartTable_price cartTable_item">63$ <span class="cartTable_secondHead"> /Price</span></div>
-            <div class="cartTable_quantity cartTable_item">3 <span class="cartTable_secondHead">/Quantity</span></div>
-            <div class="cartTable_subtotal cartTable_item">213$ <span class="cartTable_secondHead">/Subtotal</span></div>
-        </div>
-        <hr>
-        <!-- Item2 end -->
+
     </div>
 </div>
 <!-- Cart table end -->
 <!-- Cart table when empty begin -->
+}
+else {
 <div class="empty">
     <div class="empty_type">
         Cart is empty
     </div>
 </div>
+}
 <!-- Cart table when empty end -->
 <!-- Cart Total begin -->
 <div class="cartTotal">

@@ -14,6 +14,7 @@
 <!-- Chechking end -->
 <!-- About room begin -->
 <div class="roomAbout">
+
     @if (Model.Count != 0)
     {
         @foreach (var item in Model)
@@ -34,9 +35,16 @@
                     <div class="roomAbout_size">
                         @item.Size m2 / @item.GuestRange person
                     </div>
-                    <div class="roomAbout_Booking">
-                        <a asp-controller="room" asp-action="roomdetail" asp-route-id="@item.id" class="roomAbout_BookLink">BOOK NOW +</a>
-                    </div>
+                    <form asp-controller="room" asp-action="roomdetail" asp-route-id="@item.id" method="get">
+                        <input type="hidden" name="checkIn" value="@ViewBag.Checkin" />
+                        <input type="hidden" name="checkOut" value="@ViewBag.Checkout" />
+                        <input type="hidden" name="adults" value="@ViewBag.Adults" />
+                        <input type="hidden" name="childrens" value="@ViewBag.Childrens" />
+                        <input type="hidden" name="infants" value="@ViewBag.Infants" />
+                        <div class="roomAbout_Booking">
+                            <button class="roomAbout_BookLink">BOOK NOW +</button>
+                        </div>
+                    </form>
                 </div>
 
             </div>
@@ -56,6 +64,13 @@
 
 
 <style>
+
+    .roomAbout_BookLink {
+        width: 150px;
+        height: 50px;
+        border: 1px solid gray;
+    }
+
     .HelloAdult, .HelloChildren, .HelloInfant {
         font-weight: 300 !important;
         background-color: #FAF9F5 !important;
