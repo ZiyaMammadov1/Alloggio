@@ -28,39 +28,40 @@
          
         @foreach (var item in Model)
         {
-            @(total = total + (item.Room.Price * item.Count));
-            <div class="cartTable_items">
-                <div class="cartTable_close cartTable_item" id="removecookie">
-                    <a asp-controller="order" asp-action="deleteorder" asp-route-id="@item.Id" >
-                        <i class="fa-solid fa-x" style="color:black"></i>
-                    </a>
-                
-                </div>
-                <div class="cartTable_image cartTable_item">
-                    <img src="~/assets/image/Room/RoomMainImage/@item.Room.Image" alt="">
-                </div>
-                <div class="cartTable_product cartTable_item">
-                    <div class="cartTable_suitName">
-                        @item.Room.Name
-                    </div>
-                    <div class="cartTable_suitReservation">
-                        Reservation:
-                        @item.CheckIn.ToLongDateString() To @item.CheckOut.ToLongDateString() (@(item.CheckOut.Day -item.CheckIn.Day) night)
+    <div class="cartTable_items">
+        <div class="cartTable_close cartTable_item" id="removecookie">
+            <a asp-controller="order" asp-action="deleteorder" asp-route-id="@item.Id">
+                <i class="fa-solid fa-x" style="color:black"></i>
+            </a>
 
-                    </div>
-                    <div class="cartTable_Guests">
-                        Guests:
-                            Adults: @item.Adults
-                            Children: @item.Childrens
-                            Infant: @item.Infants
-                     
-
-                    </div>
-                </div>
-                <div class="cartTable_price cartTable_item">@item.Room.Price <span class="cartTable_secondHead">/Price</span></div>
-                <div class="cartTable_quantity cartTable_item">@item.Count <span class="cartTable_secondHead">/Quantity</span></div>
-                <div class="cartTable_subtotal cartTable_item">@(item.Room.Price* item.Count) <span class="cartTable_secondHead">/Subtotal</span></div>
+        </div>
+        <div class="cartTable_image cartTable_item">
+            <img src="~/assets/image/Room/RoomMainImage/@item.Room.Image" alt="">
+        </div>
+        <div class="cartTable_product cartTable_item">
+            <div class="cartTable_suitName">
+                @item.Room.Name
             </div>
+            <div class="cartTable_suitReservation">
+                Reservation:
+                @item.CheckIn.ToLongDateString() To @item.CheckOut.ToLongDateString() (@(item.CheckOut.Day -item.CheckIn.Day) night)
+
+            </div>
+            <div class="cartTable_Guests">
+                Guests:
+                Adults: @item.Adults
+                Children: @item.Childrens
+                Infant: @item.Infants
+
+
+            </div>
+        </div>
+        <div class="cartTable_price cartTable_item">@item.Room.Price <span class="cartTable_secondHead">/Price</span></div>
+        <div class="cartTable_quantity cartTable_item">@item.Count <span class="cartTable_secondHead">/Quantity</span></div>
+        @*<select class="form-select check_checkinInput" asp-items="@(new SelectList(ViewBag.SelectRoom,"BedCount","BedCount"))">
+        </select>*@
+        <div class="cartTable_subtotal cartTable_item">@(item.Room.Price* item.Count) <span class="cartTable_secondHead">/Subtotal</span></div>
+    </div>
             <hr>
         }
         <!-- Item1 begin -->

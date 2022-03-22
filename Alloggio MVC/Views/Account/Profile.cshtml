@@ -90,7 +90,7 @@
 
                 <div class="register_group">
                     <div class="register_groupInput" style="position: relative;">
-                        <img src="~/assets/image/account/@Model.Image"  alt="" style="width: 85px; height: 85px; padding-top:10px; ">
+                        <img src="~/assets/image/account/@Model.Image" alt="" style="width: 85px; height: 85px; padding-top:10px; ">
 
                     </div>
                 </div>
@@ -109,87 +109,55 @@
             </div>
         </form>
         <div class="accountdetail_orders">
-            <p class="accountdetail_noorder">
-                No order has been made yet.
-            </p>
-            <div class="accountdetail_orderItem">
 
-                <table class="table table-hover table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col" class="accountdetail_tableHead">#</th>
-                            <th scope="col" class="accountdetail_tableHead">Order no</th>
-                            <th scope="col" class="accountdetail_tableHead">Room</th>
-                            <th scope="col" class="accountdetail_tableHead">Guests</th>
-                            <th scope="col" class="accountdetail_tableHead">Update</th>
-                            <th scope="col" class="accountdetail_tableHead">Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td class="accountdetail_tableContent">214</td>
-                            <td class="accountdetail_tableContent">
-                                Maria's Room
-                            </td>
-                            <td class="accountdetail_tableContent">
-                                Adults:1 Childrend:0 Infant:0
-                            </td>
-                            <td>
-                                <a href="#"
-                                   class="accountdetail_orderCrud accountdetail_update btn btn-outline-warning">update</a>
-                            </td>
-                            <td>
-                                <a href="#"
-                                   class="accountdetail_orderCrud accountdetail_delete btn btn-outline-danger">delete</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td class="accountdetail_tableContent">214</td>
-                            <td class="accountdetail_tableContent">
-                                Maria's Room
-                            </td>
-                            <td class="accountdetail_tableContent">
-                                Adults:1 Childrend:0 Infant:0
-                            </td>
-                            <td>
-                                <a href="#"
-                                   class="accountdetail_orderCrud accountdetail_update btn btn-outline-warning">update</a>
-                            </td>
-                            <td>
-                                <a href="#"
-                                   class="accountdetail_orderCrud accountdetail_delete btn btn-outline-danger">delete</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td class="accountdetail_tableContent">214</td>
-                            <td class="accountdetail_tableContent">
-                                Maria's Room
-                            </td>
-                            <td class="accountdetail_tableContent">
-                                Adults:1 Childrend:0 Infant:0
-                            </td>
-                            <td>
-                                <a href="#"
-                                   class="accountdetail_orderCrud accountdetail_update btn btn-outline-warning">update</a>
-                            </td>
-                            <td>
-                                <a href="#"
-                                   class="accountdetail_orderCrud accountdetail_delete btn btn-outline-danger">delete</a>
-                            </td>
-                        </tr>
+            @if (Model.orders == null || Model.orders.Count == 0)
+            {
 
-                    </tbody>
-                </table>
-            </div>
+
+                <p class="accountdetail_noorder">
+                    No order has been made yet.
+                </p>
+            }
+            else
+            {
+
+
+                <div class="accountdetail_orderItem">
+
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="accountdetail_tableHead">Order no</th>
+                                <th scope="col" class="accountdetail_tableHead">Room</th>
+                                <th scope="col" class="accountdetail_tableHead">Guests</th>
+                                <th scope="col" class="accountdetail_tableHead">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var order in Model.orders)
+                            {
+                                <tr>
+                                    <td class="accountdetail_tableContent">@order.OrderId</td>
+                                    <td class="accountdetail_tableContent">
+                                        @order.Room.Name
+                                    </td>
+                                    <td class="accountdetail_tableContent">
+                                        Adults:@order.Adult Childrend:@order.Children Infant:@order.Infant
+                                    </td>
+                                    <td>
+                                        <a asp-action="deleteorder" asp-route-id="@order.OrderId"
+                                           class="accountdetail_orderCrud accountdetail_delete btn btn-outline-danger">delete</a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+
+            }
         </div>
     </div>
 </div>
 <!-- Account detail end -->
-
-
-
-
-   

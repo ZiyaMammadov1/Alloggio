@@ -34,13 +34,18 @@ namespace Alloggio_MVC.Controllers
             List<OrderRooms> AvailableRoomsId = new List<OrderRooms>();
             List<Room> AvailableRooms = new List<Room>();
             List<OrderRooms> SelectOrderRoom = new List<OrderRooms>();
+            List<OrderRooms> UnregisteredOrderRoom = new List<OrderRooms>();
             if (roomlistforBedCount != null)
             {
                 SelectOrderRoom = _context.OrderRooms
                      .Where(x => x.Room.BedCount == room)
                      .OrderByDescending(x => x.id)
-                     .Take(10)
+                     .Take(50)
                      .ToList();
+                List<Room> UnregisteredRoom = _context.Rooms.Where(x=>x.BedCount == room && x.OrderRooms.Count == 0).ToList();
+
+                UnregisteredOrderRoom = UnregisteredRoom.Select(x => new OrderRooms {RoomId = x.id }).ToList();
+                SelectOrderRoom.AddRange(UnregisteredOrderRoom);
             }
             else
             {
@@ -80,8 +85,8 @@ namespace Alloggio_MVC.Controllers
             return View(rooms);
         }
 
-     
-        public IActionResult RoomDetail(int adults, int childrens, int infants, DateTime checkIn, DateTime checkOut, int id)
+
+        public IActionResult RoomDetail(int adults, int childrens, int infants, DateTime checkIn, DateTime checkOut,  int id)
         {
             ViewBag.Checkin = checkIn;
             ViewBag.Checkout = checkOut;
@@ -89,7 +94,9 @@ namespace Alloggio_MVC.Controllers
             ViewBag.Childrens = childrens;
             ViewBag.Infants = infants;
 
-            RoomDetailViewModel RoomDetailMV = new RoomDetailViewModel
+                       
+
+                 RoomDetailViewModel RoomDetailMV = new RoomDetailViewModel
             {
                 Room = _context.Rooms
                 .Include(x => x.RoomAmenities).ThenInclude(x => x.Amenitie)

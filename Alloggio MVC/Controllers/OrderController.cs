@@ -97,13 +97,14 @@ namespace Alloggio_MVC.Controllers
 
         public IActionResult Checkout()
         {
-            AppUser member = _userManager.Users.FirstOrDefault(x=>x.UserName == User.Identity.Name);
-            if(member == null)
+            AppUser member = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
+            if (member == null)
             {
                 return NotFound();
             }
-            Order order = new Order { 
-            AppUser = member
+            Order order = new Order
+            {
+                AppUser = member
             };
             return View(order);
         }
@@ -148,8 +149,6 @@ namespace Alloggio_MVC.Controllers
         [HttpPost]
         public IActionResult Checkout(Order order)
         {
-
-
             AppUser member = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
             if (member == null)
             {
@@ -178,7 +177,7 @@ namespace Alloggio_MVC.Controllers
             order.CreateAt = DateTime.UtcNow.AddHours(4);
             order.ModifiedAt = DateTime.UtcNow.AddHours(4);
             order.OrderStatus = Core_Layers.Enums.OrderStatus.Pending;
-            
+
 
 
             order.OrderRooms = new List<OrderRooms>();
@@ -190,7 +189,7 @@ namespace Alloggio_MVC.Controllers
                     RoomId = item.Room.id,
                     Price = item.Room.Price,
                     Count = item.Count,
-                    CheckIn= item.CheckIn,
+                    CheckIn = item.CheckIn,
                     CheckOut = item.CheckOut,
                     Adult = item.Adult,
                     Children = item.Children,
@@ -202,6 +201,12 @@ namespace Alloggio_MVC.Controllers
             }
 
             _context.Orders.Add(order);
+
+            foreach (var item in BasketItems)
+            {
+                _context.BasketItems.Remove(item);
+
+            }
 
             _context.SaveChanges();
 

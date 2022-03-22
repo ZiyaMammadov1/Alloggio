@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Core_Layer.Entities;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -39,6 +40,7 @@ namespace Alloggio_MVC.ViewModels
         public string ConfirmPassword { get; set; }
 
         public IFormFile UploadImage { get; set; }
+        public List<OrderRooms> orders{ get; set; }
 
     }
 }

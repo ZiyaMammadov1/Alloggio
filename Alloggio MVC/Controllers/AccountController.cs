@@ -158,14 +158,18 @@ namespace Alloggio_MVC.Controllers
                 ModelState.AddModelError("", "Member not found");
                 return View();
             }
+            var AllOrders = _context.Orders.Where(x=>x.AppUserId == UserModel.Id).ToList();
+
             MemberUpdateViewModel MemberModel = new MemberUpdateViewModel
             {
                 Email = UserModel.Email,
                 Fullname = UserModel.Fullname,
                 Phone = UserModel.Phone,
-                Image = UserModel.Image
+                Image = UserModel.Image,
+                orders = _context.OrderRooms.Include(x=>x.Room).ToList()
 
-            };
+
+        };
             return View(MemberModel);
         }
 
@@ -349,7 +353,20 @@ namespace Alloggio_MVC.Controllers
             return RedirectToAction("login","account");
         }
 
+        public IActionResult DeleteOrder(int id)
+        {
+            var orderRooms = _context.OrderRooms.FirstOrDefault(x=>x.OrderId == id);
+            var order = _context.Orders.FirstOrDefault(x=>x.id == orderRooms.OrderId);
+            if(orderRooms == null || order == null)
+            {
+                return NotFound();
+            }
+            _context.OrderRooms.Remove(orderRooms);
+            _context.Orders.Remove(order);
+            _context.SaveChanges();
 
+            return RedirectToAction("profile","account");
+        }
 
         public IActionResult Logout()
         {
