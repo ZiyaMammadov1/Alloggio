@@ -11,73 +11,75 @@
     </div>
 </div>
 <!-- Cart header end -->
-@if(Model.Count != 0) { 
-<!-- Cart table begin -->
-<div class="cartTable">
-    <div class="cartTable_Wrap">
-        <div class="cartTable_items cartTable_header">
-            <div class="cartTable_close cartTable_headitem"></div>
-            <div class="cartTable_image cartTable_headitem"></div>
-            <div class="cartTable_product cartTable_headitem">Product</div>
-            <div class="cartTable_price cartTable_headitem">Price</div>
-            <div class="cartTable_quantity cartTable_headitem">Quantity</div>
-            <div class="cartTable_subtotal cartTable_headitem">Subtotal</div>
-        </div>
-        <hr>
-
-         
-        @foreach (var item in Model)
-        {
-    <div class="cartTable_items">
-        <div class="cartTable_close cartTable_item" id="removecookie">
-            <a asp-controller="order" asp-action="deleteorder" asp-route-id="@item.Id">
-                <i class="fa-solid fa-x" style="color:black"></i>
-            </a>
-
-        </div>
-        <div class="cartTable_image cartTable_item">
-            <img src="~/assets/image/Room/RoomMainImage/@item.Room.Image" alt="">
-        </div>
-        <div class="cartTable_product cartTable_item">
-            <div class="cartTable_suitName">
-                @item.Room.Name
+@if (Model.Count != 0)
+{
+    <!-- Cart table begin -->
+    <div class="cartTable">
+        <div class="cartTable_Wrap">
+            <div class="cartTable_items cartTable_header">
+                <div class="cartTable_close cartTable_headitem"></div>
+                <div class="cartTable_image cartTable_headitem"></div>
+                <div class="cartTable_product cartTable_headitem">Product</div>
+                <div class="cartTable_price cartTable_headitem">Price</div>
+                <div class="cartTable_quantity cartTable_headitem">Quantity</div>
+                <div class="cartTable_subtotal cartTable_headitem">Subtotal</div>
             </div>
-            <div class="cartTable_suitReservation">
-                Reservation:
-                @item.CheckIn.ToLongDateString() To @item.CheckOut.ToLongDateString() (@(item.CheckOut.Day -item.CheckIn.Day) night)
-
-            </div>
-            <div class="cartTable_Guests">
-                Guests:
-                Adults: @item.Adults
-                Children: @item.Childrens
-                Infant: @item.Infants
-
-
-            </div>
-        </div>
-        <div class="cartTable_price cartTable_item">@item.Room.Price <span class="cartTable_secondHead">/Price</span></div>
-        <div class="cartTable_quantity cartTable_item">@item.Count <span class="cartTable_secondHead">/Quantity</span></div>
-        @*<select class="form-select check_checkinInput" asp-items="@(new SelectList(ViewBag.SelectRoom,"BedCount","BedCount"))">
-        </select>*@
-        <div class="cartTable_subtotal cartTable_item">@(item.Room.Price* item.Count) <span class="cartTable_secondHead">/Subtotal</span></div>
-    </div>
             <hr>
-        }
-        <!-- Item1 begin -->
-        <!-- Item1 begin -->
 
+
+            @foreach (var item in Model)
+            {
+                <div class="cartTable_items">
+                    <div class="cartTable_close cartTable_item" id="removecookie">
+                        <a asp-controller="order" asp-action="deleteorder" asp-route-id="@item.Id">
+                            <i class="fa-solid fa-x" style="color:black"></i>
+                        </a>
+
+                    </div>
+                    <div class="cartTable_image cartTable_item">
+                        <img src="~/assets/image/Room/RoomMainImage/@item.Room.Image" alt="">
+                    </div>
+                    <div class="cartTable_product cartTable_item">
+                        <div class="cartTable_suitName">
+                            @item.Room.Name
+                        </div>
+                        <div class="cartTable_suitReservation">
+                            Reservation:
+                            @item.CheckIn.ToLongDateString() To @item.CheckOut.ToLongDateString() (@(item.CheckOut.Day -item.CheckIn.Day) night)
+
+                        </div>
+                        <div class="cartTable_Guests">
+                            Guests:
+                            Adults: @item.Adults
+                            Children: @item.Childrens
+                            Infant: @item.Infants
+
+
+                        </div>
+                    </div>
+                    <div class="cartTable_price cartTable_item">@item.Room.Price <span class="cartTable_secondHead">/Price</span></div>
+                    <div class="cartTable_quantity cartTable_item">@item.Count <span class="cartTable_secondHead">/Quantity</span></div>
+                   
+                    <div class="cartTable_subtotal cartTable_item">@(item.Room.Price* item.Count) <span class="cartTable_secondHead">/Subtotal</span></div>
+                </div>
+                <hr>
+                total = total + (item.Room.Price * item.Count);
+            }
+            <!-- Item1 begin -->
+            <!-- Item1 begin -->
+
+        </div>
     </div>
-</div>
-<!-- Cart table end -->
-<!-- Cart table when empty begin -->
+    <!-- Cart table end -->
+    <!-- Cart table when empty begin -->
 }
-else {
-<div class="empty">
-    <div class="empty_type">
-        Cart is empty
+else
+{
+    <div class="empty">
+        <div class="empty_type">
+            Cart is empty
+        </div>
     </div>
-</div>
 }
 <!-- Cart table when empty end -->
 <!-- Cart Total begin -->
@@ -90,7 +92,7 @@ else {
             Total:
         </div>
         <div class="cartTotal_price">
-          @total
+            @total
         </div>
         <div class="cartTotal_buttonCheckout">
             <a asp-controller="order" asp-action="checkout" class="cartTotal_Checkout">PROCEED TO CHECKOUT</a>

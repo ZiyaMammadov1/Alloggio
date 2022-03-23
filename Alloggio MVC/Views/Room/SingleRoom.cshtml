@@ -1,0 +1,260 @@
+﻿
+@{
+    ViewData["Title"] = "RoomDetail";
+    string[] words = new string [0];
+}
+@model SingleRoomViewModel
+<!-- House image begin -->
+<div class="houseImage">
+    <img src="~/assets/image/Room/RoomPanoramicPhoto/@Model.RoomDetailViewModel.Room.PanoramaImage" alt="" class="houseImage_source">
+</div>
+<!-- House image end -->
+<!-- Detail begin -->
+<div class="detailWrap">
+    <div class="detailWrap_room" style="width:80%; margin:0 auto">
+        <div class="detailWrap_suitdetail">
+            <div class="detailWrap_suitname">
+                @Model.RoomDetailViewModel.Room.Name
+            </div>
+            <div class="detailWrap_suitdescription">
+                @Model.RoomDetailViewModel.Room.Description
+            </div>
+
+
+            <hr class="detailWrap_hr">
+
+        </div>
+
+        <div class="detailWrap_suitServices">
+            <div class="detailWrap_ServiceHeader">
+                Amenities
+            </div>
+
+            <div class="detailWrap_ServiceList">
+                <div class="row detailWrap_ListWrap">
+                    <div class="col-6 detailWrap_ListWrapItem">
+                        @for (int i = 0; i < Model.RoomDetailViewModel.Room.RoomAmenities.Count / 2; i++)
+                        {
+                            <div class="detailWrap_ServiceWrap">
+                                <div class="detailWrap_serviceIcon">
+
+                                    @Html.Raw(Model.RoomDetailViewModel.Room.RoomAmenities[i].Amenitie.Image)
+                                </div>
+                                <div class="detailWrap_serviceName">
+                                    @Model.RoomDetailViewModel.Room.RoomAmenities[i].Amenitie.Name
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                    <div class="col-6 detailWrap_ListWrapItem">
+
+                        @for (int i = (Model.RoomDetailViewModel.Room.RoomAmenities.Count / 2); i < Model.RoomDetailViewModel.Room.RoomAmenities.Count; i++)
+                        {
+                            <div class="detailWrap_ServiceWrap">
+                                <div class="detailWrap_serviceIcon">
+                                    @Html.Raw(Model.RoomDetailViewModel.Room.RoomAmenities[i].Amenitie.Image)
+
+                                </div>
+                                <div class="detailWrap_serviceName">
+                                    @Model.RoomDetailViewModel.Room.RoomAmenities[i].Amenitie.Name
+
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+            <hr class="detailWrap_hr">
+
+            <div class="inline-calendar" style="width:100%; height:100%;padding:50px 0;">
+                <input style="display:none;" id="check" />
+            </div>
+
+
+            <hr class="detailWrap_hr">
+
+            <div class="detailWrap_inputs detailWrap_BookNow">
+                <form asp-controller="order" asp-action="AddBasket" asp-route-id="@Model.RoomDetailViewModel.Room.id" method="Get">
+                    <input type="hidden" name="checkIn" value="@ViewBag.Checkin" />
+                    <input type="hidden" name="checkOut" value="@ViewBag.Checkout" />
+                    <input type="hidden" name="adults" value="@ViewBag.Adults" />
+                    <input type="hidden" name="childrens" value="@ViewBag.Childrens" />
+                    <input type="hidden" name="infants" value="@ViewBag.Infants" />
+                    <button type="submit" class="detailWrap_btnBookNow">
+                        BOOK NOW
+                    </button>
+                </form>
+            </div>
+
+            <hr class="detailWrap_hr">
+
+        </div>
+
+        <div class="detailWrap_rules">
+            <div class="detailWrap_rulesHeader">
+                House rules *
+            </div>
+            <div class="detailWrap_rulesContent">
+
+                We have created some rules for our home to serve our customers at the highest level and keep them
+                happy with us. Please <a class="detailWrap_rulesLink">read</a> the house rules and terms of
+                cancellation. It is mandatory for each of our customers to follow these rules.
+            </div>
+            <hr class="detailWrap_hr">
+        </div>
+
+
+
+        <div class="detailWrap_comments">
+            <div class="detailWrap_header">
+                Comments
+            </div>
+            @if (Model.RoomDetailViewModel.AllComment.Count != 0)
+            {
+                @foreach (var item in Model.RoomDetailViewModel.AllComment)
+                {
+                    <div class="detailWrap_commentitem">
+                        <div class="detailWrap_commentimage">
+                            <img src="~/assets/image/account/@item.AppUser.Image" alt="" style="width:85px; height:85px;">
+                        </div>
+                        <div class="detailWrap_CommentAccountWrap">
+                            <div class="detailWrap_commentAccountName">
+                                @item.AppUser.Fullname
+                            </div>
+                            <div class="detailWrap_commentAccountContent">
+                                @item.Text
+                            </div>
+
+                            <div class="detailWrap_commentAccountDateTime">
+                                @item.CreatedAt.ToLongDateString()
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            }
+
+            @Html.Partial("_CommentPartialView", Model.RoomDetailViewModel.Comment)
+
+        </div>
+
+        <div class="detailWrap_maps">
+
+            <div class="detailWrap_MapHeader">
+                Location
+            </div>
+            <div class="detailWrap_MapContent">
+                <iframe src="@Model.RoomDetailViewModel.Settings["EmbedLocation"]"
+                        width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+<!-- Detail End -->
+<!-- Related room begin -->
+<div class="related">
+    <div class="related_roomsHeader">
+        Related Rooms
+    </div>
+    <div class="row related_roomsContent">
+
+
+
+        @foreach (var item in Model.RoomDetailViewModel.RelatedRoom)
+        {
+            <div class="col-4 related_roomItems">
+                <div class="related_roomItem">
+                    <div class="related_itemImage">
+                        <img src="~/assets/image/Room/RoomMainImage/@item.Image" class="related_image" alt="">
+                    </div>
+                    <div class="related_itemName">
+                        <a href="#" class="related_itemLink">@item.Name</a>
+                    </div>
+                    <p class="related_itemPrice">from @item.Price $</p>
+                    <div class="related_itemDescription">
+                        @item.Description.Substring(0, 150);
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+<!-- Related room end -->
+<!-- Modal begin -->
+<div class="rules">
+    <div class="rules_content">
+        <div class="rules_header">House Rules</div>
+        <div class="rules_rules">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sollicitudin est sit amet libero sodales interdum. Nulla pellentesque cursus consectetur. Ut a tempor lorem. Aliquam erat volutpat. Quisque eu nisi et odio placerat congue eget a urna. Morbi aliquam pharetra nisl, vitae fermentum ligula dignissim eget. Nam iaculis maximus maximus.
+
+            Sed auctor leo erat, non rutrum velit euismod vel. In ac finibus metus. Sed a ex pulvinar, faucibus nulla nec, rutrum ipsum. Cras ut ullamcorper nulla. Cras sit amet turpis dui. Nunc nulla arcu, commodo et nunc ut, fermentum gravida felis. Suspendisse iaculis dignissim felis, non scelerisque sem pretium vel.
+
+            Suspendisse eu velit massa. Quisque nisl nisi, finibus ut orci id, porta maximus ipsum. Pellentesque eget tristique justo. Nunc mattis dapibus pharetra. Pellentesque ornare, eros cursus lacinia feugiat, ante ipsum dictum felis, nec eleifend tortor sapien sodales sapien. In hac habitasse platea dictumst. Donec molestie nibh vitae turpis tincidunt elementum. Nam tincidunt nunc condimentum, ultrices ipsum at, accumsan turpis. Vivamus ultrices pretium felis, id luctus tortor egestas ac. Ut accumsan at nisi at tincidunt.
+
+            Nam et faucibus dui, vitae imperdiet elit. Proin ornare maximus lorem dapibus tempor. Vivamus dictum eget arcu quis rutrum. Fusce vel ex non odio scelerisque ultricies eget quis purus. Praesent at felis velit. Fusce porta sagittis faucibus. Nulla venenatis imperdiet arcu sed cursus.
+
+            Sed mattis tempus nibh vitae dictum. Curabitur non ex molestie magna viverra elementum eget eget risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+        </div>
+        <div class="rules_button">
+            <a class="rules_link">Ok!</a>
+        </div>
+    </div>
+</div>
+<!-- Modal end -->
+
+
+<style>
+    .cur-month {
+        font-size: 17px;
+    }
+
+    .cur-year {
+        font-size: 20px;
+    }
+
+    .flatpickr-calendar {
+        margin: 0 auto;
+    }
+
+    .flatpickr-day {
+        font-size: 15px;
+    }
+
+    .flatpickr-weekday {
+        font-size: 15px;
+    }
+</style>
+
+<script>
+
+
+    document.addEventListener('DOMContentLoaded', function (event) {
+        var RangeCalendar = flatpickr("#check", {
+            enableTime: false,
+            dateFormat: "Y-m-d",
+            inline: true,
+            mode: "range",
+            showMonths: 2,
+            onChange: function () {
+
+            }
+        });
+
+        let CheckIn = @Model.BusyTime.CheckIn.Year + '-' + @Model.BusyTime.CheckIn.Month+ '-' + @Model.BusyTime.CheckIn.Day;
+        let CheckOut = @Model.BusyTime.CheckOut.Year + '-' + @Model.BusyTime.CheckOut.Month+ '-' + @Model.BusyTime.CheckOut.Day;
+
+
+        RangeCalendar.setDate([CheckIn,CheckOut]);
+
+
+
+    });
+</script>

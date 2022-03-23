@@ -42,9 +42,9 @@ namespace Alloggio_MVC.Controllers
                      .OrderByDescending(x => x.id)
                      .Take(50)
                      .ToList();
-                List<Room> UnregisteredRoom = _context.Rooms.Where(x=>x.BedCount == room && x.OrderRooms.Count == 0).ToList();
+                List<Room> UnregisteredRoom = _context.Rooms.Where(x => x.BedCount == room && x.OrderRooms.Count == 0).ToList();
 
-                UnregisteredOrderRoom = UnregisteredRoom.Select(x => new OrderRooms {RoomId = x.id }).ToList();
+                UnregisteredOrderRoom = UnregisteredRoom.Select(x => new OrderRooms { RoomId = x.id }).ToList();
                 SelectOrderRoom.AddRange(UnregisteredOrderRoom);
             }
             else
@@ -52,7 +52,7 @@ namespace Alloggio_MVC.Controllers
                 return RedirectToAction("404 Not found");
             }
 
-            if(SelectOrderRoom.Count == 0)
+            if (SelectOrderRoom.Count == 0)
             {
                 return View(roomlistforBedCount);
             }
@@ -84,9 +84,7 @@ namespace Alloggio_MVC.Controllers
             List<Room> rooms = _context.Rooms.ToList();
             return View(rooms);
         }
-
-
-        public IActionResult RoomDetail(int adults, int childrens, int infants, DateTime checkIn, DateTime checkOut,  int id)
+        public IActionResult RoomDetail(int adults, int childrens, int infants, DateTime checkIn, DateTime checkOut, int id)
         {
             ViewBag.Checkin = checkIn;
             ViewBag.Checkout = checkOut;
@@ -94,14 +92,14 @@ namespace Alloggio_MVC.Controllers
             ViewBag.Childrens = childrens;
             ViewBag.Infants = infants;
 
-                       
 
-                 RoomDetailViewModel RoomDetailMV = new RoomDetailViewModel
+
+            RoomDetailViewModel RoomDetailMV = new RoomDetailViewModel
             {
                 Room = _context.Rooms
-                .Include(x => x.RoomAmenities).ThenInclude(x => x.Amenitie)
-                .Include(x => x.UserComments).ThenInclude(x => x.AppUser)
-                .FirstOrDefault(x => x.id == id),
+           .Include(x => x.RoomAmenities).ThenInclude(x => x.Amenitie)
+           .Include(x => x.UserComments).ThenInclude(x => x.AppUser)
+           .FirstOrDefault(x => x.id == id),
                 Settings = _context.Settings.ToDictionary(x => x.Key, x => x.Value),
                 Comment = new Comment { RoomId = id }
 
@@ -123,8 +121,6 @@ namespace Alloggio_MVC.Controllers
 
             return View(RoomDetailMV);
         }
-
-
         [HttpPost]
         public IActionResult Comment(Comment comment)
         {
@@ -187,6 +183,45 @@ namespace Alloggio_MVC.Controllers
             _context.UserComments.Add(comment);
             _context.SaveChanges();
             return RedirectToAction("roomdetail", new { id = comment.RoomId });
+        }
+        public IActionResult SingleRoom(int id)
+        {
+            SingleRoomViewModel singleRoomVm = new SingleRoomViewModel
+            {
+                RoomDetailViewModel = new RoomDetailViewModel
+                {
+                    Room = _context.Rooms
+                    .Include(x => x.RoomAmenities).ThenInclude(x => x.Amenitie)
+                    .Include(x => x.UserComments).ThenInclude(x => x.AppUser)
+                    .FirstOrDefault(x => x.id == id),
+                    Settings = _context.Settings.ToDictionary(x => x.Key, x => x.Value),
+                    Comment = new Comment { RoomId = id }
+                },
+                BusyTime = new OrderRooms()
+            };
+
+            singleRoomVm.RoomDetailViewModel.AllComment = _context.UserComments.Where(x => x.RoomId == singleRoomVm.RoomDetailViewModel.Room.id).ToList();
+
+
+            List<OrderRooms> Busy = _context.OrderRooms.Where(x => x.RoomId == singleRoomVm.RoomDetailViewModel.Room.id).ToList();
+
+            foreach (var BusyItem in Busy)
+            {
+                if (BusyItem.CheckIn > singleRoomVm.BusyTime.CheckIn)
+                {
+                    singleRoomVm.BusyTime.CheckIn = BusyItem.CheckIn;
+                    singleRoomVm.BusyTime.CheckOut = BusyItem.CheckOut;
+                }
+            }
+
+            int CurrentBedCount = singleRoomVm.RoomDetailViewModel.Room.BedCount;
+            int CurrentRoomId = singleRoomVm.RoomDetailViewModel.Room.id;
+
+            singleRoomVm.RoomDetailViewModel.RelatedRoom = _context.Rooms
+               .Where(x => x.BedCount == CurrentBedCount && x.id != CurrentRoomId)
+               .ToList();
+
+            return View(singleRoomVm);
         }
 
     }
