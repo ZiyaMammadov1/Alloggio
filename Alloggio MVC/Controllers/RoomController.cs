@@ -197,7 +197,8 @@ namespace Alloggio_MVC.Controllers
                     Settings = _context.Settings.ToDictionary(x => x.Key, x => x.Value),
                     Comment = new Comment { RoomId = id }
                 },
-                BusyTime = new OrderRooms()
+                BusyTime = new OrderRooms(),
+                Checking = new Checking()
             };
 
             singleRoomVm.RoomDetailViewModel.AllComment = _context.UserComments.Where(x => x.RoomId == singleRoomVm.RoomDetailViewModel.Room.id).ToList();

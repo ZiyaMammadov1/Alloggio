@@ -53,7 +53,7 @@ $(document).ready(function () {
     flatpickr("#mainCheckIn", {
         minDate: "today",
         enableTime: false,
-        dateFormat: "F, d Y",
+        dateFormat: "Y-m-d",
         defaultDate: new Date(),
         onChange: function () {
             console.log($("#mainCheckIn").val());
@@ -64,7 +64,7 @@ $(document).ready(function () {
     flatpickr("#mainCheckOut", {
         minDate: "today",
         enableTime: false,
-        dateFormat: "F, d Y",
+        dateFormat: "Y-m-d",
         defaultDate: new Date(DateTime.getUTCFullYear(), DateTime.getUTCMonth(), DateTime.getUTCDate() + 1),
         onChange: function () {
             console.log($("#mainCheckOut").val());

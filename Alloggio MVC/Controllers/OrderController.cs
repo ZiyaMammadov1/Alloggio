@@ -36,6 +36,7 @@ namespace Alloggio_MVC.Controllers
             return View(data);
         }
 
+       
         public IActionResult DeleteOrder(int id)
         {
             BasketItem basketItem = _context.BasketItems.FirstOrDefault(x => x.Id == id);
@@ -55,6 +56,8 @@ namespace Alloggio_MVC.Controllers
             ViewBag.Adults = adults;
             ViewBag.Childrens = childrens;
             ViewBag.Infants = infants;
+
+          
 
             AppUser member = null;
             if (User.Identity.IsAuthenticated)
@@ -95,6 +98,7 @@ namespace Alloggio_MVC.Controllers
             return RedirectToAction("index", "home");
         }
 
+        
         public IActionResult Checkout()
         {
             AppUser member = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);

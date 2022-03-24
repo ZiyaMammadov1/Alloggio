@@ -45,7 +45,17 @@
                         </div>
                         <div class="cartTable_suitReservation">
                             Reservation:
-                            @item.CheckIn.ToLongDateString() To @item.CheckOut.ToLongDateString() (@(item.CheckOut.Day -item.CheckIn.Day) night)
+                            @item.CheckIn.ToLongDateString() To @item.CheckOut.ToLongDateString()
+
+                            @if((item.CheckOut.Day -item.CheckIn.Day)>0 )
+                            {
+
+                                @((item.CheckOut.Day - item.CheckIn.Day) +" night")
+                    }
+                    else
+                    {
+                        @(31+ (item.CheckOut.Day - item.CheckIn.Day) + " night")
+                    }
 
                         </div>
                         <div class="cartTable_Guests">

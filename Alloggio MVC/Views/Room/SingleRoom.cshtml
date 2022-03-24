@@ -1,7 +1,8 @@
 ﻿
 @{
     ViewData["Title"] = "RoomDetail";
-    string[] words = new string [0];
+    var NextCheckIn = Model.BusyTime.CheckOut.AddDays(1);
+    var NextCheckOut = Model.BusyTime.CheckOut.AddDays(2);
 }
 @model SingleRoomViewModel
 <!-- House image begin -->
@@ -11,7 +12,7 @@
 <!-- House image end -->
 <!-- Detail begin -->
 <div class="detailWrap">
-    <div class="detailWrap_room" style="width:80%; margin:0 auto">
+    <div class="detailWrap_room">
         <div class="detailWrap_suitdetail">
             <div class="detailWrap_suitname">
                 @Model.RoomDetailViewModel.Room.Name
@@ -76,20 +77,6 @@
 
             <hr class="detailWrap_hr">
 
-            <div class="detailWrap_inputs detailWrap_BookNow">
-                <form asp-controller="order" asp-action="AddBasket" asp-route-id="@Model.RoomDetailViewModel.Room.id" method="Get">
-                    <input type="hidden" name="checkIn" value="@ViewBag.Checkin" />
-                    <input type="hidden" name="checkOut" value="@ViewBag.Checkout" />
-                    <input type="hidden" name="adults" value="@ViewBag.Adults" />
-                    <input type="hidden" name="childrens" value="@ViewBag.Childrens" />
-                    <input type="hidden" name="infants" value="@ViewBag.Infants" />
-                    <button type="submit" class="detailWrap_btnBookNow">
-                        BOOK NOW
-                    </button>
-                </form>
-            </div>
-
-            <hr class="detailWrap_hr">
 
         </div>
 
@@ -153,6 +140,93 @@
 
         </div>
 
+    </div>
+
+    <div class="detailWrap_rightSide">
+        <div class="detailWrap_reservation">
+            <div class="detailWrap_reservationWrap">
+
+                <div class="detailWrap_reservationHeader">
+                    Your Reservation
+                </div>
+                <form asp-controller="order" asp-action="AddBasket" asp-route-id="@Model.RoomDetailViewModel.Room.id" method="Get">
+                    <div class="detailWrap_inputs">
+                        <div class="detailWrap_checkHeader">
+                            CHECK - IN:
+                        </div>
+                        <div class="detailWrap_checkin">
+
+                            <input class="form-control detailWrap_checkinInput" name="checkIn" id="mainCheckInS" placeholder="Select date"
+                                   type="datetime-local">
+
+                        </div>
+                    </div>
+
+                    <div class="detailWrap_inputs">
+                        <div class="detailWrap_checkHeader">
+                            CHECK - OUT:
+                        </div>
+                        <div class="detailWrap_checkin ">
+
+                            <input class="form-control detailWrap_checkinInput" name="checkOut" id="mainCheckOutS" placeholder="Select date"
+                                   type="datetime-local">
+
+                        </div>
+                    </div>
+
+                    <div class="detailWrap_inputs">
+                        <div class="detailWrap_checkHeader">
+                            GUESTS:
+                        </div>
+                        <div class="detailWrap_checkin input-group">
+
+                            <div class="form-select detailWrap_checkinInput detailWrap_PersonForm" id="guests">
+                                <p class="detailWrap_AllPassenger">Adults: 0 Children: 0 Infant: 0</p>
+
+                            </div>
+                            <div class="detailWrap_innerForm">
+                                <div class="detailWrap_PersonItem detailWrap_checkinInput">
+                                    Adults
+
+                                    <input type="number" name="adults" min="1" asp-for="@Model.Checking.Adult" class="HelloAdult aAdult" placeholder="0" />
+
+
+                                </div>
+
+                                <div class="detailWrap_PersonItem detailWrap_checkinInput">
+                                    Children
+
+                                    <input type="number" min="0" name="childrens" asp-for="@Model.Checking.Children" class="HelloChildren aChildren" placeholder="0" />
+
+                                </div>
+
+                                <div class="detailWrap_PersonItem detailWrap_checkinInput">
+                                    İnfant's
+                                    <input type="number" min="0" name="infants" asp-for="@Model.Checking.Infant" class="HelloInfant aInfant" placeholder="0" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detailWrap_inputs">
+                        <div class="detailWrap_reservationHeader detailWrap_yourPrice">
+                            Your price
+                        </div>
+                        <div class="detailWrap_price detailWrap_checkHeader">
+                            $ @Model.RoomDetailViewModel.Room.Price / per room
+                        </div>
+                    </div>
+
+                    <div class="detailWrap_inputs detailWrap_BookNow">
+                        <button type="submit" class="detailWrap_btnBookNow">
+                            BOOK NOW
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
     </div>
 
 
@@ -252,9 +326,47 @@
         let CheckOut = @Model.BusyTime.CheckOut.Year + '-' + @Model.BusyTime.CheckOut.Month+ '-' + @Model.BusyTime.CheckOut.Day;
 
 
+        flatpickr("#mainCheckInS", {
+            minDate: @NextCheckIn.Year+ '-' + @NextCheckIn.Month+ '-' + @NextCheckIn.Day,
+            enableTime: false,
+            dateFormat: "Y-m-d",
+             defaultDate:@NextCheckIn.Year+ '-' + @NextCheckIn.Month+ '-' + @NextCheckIn.Day,
+           
+        });
+
+         flatpickr("#mainCheckOutS", {
+            minDate: @NextCheckIn.Year+ '-' + @NextCheckIn.Month+ '-' + @NextCheckIn.Day,
+            enableTime: false,
+            dateFormat: "Y-m-d",
+             defaultDate:@NextCheckOut.Year+ '-' + @NextCheckOut.Month+ '-' + @NextCheckOut.Day,
+            
+        });
+
+
+
+
         RangeCalendar.setDate([CheckIn,CheckOut]);
 
 
 
     });
 </script>
+
+<style>
+
+    .HelloAdult, .HelloChildren, .HelloInfant {
+        font-weight: 300 !important;
+        background-color: #FAF9F5 !important;
+        height: 50px;
+        padding: 0 10px;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 20px !important;
+        width: 30%;
+        border: 1px solid rgb(206, 212, 218);
+    }
+
+    select option {
+        font-weight: 300;
+        font-size: 20px;
+    }
+</style>

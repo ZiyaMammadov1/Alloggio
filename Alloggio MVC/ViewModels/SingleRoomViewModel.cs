@@ -10,5 +10,6 @@ namespace Alloggio_MVC.ViewModels
     {
         public RoomDetailViewModel RoomDetailViewModel{ get; set; }
         public OrderRooms BusyTime{ get; set; }
+        public Checking Checking { get; set; }
     }
 }
