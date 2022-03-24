@@ -368,7 +368,7 @@
     transition: .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     &_content {
         position: absolute;
-        top: 15%;
+        top: 10%;
         left: 17%;
         width: 70%;
         margin: 0 auto;
@@ -388,7 +388,7 @@
         width: 90%;
         padding: 20px 0;
         margin: 0 auto;
-        font-size: 17px;
+        font-size: 16px;
         font-weight: 300;
         overflow: hidden;
     }
@@ -527,6 +527,24 @@
 
         }
 
+        .rules{
+            &_rules{
+                font-size: 12px;
+        }
+        &_header{
+            font-size: 20px;
+        }
+        &_link{
+            width: 110px;
+            height: 30px;   
+            font-size: 12px;
+        }
+        &_content{
+            left: 5%;
+            width: 90%;
+        }
+
+        }
         .related {
             &_roomsContent {
                 flex-direction: column;

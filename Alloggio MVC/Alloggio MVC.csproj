@@ -18,6 +18,32 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\assets\css\abstracts\_mixing.scss" />
+    <None Include="wwwroot\assets\css\abstracts\_variable.scss" />
+    <None Include="wwwroot\assets\css\base\_reset.scss" />
+    <None Include="wwwroot\assets\css\layout\_backToTop.scss" />
+    <None Include="wwwroot\assets\css\layout\_footer.scss" />
+    <None Include="wwwroot\assets\css\layout\_header.scss" />
+    <None Include="wwwroot\assets\css\main.css.map" />
+    <None Include="wwwroot\assets\css\main.scss" />
+    <None Include="wwwroot\assets\css\pages\_allrooms.scss" />
+    <None Include="wwwroot\assets\css\pages\_blog.scss" />
+    <None Include="wwwroot\assets\css\pages\_bookingdetails.scss" />
+    <None Include="wwwroot\assets\css\pages\_cart.scss" />
+    <None Include="wwwroot\assets\css\pages\_checkout.scss" />
+    <None Include="wwwroot\assets\css\pages\_contact.scss" />
+    <None Include="wwwroot\assets\css\pages\_forgot.scss" />
+    <None Include="wwwroot\assets\css\pages\_gallery.scss" />
+    <None Include="wwwroot\assets\css\pages\_index.scss" />
+    <None Include="wwwroot\assets\css\pages\_loading.scss" />
+    <None Include="wwwroot\assets\css\pages\_login.scss" />
+    <None Include="wwwroot\assets\css\pages\_menu.scss" />
+    <None Include="wwwroot\assets\css\pages\_ordercomplete.scss" />
+    <None Include="wwwroot\assets\css\pages\_profil.scss" />
+    <None Include="wwwroot\assets\css\pages\_register.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.23" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.23">

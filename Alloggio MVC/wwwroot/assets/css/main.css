@@ -1986,7 +1986,7 @@ header .header-inner_hamburgerImage {
 
 .rules_content {
   position: absolute;
-  top: 15%;
+  top: 10%;
   left: 17%;
   width: 70%;
   margin: 0 auto;
@@ -2005,7 +2005,7 @@ header .header-inner_hamburgerImage {
   width: 90%;
   padding: 20px 0;
   margin: 0 auto;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 300;
   overflow: hidden;
 }
@@ -2141,6 +2141,21 @@ header .header-inner_hamburgerImage {
         -ms-flex-direction: column;
             flex-direction: column;
     row-gap: 20px;
+  }
+  body .rules_rules {
+    font-size: 12px;
+  }
+  body .rules_header {
+    font-size: 20px;
+  }
+  body .rules_link {
+    width: 110px;
+    height: 30px;
+    font-size: 12px;
+  }
+  body .rules_content {
+    left: 5%;
+    width: 90%;
   }
   body .related_roomsContent {
     -webkit-box-orient: vertical;
