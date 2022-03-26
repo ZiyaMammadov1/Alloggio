@@ -41,6 +41,7 @@ namespace Alloggio_MVC
                     c.Password.RequireUppercase = true;
                     c.Password.RequireLowercase = true;
                     c.User.RequireUniqueEmail = true;
+                    c.SignIn.RequireConfirmedEmail = true;
                 }).AddDefaultTokenProviders().AddEntityFrameworkStores<DataContext>();
             services.AddScoped<LayoutService>();
 

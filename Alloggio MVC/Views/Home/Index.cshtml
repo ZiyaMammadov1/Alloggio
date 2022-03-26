@@ -357,7 +357,7 @@
             <div class="subscription_type">
                 @Model.Settings["SubscriptionHeader"]
             </div>
-            <form action="home" method="post" style="display:flex">
+            <form action="home" method="post" style="display:flex;flex-direction: column;row-gap: 10px;">
                 <div class="subscrition_input">
                     <input type="text" class="subscription_emailInput" placeholder="Email Address" asp-for="SubscriptionEmail">
                 </div>

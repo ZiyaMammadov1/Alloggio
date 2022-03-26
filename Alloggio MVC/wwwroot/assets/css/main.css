@@ -2090,6 +2090,12 @@ header .header-inner_hamburgerImage {
   }
 }
 
+@media only screen and (max-width: 768px) {
+  body .detailWrap_room_suitServices .flatpickr-calendar {
+    width: auto;
+  }
+}
+
 @media only screen and (max-width: 576px) {
   body .detailWrap {
     -webkit-box-orient: vertical;

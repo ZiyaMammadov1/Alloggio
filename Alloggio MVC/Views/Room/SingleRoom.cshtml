@@ -295,7 +295,8 @@
     }
 
     .flatpickr-calendar {
-        margin: 0 auto;
+       
+        width:auto;
     }
 
     .flatpickr-day {
@@ -325,6 +326,7 @@
         let CheckIn = @Model.BusyTime.CheckIn.Year + '-' + @Model.BusyTime.CheckIn.Month+ '-' + @Model.BusyTime.CheckIn.Day;
         let CheckOut = @Model.BusyTime.CheckOut.Year + '-' + @Model.BusyTime.CheckOut.Month+ '-' + @Model.BusyTime.CheckOut.Day;
 
+        
 
         flatpickr("#mainCheckInS", {
             minDate: @NextCheckIn.Year+ '-' + @NextCheckIn.Month+ '-' + @NextCheckIn.Day,
@@ -342,7 +344,10 @@
             
         });
 
-
+        if ($(window).width() < 600)
+        {
+        RangeCalendar.showMonths = 1;
+        };
 
 
         RangeCalendar.setDate([CheckIn,CheckOut]);

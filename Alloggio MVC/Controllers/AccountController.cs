@@ -99,14 +99,47 @@ namespace Alloggio_MVC.Controllers
                 return View();
             }
 
-            await _signInManager.SignInAsync(member, true);
+
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(member);
+            var url = Url.Action("ConfirmEmail","Account",new { 
+                userId = member.Id,
+                token = code
+            });
+            Console.WriteLine(url);
+            await _emailSender.SendEmailAsync(RegisterVm.Email, "Confirm your account", $" <a href='https://localhost:44323{url}'>Click</a> to this link for confirm progress");
 
             TempData["Success"] = "Create your profile";
+
+
 
             return RedirectToAction("login", "account");
         }
 
+        public async Task<IActionResult> ConfirmEmail(string Userid, string Token )
+        {
+            if(Userid == null || Token == null)
+            {
+                TempData["Warning"] = "Invalid token";
+                return RedirectToAction("Login");
+            }
+            var user = await _userManager.FindByIdAsync(Userid);
+            if(user != null)
+            {
 
+                var result = await _userManager.ConfirmEmailAsync(user, Token);
+                if (result.Succeeded)
+                {
+                    TempData["Success"] = "Your account is confirm";
+                    return RedirectToAction("Login");
+                }
+
+
+                
+            }
+            
+                TempData["Warning"] = "Your account isn't confirm ";
+                return RedirectToAction("Login");
+        }
 
         public IActionResult Login()
         {
@@ -132,6 +165,12 @@ namespace Alloggio_MVC.Controllers
             if (member == null)
             {
                 ModelState.AddModelError("", "Email or Password is incorrect");
+                return View();
+            }
+
+            if(!await _userManager.IsEmailConfirmedAsync(member))
+            {
+                ModelState.AddModelError("", "Your account isn't confirm");
                 return View();
             }
 
