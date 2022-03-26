@@ -1,8 +1,18 @@
 ﻿
 @{
     ViewData["Title"] = "RoomDetail";
-    var NextCheckIn = Model.BusyTime.CheckOut.AddDays(1);
-    var NextCheckOut = Model.BusyTime.CheckOut.AddDays(2);
+    var NextCheckIn = DateTime.Now;
+    var NextCheckOut = DateTime.Now;
+    if (Model.BusyTime.CheckIn.Year  >= DateTime.Now.Year) {
+         NextCheckIn = Model.BusyTime.CheckOut.AddDays(1);
+         NextCheckOut = Model.BusyTime.CheckOut.AddDays(2);
+    }
+    else
+    {
+
+         NextCheckIn = DateTime.Now.AddDays(1);
+         NextCheckOut = DateTime.Now.AddDays(2);
+    }
 }
 @model SingleRoomViewModel
 <!-- House image begin -->
@@ -317,7 +327,7 @@
             dateFormat: "Y-m-d",
             inline: true,
             mode: "range",
-            showMonths: 2,
+            showMonths: 1,
             onChange: function () {
 
             }

@@ -64,6 +64,10 @@ namespace Alloggio_MVC.Controllers
             {
                 member = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin);
             }
+            if(checkIn < DateTime.Now || checkOut < DateTime.Now || checkIn > checkOut)
+            {
+                return RedirectToAction("Index","Home");
+            }
             if (member != null)
             {
                 BasketItem item = _context.BasketItems.FirstOrDefault(x => x.AppUserId == member.Id && x.RoomId == id);
