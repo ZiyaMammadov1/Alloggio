@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Checkout";
 }
-@model Order
+@model PaymentViewModel
 <!-- Check header begin -->
 <div class="outHeader">
     <div class="outHeader_checkout">
@@ -27,11 +27,11 @@
                     Full name ..*
                 </div>
                 <div class="billing_inputs">
-                    <input type="text" asp-for="FullName" placeholder="First name" class="billing_input">
+                    <input type="text" asp-for="@Model.Order.FullName" placeholder="First name" class="billing_input">
                 </div>
             </div>
 
-          
+
 
 
             <div class="billing_group">
@@ -39,7 +39,7 @@
                     Phone ..*
                 </div>
                 <div class="billing_inputs">
-                    <input type="text" asp-for="Phone" placeholder="Phone" class="billing_input">
+                    <input type="number" asp-for="@Model.Order.Phone" placeholder="Phone" class="billing_input">
                 </div>
             </div>
 
@@ -48,8 +48,48 @@
                     Email ..*
                 </div>
                 <div class="billing_inputs">
-                    <input type="text" asp-for="Email" placeholder="Email address" class="billing_input">
+                    <input type="text" asp-for="@Model.Order.Email" placeholder="Email address" class="billing_input">
                 </div>
+            </div>
+
+          
+            <div style="display:flex; flex-direction:row">
+                <div class="billing_group">
+                    <div class="billing_inputHeader">
+                        Card Number ..*
+                    </div>
+                    <div class="billing_inputs">
+                        <input type="number" asp-for="CardNumber" placeholder="0123456789123456" class="billing_input">
+                    </div>
+                </div>
+
+                <div class="billing_group">
+                    <div class="billing_inputHeader">
+                        Card ExpireMonth ..*
+                    </div>
+                    <div class="billing_inputs">
+                        <input type="number" asp-for="ExpiredMonth" placeholder="01" class="billing_input">
+                    </div>
+                </div>
+
+                <div class="billing_group">
+                    <div class="billing_inputHeader">
+                        Card ExpireYear ..*
+                    </div>
+                    <div class="billing_inputs">
+                        <input type="number" asp-for="ExpiredYear" placeholder="2030" class="billing_input">
+                    </div>
+                </div>
+
+                <div class="billing_group">
+                    <div class="billing_inputHeader">
+                        Card cvc ..*
+                    </div>
+                    <div class="billing_inputs">
+                        <input type="number" asp-for="CardCVC" placeholder="101" class="billing_input">
+                    </div>
+                </div>
+
             </div>
 
         </div>
@@ -63,9 +103,9 @@
                     Order notes (optional)
                 </div>
                 <div class="billing_inputs">
-                    <textarea id="" cols="30" rows="10" asp-for="Note" class="billing_input billing_textarea"></textarea>
+                    <textarea id="" cols="30" rows="10" asp-for="@Model.Order.Note" class="billing_input billing_textarea"></textarea>
                 </div>
-                <div asp-validation-summary="ModelOnly"></div>
+                <div  class="text-danger" asp-validation-summary="ModelOnly"></div>
             </div>
         </div>
        

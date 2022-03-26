@@ -114,7 +114,11 @@ namespace Alloggio_MVC.Controllers
             {
                 AppUser = member
             };
-            return View(order);
+            PaymentViewModel paymentViewModel = new PaymentViewModel
+            {
+                Order = order
+            };
+            return View(paymentViewModel);
         }
 
         private BasketViewModel _getBasket(AppUser member)
@@ -155,8 +159,12 @@ namespace Alloggio_MVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult Checkout(Order order)
+        public IActionResult Checkout(PaymentViewModel PaymentVm)
         {
+
+
+
+
             AppUser member = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
             if (member == null)
             {
@@ -169,26 +177,29 @@ namespace Alloggio_MVC.Controllers
             CheckoutViewModel checkoutVM = new CheckoutViewModel
             {
                 Basket = _getBasket(member),
-                Order = order
+                Order = PaymentVm.Order
             };
 
-            if (!ModelState.IsValid)
-                return View("Checkout", checkoutVM.Order.AppUser);
+            if (!ModelState.IsValid || PaymentVm.CardNumber ==null || PaymentVm.ExpiredYear == null|| PaymentVm.ExpiredMonth == null|| PaymentVm.CardCVC == null)
+            { 
+                ModelState.AddModelError("", "Fill all inputs!");
+                return View("Checkout", PaymentVm);
+            }
 
             if (checkoutVM.Basket.BasketItems.Count == 0)
             {
-                ModelState.AddModelError("", "You must chose any product!");
+                ModelState.AddModelError("", "You must choose any product!");
                 return View("Checkout", checkoutVM.Order);
             }
 
-            order.AppUserId = member?.Id;
-            order.CreateAt = DateTime.UtcNow.AddHours(4);
-            order.ModifiedAt = DateTime.UtcNow.AddHours(4);
-            order.OrderStatus = Core_Layers.Enums.OrderStatus.Pending;
+            PaymentVm.Order.AppUserId = member?.Id;
+            PaymentVm.Order.CreateAt = DateTime.UtcNow.AddHours(4);
+            PaymentVm.Order.ModifiedAt = DateTime.UtcNow.AddHours(4);
+            PaymentVm.Order.OrderStatus = Core_Layers.Enums.OrderStatus.Pending;
 
 
 
-            order.OrderRooms = new List<OrderRooms>();
+            PaymentVm.Order.OrderRooms = new List<OrderRooms>();
 
             foreach (var item in checkoutVM.Basket.BasketItems)
             {
@@ -204,11 +215,11 @@ namespace Alloggio_MVC.Controllers
                     Infant = item.Infant
                 };
 
-                order.OrderRooms.Add(orderItem);
-                order.TotalPrice += orderItem.Price * orderItem.Count;
+                PaymentVm.Order.OrderRooms.Add(orderItem);
+                PaymentVm.Order.TotalPrice += orderItem.Price * orderItem.Count;
             }
 
-            _context.Orders.Add(order);
+            _context.Orders.Add(PaymentVm.Order);
 
             foreach (var item in BasketItems)
             {
