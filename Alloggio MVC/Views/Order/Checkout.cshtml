@@ -54,36 +54,36 @@
 
           
             <div style="display:flex; flex-direction:row">
-                <div class="billing_group">
+                <div class="billing_group billing_card" style="width:32%">
                     <div class="billing_inputHeader">
-                        Card Number ..*
+                        Number ..*
                     </div>
                     <div class="billing_inputs">
-                        <input type="number" asp-for="CardNumber" placeholder="0123456789123456" class="billing_input">
+                        <input type="number" min="16" asp-for="CardNumber" placeholder="0123456789123456" class="billing_input">
                     </div>
                 </div>
 
-                <div class="billing_group">
+                <div class="billing_group" style="width:21%">
                     <div class="billing_inputHeader">
-                        Card ExpireMonth ..*
+                       Month ..*
                     </div>
                     <div class="billing_inputs">
                         <input type="number" asp-for="ExpiredMonth" placeholder="01" class="billing_input">
                     </div>
                 </div>
 
-                <div class="billing_group">
+                <div class="billing_group" style="width:21%">
                     <div class="billing_inputHeader">
-                        Card ExpireYear ..*
+                       Year ..*
                     </div>
                     <div class="billing_inputs">
                         <input type="number" asp-for="ExpiredYear" placeholder="2030" class="billing_input">
                     </div>
                 </div>
 
-                <div class="billing_group">
+                <div class="billing_group" style="width:21%">
                     <div class="billing_inputHeader">
-                        Card cvc ..*
+                        Cvc ..*
                     </div>
                     <div class="billing_inputs">
                         <input type="number" asp-for="CardCVC" placeholder="101" class="billing_input">

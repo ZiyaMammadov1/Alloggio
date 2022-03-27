@@ -471,19 +471,12 @@
 @media only screen and (max-width: 768px) {
     body
     {
-        .detailWrap
-        {
-            &_room
-            {
-                &_suitServices
-                {
-                    .flatpickr-calendar
-                    {
-                        width: auto;
-                    }
-                }
-            }
-        }
+       .billing{
+           &_card{
+               display: flex;
+               flex-direction: column;
+           }
+       }
     }
 }
 @media only screen and (max-width: 576px) {

@@ -1,6 +1,10 @@
-﻿using Alloggio_MVC.ViewModels;
+﻿using Alloggio_MVC.Helpers.Payment;
+using Alloggio_MVC.ViewModels;
 using Core_Layer.Entities;
 using Data_Layer.Concrete;
+using Iyzipay;
+using Iyzipay.Model;
+using Iyzipay.Request;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -25,7 +29,7 @@ namespace Alloggio_MVC.Controllers
 
         public IActionResult Basket()
         {
-            List<BasketItem> data = new List<BasketItem>();
+            List<Core_Layer.Entities.BasketItem> data = new List<Core_Layer.Entities.BasketItem>();
             if (User.Identity.IsAuthenticated)
             {
                 AppUser member = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
@@ -39,7 +43,7 @@ namespace Alloggio_MVC.Controllers
        
         public IActionResult DeleteOrder(int id)
         {
-            BasketItem basketItem = _context.BasketItems.FirstOrDefault(x => x.Id == id);
+            Core_Layer.Entities.BasketItem basketItem = _context.BasketItems.FirstOrDefault(x => x.Id == id);
             if (basketItem != null)
             {
                 _context.BasketItems.Remove(basketItem);
@@ -70,11 +74,11 @@ namespace Alloggio_MVC.Controllers
             }
             if (member != null)
             {
-                BasketItem item = _context.BasketItems.FirstOrDefault(x => x.AppUserId == member.Id && x.RoomId == id);
+                Core_Layer.Entities.BasketItem item = _context.BasketItems.FirstOrDefault(x => x.AppUserId == member.Id && x.RoomId == id);
 
                 if (item == null)
                 {
-                    item = new BasketItem
+                    item = new Core_Layer.Entities.BasketItem
                     {
                         AppUserId = member.Id,
                         RoomId = id,
@@ -161,17 +165,13 @@ namespace Alloggio_MVC.Controllers
         [HttpPost]
         public IActionResult Checkout(PaymentViewModel PaymentVm)
         {
-
-
-
-
             AppUser member = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
             if (member == null)
             {
                 return NotFound();
             }
 
-            List<BasketItem> BasketItems = _context.BasketItems.Include(x => x.Room).Where(x => x.AppUserId == member.Id).ToList();
+            List<Core_Layer.Entities.BasketItem> BasketItems = _context.BasketItems.Include(x => x.Room).Where(x => x.AppUserId == member.Id).ToList();
 
 
             CheckoutViewModel checkoutVM = new CheckoutViewModel
@@ -186,11 +186,34 @@ namespace Alloggio_MVC.Controllers
                 return View("Checkout", PaymentVm);
             }
 
+            if(PaymentVm.CardNumber.Length < 16)
+            {
+                ModelState.AddModelError("", "Card number must be 16 character!");
+                return View("Checkout", PaymentVm);
+            }
+
             if (checkoutVM.Basket.BasketItems.Count == 0)
             {
                 ModelState.AddModelError("", "You must choose any product!");
                 return View("Checkout", checkoutVM.Order);
             }
+
+            Payments newPayment = new Payments();
+            var result = newPayment.payment();
+
+            if (result.Status == "success")
+            {
+                TempData["Success"] = "Payment successfly";
+
+            }
+            else
+            {
+                TempData["Warning"] = "Payment not succesfly";
+
+            } 
+           
+
+
 
             PaymentVm.Order.AppUserId = member?.Id;
             PaymentVm.Order.CreateAt = DateTime.UtcNow.AddHours(4);
@@ -231,9 +254,6 @@ namespace Alloggio_MVC.Controllers
 
             return RedirectToAction("profile", "account");
         }
-        public IActionResult Receipt()
-        {
-            return View();
-        }
+      
     }
 }
