@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Core_Layer.Abstract
 {
-    interface ISliderRepository : IRepository<Slider>
+    public interface ISliderRepository : IRepository<Slider>
     {
     }
 }

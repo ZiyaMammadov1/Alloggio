@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Service_Layer.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,7 @@ namespace Alloggio_MVC
                     c.SignIn.RequireConfirmedEmail = true;
                 }).AddDefaultTokenProviders().AddEntityFrameworkStores<DataContext>();
             services.AddScoped<LayoutService>();
+            services.AddScoped<ISliderService,SliderService>();
 
             services.AddScoped<IEmailSender, GmailSender>(x =>
              new GmailSender(
