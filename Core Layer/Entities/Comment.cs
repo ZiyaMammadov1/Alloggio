@@ -10,8 +10,13 @@ namespace Core_Layer.Entities
         public int Id { get; set; }
         public int RoomId { get; set; }
         public string AppUserId { get; set; }
+
+        [StringLength(maximumLength:150)]
         public string Image { get; set; }
+
+        [StringLength(maximumLength: 50)]
         public string Username { get; set; }
+
         public DateTime CreatedAt { get; set; }
 
 
