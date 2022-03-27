@@ -13,22 +13,22 @@ namespace Core_Layer.Entities
         public bool IsDeleted { get; set; }
 
         [Required]
-        [StringLength(maximumLength:30)]
+        [StringLength(maximumLength:50)]
         public string FullName { get; set; }
 
 
         [Required]
-        [StringLength(maximumLength: 30)]
+        [StringLength(maximumLength: 50)]
         public string Phone { get; set; }
 
 
         [Required]
-        [StringLength(maximumLength: 30)]
+        [StringLength(maximumLength: 50)]
         public string Email { get; set; }
 
        
         
-        [StringLength(maximumLength: 300)]
+        [StringLength(maximumLength: 500)]
         public string Note { get; set; }
 
         public DateTime CreateAt{ get; set; }
