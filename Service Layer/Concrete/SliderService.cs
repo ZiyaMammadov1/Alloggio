@@ -8,7 +8,7 @@ namespace Service_Layer.Concrete
 {
     public class SliderService : ISliderService
     {
-        public void Add(Slider slider)
+        public void Add(Slider slider) 
         {
             throw new NotImplementedException();
         }
