@@ -1,5 +1,6 @@
 using Alloggio_MVC.Helpers.EmailSender;
 using Alloggio_MVC.Helpers.LayoutService;
+using Core_Layer.Abstract;
 using Core_Layer.Entities;
 using Data_Layer.Concrete;
 using Microsoft.AspNetCore.Builder;
@@ -46,7 +47,7 @@ namespace Alloggio_MVC
                     c.SignIn.RequireConfirmedEmail = true;
                 }).AddDefaultTokenProviders().AddEntityFrameworkStores<DataContext>();
             services.AddScoped<LayoutService>();
-            services.AddScoped<ISliderService,SliderService>();
+            services.AddScoped<SliderRepository>();
 
             services.AddScoped<IEmailSender, GmailSender>(x =>
              new GmailSender(

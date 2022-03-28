@@ -1,4 +1,6 @@
-﻿using Core_Layer.Entities;
+﻿using Core_Layer.Abstract;
+using Core_Layer.Entities;
+using Data_Layer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service_Layer.Concrete;
@@ -13,16 +15,16 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
     [Authorize(Roles = "Admin")]
     public class SliderController : Controller
     {
-        private readonly SliderService _sliderService;
+        private readonly SliderRepository _sliderRepository;
 
-        public SliderController(SliderService sliderService)
+        public SliderController(SliderRepository sliderRepository)
         {
-            _sliderService = sliderService;
+            _sliderRepository = sliderRepository;
         }
 
         public IActionResult Index()
         {
-            return View(_sliderService.GetAll());
+            return View(_sliderRepository.GetAll());
         }
         public IActionResult Create()
         {
