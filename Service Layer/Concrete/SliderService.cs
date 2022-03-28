@@ -1,13 +1,22 @@
 ﻿using Core_Layer.Entities;
+using Data_Layer.Concrete;
 using Service_Layer.Interface;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Service_Layer.Concrete
 {
     public class SliderService : ISliderService
     {
+        private readonly DataContext _context;
+
+        public SliderService(DataContext context)
+        {
+            _context = context;
+        }
+
         public void Add(Slider slider) 
         {
             throw new NotImplementedException();
@@ -30,7 +39,8 @@ namespace Service_Layer.Concrete
 
         public List<Slider> GetAll()
         {
-            throw new NotImplementedException();
+            List<Slider> sliders = _context.Sliders.ToList();
+            return sliders;
         }
 
         public void Update(int id, Slider slider)

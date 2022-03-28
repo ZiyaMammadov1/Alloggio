@@ -55,7 +55,13 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
                 return View(AdminLoginVM);
             }
 
-            var singIn = await _signManager.PasswordSignInAsync(Admin, AdminLoginVM.Password, false, false);
+            var singIn = await _signManager.PasswordSignInAsync(Admin, AdminLoginVM.Password,false,false);
+
+            if (!singIn.Succeeded)
+            {
+                ModelState.AddModelError("","Some problem occured");
+                return View(AdminLoginVM);
+            }
 
             return RedirectToAction("index", "dashboard");
         }
