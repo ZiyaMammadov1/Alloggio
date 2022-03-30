@@ -68,17 +68,17 @@ namespace Alloggio_MVC.Controllers
                 {
                     if (RegisterVm.UploadImage.Length < 2097152)
                     {
-                        string NewFileName = FileManager.Save(_env.WebRootPath, "assets/image/account", RegisterVm.UploadImage);
+                        string NewFileName = FileManager.Save(_env.WebRootPath, "assets/image/slider", RegisterVm.UploadImage);
                         member.Image = NewFileName;
                     }
                     else
                     {
-                        ModelState.AddModelError("UploadImage", "Image size can't be larger than 2mb");
+                        ModelState.AddModelError("Image", "Image size can't be larger than 2mb");
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError("UploadImage", "Image must be in png, jpg formats");
+                    ModelState.AddModelError("Image", "Image must be in png, jpg formats");
                     return View();
                 }
 
@@ -185,9 +185,6 @@ namespace Alloggio_MVC.Controllers
 
             return RedirectToAction("index", "home");
         }
-
-
-
 
         public async Task<IActionResult> Profile()
         {
@@ -317,8 +314,6 @@ namespace Alloggio_MVC.Controllers
 
             return RedirectToAction("profile", "account");
         }
-
-
 
         public IActionResult ForgotPassword()
         {
