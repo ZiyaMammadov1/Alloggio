@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewData["Title"] = "Create";
+}
+@model Room
+<div class=" grid-margin stretch-card" style="width:50%; margin: 0 auto;">
+    <div class="card">
+        
+        <div class="card-body">
+
+            <form class="forms-sample" asp-action="Create" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="exampleInputName1">Name</label>
+                    <input type="text" class="form-control" id="exampleInputName1" asp-for="Name">
+                    <span class="text-danger" asp-validation-for="Name"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="exampleInputName1">Size</label>
+                    <input type="text" class="form-control" id="exampleInputName1" asp-for="Size">
+                    <span class="text-danger" asp-validation-for="Size"></span>
+                </div>  
+
+                <div class="form-group">
+                    <label for="exampleInputName1">Guest Range</label>
+                    <input type="text" class="form-control" id="exampleInputName1" asp-for="GuestRange">
+                    <span class="text-danger" asp-validation-for="GuestRange"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputName1">Description</label>
+                    <textarea type="text" min="25" max="600" class="form-control" style="height:200px" asp-for="Description"></textarea>
+                    <span class="text-danger" asp-validation-for="Description"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputName1">Price</label>
+                    <input type="number" class="form-control" id="exampleInputName1" asp-for="Price">
+                    <span class="text-danger" asp-validation-for="Price"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputName1">Bed Count</label>
+                    <select class="form-select check_checkinInput"  asp-for="BedCount" asp-items="@(new SelectList(ViewBag.BedCount,"BedCount","BedCount"))">
+                    </select>
+                    <span class="text-danger" asp-validation-for="BedCount"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>File upload</label>
+                    <div class="input-group col-xs-12">
+                        <input type="file" class="form-control file-upload-info" asp-for="MainPhoto" placeholder="Upload Image">
+
+                    </div>
+                    <span class="text-danger" asp-validation-for="MainPhoto"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>File upload</label>
+                    <div class="input-group col-xs-12">
+                        <input type="file" class="form-control file-upload-info" asp-for="PanoramaPhoto" placeholder="Upload Image">
+
+                    </div>
+                    <span class="text-danger" asp-validation-for="PanoramaPhoto"></span>
+                </div>
+
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+                <button type="submit" class="btn btn-primary me-2">Submit</button>
+                <button asp-action="index" class="btn btn-light">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>

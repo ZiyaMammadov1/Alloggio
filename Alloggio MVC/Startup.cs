@@ -48,6 +48,8 @@ namespace Alloggio_MVC
                 }).AddDefaultTokenProviders().AddEntityFrameworkStores<DataContext>();
             services.AddScoped<LayoutService>();
             services.AddScoped<SliderRepository>();
+            services.AddScoped<RoomRepository>();
+            services.AddScoped<BedCountRepository>();
 
             services.AddScoped<IEmailSender, GmailSender>(x =>
              new GmailSender(

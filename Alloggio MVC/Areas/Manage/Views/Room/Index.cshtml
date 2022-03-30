@@ -1,0 +1,48 @@
+﻿@model List<Room>
+<div class="grid-margin stretch-card" style="width:95%; height:90%; margin: 0 auto; ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title" style="font-size:30px;">Room Table</h4>
+            <a asp-controller="room" asp-action="create" class="btn btn-outline-linkedin">Add Room</a>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Photo</th>
+                            <th>Name</th>
+                            <th>Size</th>
+                            <th>Guest Range</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Bed Count</th> 
+                            <th></th> 
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="~/assets/image/Room/RoomMainImage/@item.Image" alt="Alternate Text" style="width:100px; height:50px; border-radius:0;" />
+                                </td>
+                                <td>@item.Name</td>
+                                <td>@item.Size</td>
+                                <td>@item.GuestRange</td>
+                                <td>@(item.Description.Length>20?item.Description.Substring(0,20):item.Description)</td>
+                                <td>@item.Price</td>
+                                <td>@item.BedCount</td>
+                                <td><a class="btn btn-outline-warning" asp-action="edit" asp-route-id="@item.id">Update</a></td>
+                                <td><a class="btn btn-outline-danger" asp-action="delete" asp-route-id="@item.id">Delete</a></td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
