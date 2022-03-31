@@ -4,6 +4,7 @@ using Data_Layer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -156,6 +157,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
         {
             ViewBag.BedCount = _bedCountRepository.GetAll();
             ViewBag.Amenities = _amenitiesRepository.GetAll();
+            ViewBag.RoomAmenities = _roomAmenities.GetAll(x => x.Roomid == id).Include(x => x.Amenitie).ToList();
 
 
             Room room = _roomRepository.Get(id);
@@ -165,7 +167,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
                 return NotFound();
             }
 
-            room.AmenitiesIds = room.RoomAmenities.Select(c=>c.Amenitieid).ToList();
+            room.AmenitiesIds = room.RoomAmenities.Select(c => c.Amenitieid).ToList();
 
             return View(room);
         }
@@ -174,6 +176,8 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
         public IActionResult Edit(Room room)
         {
             ViewBag.BedCount = _bedCountRepository.GetAll();
+            ViewBag.Amenities = _amenitiesRepository.GetAll();
+            ViewBag.RoomAmenities = _roomAmenities.GetAll(x => x.Roomid == room.id).Include(x => x.Amenitie).ToList();
 
             if (!ModelState.IsValid)
             {
@@ -193,8 +197,30 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             currentRoom.Description = room.Description;
             currentRoom.Price = room.Price;
             currentRoom.BedCount = room.BedCount;
-            
-            if(room.MainPhoto != null)
+
+            var currentAmenities = currentRoom.RoomAmenities.ToList();
+
+            foreach (var amenity in currentAmenities)
+            {
+                _roomAmenities.Delete(amenity);
+                _roomAmenities.Commit();
+            }
+
+            var NewAmenitiesIds = room.AmenitiesIds.ToList();
+
+            foreach (var AmenityId in NewAmenitiesIds)
+            {
+                RoomAmenities newAmenity = new RoomAmenities
+                {
+                    Roomid = currentRoom.id,
+                    Amenitieid = AmenityId
+                };
+
+                _roomAmenities.Add(newAmenity);
+                _roomRepository.Commit();
+            }
+
+            if (room.MainPhoto != null)
             {
                 if (room.MainPhoto.ContentType == "image/jpeg" || room.MainPhoto.ContentType == "image/png" || room.MainPhoto.ContentType == "image/jpg")
                 {

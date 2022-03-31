@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,6 +42,36 @@ namespace Data_Layer.Concrete
         public int Commit()
         {
             return _context.SaveChanges();
+        }
+
+        public TEntity Get(Expression<Func<TEntity, bool>> predicate, params string[] includes)
+        {
+            var query = _context.Set<TEntity>().AsQueryable();
+
+            if (includes != null)
+            {
+                foreach (var item in includes)
+                {
+                    query = query.Include(item);
+                }
+            }
+
+            return  query.FirstOrDefault(predicate);
+        }
+
+        public IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate, params string[] includes)
+        {
+            var query = _context.Set<TEntity>().AsQueryable();
+
+            if (includes != null)
+            {
+                foreach (var item in includes)
+                {
+                    query = query.Include(item);
+                }
+            }
+
+            return query.Where(predicate);
         }
     }
 }
