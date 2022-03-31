@@ -36,18 +36,19 @@ namespace Core_Layer.Entities
 
         [Required]
         public int BedCount { get; set; }
-        public List<RoomAmenities> RoomAmenities { get; set; }
+        public List<RoomAmenities> RoomAmenities { get; set; } = new List<RoomAmenities>();
         public List<Comment> UserComments { get; set; }
         public List<OrderRooms> OrderRooms { get; set; }
 
         [NotMapped]
-        [Required]
         public IFormFile MainPhoto { get; set; }
 
 
         [NotMapped]
-        [Required]
         public IFormFile PanoramaPhoto { get; set; }
+
+        [NotMapped]
+        public List<int> AmenitiesIds { get; set; } = new List<int>();
 
 
 

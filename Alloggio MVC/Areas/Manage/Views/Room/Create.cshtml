@@ -20,7 +20,7 @@
                     <label for="exampleInputName1">Size</label>
                     <input type="text" class="form-control" id="exampleInputName1" asp-for="Size">
                     <span class="text-danger" asp-validation-for="Size"></span>
-                </div>  
+                </div>
 
                 <div class="form-group">
                     <label for="exampleInputName1">Guest Range</label>
@@ -42,24 +42,31 @@
 
                 <div class="form-group">
                     <label for="exampleInputName1">Bed Count</label>
-                    <select class="form-select check_checkinInput"  asp-for="BedCount" asp-items="@(new SelectList(ViewBag.BedCount,"BedCount","BedCount"))">
+                    <select  class="form-select check_checkinInput" asp-for="BedCount" asp-items="@(new SelectList(ViewBag.BedCount,"BedCount","BedCount"))">
                     </select>
                     <span class="text-danger" asp-validation-for="BedCount"></span>
                 </div>
 
                 <div class="form-group">
-                    <label>File upload</label>
+                    <label for="exampleInputName1">Amenities</label>
+                    <select style="height:150px" class="form-select check_checkinInput" asp-for="AmenitiesIds" asp-items="@(new SelectList(ViewBag.Amenities,"id", "Name"))">
+                    </select>
+                    <span class="text-danger" asp-validation-for="AmenitiesIds"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Main Image</label>
                     <div class="input-group col-xs-12">
-                        <input type="file" class="form-control file-upload-info" asp-for="MainPhoto" placeholder="Upload Image">
+                        <input type="file" class="form-control file-upload-info" asp-for="MainPhoto" placeholder="Main Photo">
 
                     </div>
                     <span class="text-danger" asp-validation-for="MainPhoto"></span>
                 </div>
 
                 <div class="form-group">
-                    <label>File upload</label>
+                    <label>Panoramic Image</label>
                     <div class="input-group col-xs-12">
-                        <input type="file" class="form-control file-upload-info" asp-for="PanoramaPhoto" placeholder="Upload Image">
+                        <input type="file" class="form-control file-upload-info" asp-for="PanoramaPhoto" placeholder="Panoramic Image">
 
                     </div>
                     <span class="text-danger" asp-validation-for="PanoramaPhoto"></span>

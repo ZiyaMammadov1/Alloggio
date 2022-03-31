@@ -68,7 +68,7 @@ namespace Alloggio_MVC.Controllers
             {
                 member = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin);
             }
-            if(checkIn < DateTime.Now || checkOut < DateTime.Now || checkIn > checkOut)
+            if(checkIn.Date < DateTime.Now || checkOut < DateTime.Now || checkIn > checkOut)
             {
                 return RedirectToAction("Index","Home");
             }

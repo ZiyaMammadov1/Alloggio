@@ -1,0 +1,7 @@
+﻿@model List<Amenitie>
+
+@foreach (var item in Model)
+{
+    @item.Name;
+    @Html.Raw(item.Image);
+}
