@@ -1,7 +1,39 @@
 ﻿@model List<Amenitie>
 
-@foreach (var item in Model)
-{
-    @item.Name;
-    @Html.Raw(item.Image);
-}
+<div class="grid-margin stretch-card" style="width:95%; height:90%; margin: 0 auto; ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title" style="font-size:30px;">Amenities Table</h4>
+            <a asp-controller="amenities" asp-action="create" class="btn btn-outline-linkedin">Add Amenities</a>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Icon</th>
+                            <th>Name</th>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.Raw(item.Image)
+                                </td>
+                                <td>@item.Name</td>
+                                <td><a class="btn btn-outline-warning" asp-action="edit" asp-route-id="@item.id">Update</a></td>
+                                <td><a class="btn btn-outline-danger" asp-action="delete" asp-route-id="@item.id">Delete</a></td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
