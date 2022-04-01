@@ -3247,6 +3247,8 @@ header .header-inner_hamburgerImage {
   width: 100%;
   height: 200px;
   resize: none;
+  font-size: 17px;
+  font-weight: 300;
 }
 
 .contactWrap_input {

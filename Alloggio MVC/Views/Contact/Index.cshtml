@@ -2,10 +2,10 @@
 @{
     ViewData["Title"] = "Contact";
 }
-@model Dictionary<string, string>
+@model ContactViewModel
 <!-- Menu header begin -->
 <div class="menuheader">
-    <img src="~/assets/image/contact/@Model["ContactImage"]" alt="">
+    <img src="~/assets/image/contact/@Model.Setting["ContactImage"]" alt="">
 
     <div class="menuheader_wrap">
         <p class="menuheader_menu">Contact</p>
@@ -18,16 +18,17 @@
     <div class="contactWrap_Wrapcontents">
         <div class="contactWrap_left">
 
-            <form action="/" method="post">
+            <form asp-action="index" method="post">
 
                 <div class="contactWrap_itemheader">
                     <div class="contactWrap_inputGroup">
                         <div class="contactWrap_header">
-                            First name
+                            Full name
                         </div>
                     </div>
                     <div class="contactWrap_inputContent">
-                        <input type="text" class="contactWrap_input">
+                        <input type="text" asp-for="Message.FullName" class="contactWrap_input">
+                        <span class="text-danger" asp-validation-for="Message.FullName"></span>
                     </div>
                 </div>
 
@@ -38,7 +39,9 @@
                         </div>
                     </div>
                     <div class="contactWrap_inputContent">
-                        <input type="text" class="contactWrap_input">
+                        <input type="text" asp-for="Message.Email" class="contactWrap_input">
+                        <span class="text-danger" asp-validation-for="Message.Email"></span>
+
                     </div>
                 </div>
 
@@ -49,13 +52,15 @@
                         </div>
                     </div>
                     <div class="contactWrap_inputContent">
-                        <textarea class="contentWrap_textarea"></textarea>
+                        <textarea asp-for="Message.Content" maxlength="300" class="contentWrap_textarea"></textarea>
+                        <span class="text-danger" asp-validation-for="Message.Content"></span>
+
                     </div>
                 </div>
-
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                 <div class="contactWrap_itemheader">
                     <div class="contactWrap_button">
-                        <a href="#" class="contactWrap_link">Send</a>
+                        <button type="submit" class="contactWrap_link">Send</button>
                     </div>
                 </div>
 
@@ -65,18 +70,18 @@
         <div class="contactWrap_right">
             <div class="contactWrap_item">
                 <div class="contactWrap_itemHeader contactWrap_item ">
-                    @Model["ContactHelpHeader"]
+                    @Model.Setting["ContactHelpHeader"]
                     <div class="contactWrap_rightItemDescription">
-                        @Model["ContactHelpContent"]
+                        @Model.Setting["ContactHelpContent"]
                     </div>
                 </div>
 
                 <div class="contactWrap_item">
                     <div class="contactWrap_itemHeader">
-                        Call us @Model["Phone"]
+                        Call us @Model.Setting["Phone"]
                     </div>
                     <div class="contactWrap_rightItemDescription">
-                        @Model["ContactPhoneContent"]
+                        @Model.Setting["ContactPhoneContent"]
 
                     </div>
                 </div>

@@ -1,3 +1,4 @@
+using Alloggio_MVC.Areas.Manage.Helpers.LayoutService;
 using Alloggio_MVC.Helpers.EmailSender;
 using Alloggio_MVC.Helpers.LayoutService;
 using Core_Layer.Abstract;
@@ -47,11 +48,13 @@ namespace Alloggio_MVC
                     c.SignIn.RequireConfirmedEmail = true;
                 }).AddDefaultTokenProviders().AddEntityFrameworkStores<DataContext>();
             services.AddScoped<LayoutService>();
+            services.AddScoped<AdminLayoutService>();
             services.AddScoped<SliderRepository>();
             services.AddScoped<RoomRepository>();
             services.AddScoped<BedCountRepository>();
             services.AddScoped<AmenitiesRepository>();
             services.AddScoped<RoomAmenitiesRepository>();
+            services.AddScoped<MessageRepository>();
 
             services.AddScoped<IEmailSender, GmailSender>(x =>
              new GmailSender(
