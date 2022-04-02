@@ -235,7 +235,8 @@ namespace Alloggio_MVC.Controllers
                     CheckOut = item.CheckOut,
                     Adult = item.Adult,
                     Children = item.Children,
-                    Infant = item.Infant
+                    Infant = item.Infant,
+                    IsDeleted = false
                 };
 
                 PaymentVm.Order.OrderRooms.Add(orderItem);

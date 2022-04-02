@@ -146,7 +146,7 @@
                                         Adults:@order.Adult Childrend:@order.Children Infant:@order.Infant
                                     </td>
                                     <td>
-                                        <a asp-action="deleteorder" asp-route-id="@order.OrderId"
+                                        <a asp-action="deleteorder" asp-route-id="@order.OrderId" asp-route-orderRoomid="@order.id"
                                            class="accountdetail_orderCrud accountdetail_delete btn btn-outline-danger">delete</a>
                                     </td>
                                 </tr>

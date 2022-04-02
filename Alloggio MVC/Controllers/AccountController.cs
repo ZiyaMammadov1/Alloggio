@@ -202,10 +202,17 @@ namespace Alloggio_MVC.Controllers
                 Fullname = UserModel.Fullname,
                 Phone = UserModel.Phone,
                 Image = UserModel.Image,
-                orders = _context.OrderRooms.Include(x=>x.Room).ToList()
+            };
 
+            List<OrderRooms> UserRooms = new List<OrderRooms>();
+            foreach (var item in AllOrders)
+            {
+                List<OrderRooms> rooms = _context.OrderRooms.Where(x=>x.OrderId == item.id && x.IsDeleted == false).Include(x => x.Room).ToList();
+                UserRooms.AddRange(rooms);
+            }
 
-        };
+            MemberModel.orders = UserRooms;
+          
             return View(MemberModel);
         }
 
@@ -387,16 +394,29 @@ namespace Alloggio_MVC.Controllers
             return RedirectToAction("login","account");
         }
 
-        public IActionResult DeleteOrder(int id)
+        public IActionResult DeleteOrder(int id, int orderRoomid)
         {
-            var orderRooms = _context.OrderRooms.FirstOrDefault(x=>x.OrderId == id);
-            var order = _context.Orders.FirstOrDefault(x=>x.id == orderRooms.OrderId);
-            if(orderRooms == null || order == null)
+            var orderRoom = _context.OrderRooms.FirstOrDefault(x => x.OrderId == id && x.id == orderRoomid);
+            orderRoom.IsDeleted = true;
+
+            var orderRooms = _context.OrderRooms.Where(x => x.OrderId == id).ToList();
+            var order = _context.Orders.FirstOrDefault(x => x.id == orderRoom.OrderId);
+
+            foreach (var item in orderRooms)
             {
-                return NotFound();
+                if(item.IsDeleted == false)
+                {
+                    order.IsDeleted = false;
+                    break;
+                }
+                else
+                {
+                    order.IsDeleted = true;
+                  
+                }
             }
-            _context.OrderRooms.Remove(orderRooms);
-            _context.Orders.Remove(order);
+
+
             _context.SaveChanges();
 
             return RedirectToAction("profile","account");
