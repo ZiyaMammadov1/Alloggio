@@ -1,6 +1,6 @@
 ﻿
 
-@model List<Order>
+@model List<OrderRooms>
 <div class="grid-margin stretch-card" style="width:80%; height:90%; margin: 0 auto; ">
     <div class="card">
         <div class="card-body">
@@ -9,13 +9,13 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Fullname</th>
-                            <th>Email</th>
-                            <th>Note</th>
-                            <th>Phone</th>
-                            <th>Create at</th>
-                            <th>Modified at</th>
-                            <th>Total Price</th>
+                            <th>Check In</th>
+                            <th>Check Out</th>
+                            <th>Count</th>
+                            <th>Price</th>
+                            <th>Adult</th>
+                            <th>Children</th>
+                            <th>Infant</th>
                             <th>Deleted</th>
                             <th></th>
                             <th></th>
@@ -26,33 +26,32 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    @item.FullName
+                                    @item.CheckIn.ToShortDateString()
                                 </td>
                                 <td>
-                                    @item.Email
+                                    @item.CheckOut.ToShortDateString()
                                 </td>
                                 <td>
-                                    @( item.Note == null || item.Note.Length < 10 ?item.Note:item.Note.Substring(0,10))
+                                    @item.Count
                                 </td>
                                 <td>
-                                    @item.Phone
+                                    @item.Price
                                 </td>
                                 <td>
-                                    @item.CreateAt.ToShortDateString()
+                                    @item.Adult
                                 </td>
                                 <td>
-                                   @item.ModifiedAt.ToShortDateString()
+                                    @item.Children
                                 </td>
                                 <td>
-                                    @item.TotalPrice
+                                    @item.Infant
                                 </td>
                                 <td>
                                     @item.IsDeleted
                                 </td>
-                                <td><a class="btn btn-outline-primary" asp-action="orderDetail" asp-route-id="@item.id">Detail</a></td>
-                                <td><a class="btn btn-outline-warning" asp-action="editOrder" asp-route-id="@item.id">Edit</a></td>
-                                <td><a class="btn btn-outline-danger" asp-action="deleteOrder" asp-route-id="@item.id">Delete</a></td>
-                              
+                                <td><a class="btn btn-outline-warning" asp-action="editOrderRoom" asp-route-id="@item.id">Edit</a></td>
+                                <td><a class="btn btn-outline-danger" asp-action="deleteOrderRoom" asp-route-id="@item.id">Delete</a></td>
+
                             </tr>
                         </tbody>
 

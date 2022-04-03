@@ -53,6 +53,8 @@ namespace Alloggio_MVC
             services.AddScoped<RoomRepository>();
             services.AddScoped<BedCountRepository>();
             services.AddScoped<AmenitiesRepository>();
+            services.AddScoped<OrderRepository>();
+            services.AddScoped<OrderRoomRepository>();
             services.AddScoped<RoomAmenitiesRepository>();
             services.AddScoped<MessageRepository>();
 

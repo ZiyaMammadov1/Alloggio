@@ -354,8 +354,6 @@ namespace Alloggio_MVC.Controllers
             return RedirectToAction("index","home");
         }
 
-
-
         public IActionResult ResetPassword(string userid, string token)
         {
             if(userid == null || token == null)
