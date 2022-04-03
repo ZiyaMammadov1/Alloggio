@@ -99,14 +99,10 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
            
             _orderRoomRepository.Commit();
 
-            return View("index", _orderRepository.GetAll());
+            return RedirectToAction("index");
 
         }
-        public IActionResult AcceptOrder(int id)
-        {
-            return View();
-        }
-
+   
         public IActionResult EditOrder(int id)
         {
             var order = _orderRepository.Get(x=>x.id == id);
@@ -115,6 +111,67 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
                 return NotFound();
             }
             return View(order);
+        }
+
+        [HttpPost]
+        public IActionResult EditOrder (Order order)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(order);
+            }
+            Order CurrentOrder = _orderRepository.Get(x=>x.id == order.id);
+            if(CurrentOrder == null)
+            {
+                return NotFound();
+            }
+            CurrentOrder.FullName = order.FullName;
+            CurrentOrder.Email= order.Email;
+            CurrentOrder.Phone = order.Phone;
+            CurrentOrder.CreateAt = order.CreateAt;
+            CurrentOrder.ModifiedAt = DateTime.Now;
+            CurrentOrder.TotalPrice = order.TotalPrice;
+            CurrentOrder.Note = order.Note;
+
+            _orderRepository.Update(CurrentOrder);
+            _orderRepository.Commit();
+
+            return RedirectToAction("index");
+
+        }
+
+        public IActionResult EditOrderRoom (int id)
+        {
+            var room = _orderRoomRepository.Get(x=>x.id == id);
+            if(room == null)
+            {
+                return NotFound();
+            }
+            return View(room);
+        }
+
+        [HttpPost]
+        public IActionResult EditOrderRoom(OrderRooms orderroom)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View(orderroom);
+            }
+            var currentOrderRoom = _orderRoomRepository.Get(x=>x.id == orderroom.id);
+            if(currentOrderRoom == null)
+            {
+                return NotFound();
+            }
+            currentOrderRoom.Count = orderroom.Count;
+            currentOrderRoom.Price = orderroom.Price;
+            currentOrderRoom.Adult = orderroom.Adult;
+            currentOrderRoom.Children = orderroom.Children;
+            currentOrderRoom.Infant = orderroom.Infant;
+            _orderRoomRepository.Update(currentOrderRoom);
+            _orderRoomRepository.Commit();
+
+            return RedirectToAction("index");
         }
     }
 }

@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewData["Title"] = "Create";
+}
+@model OrderRooms
+<div class=" grid-margin stretch-card" style="width:50%; margin: 0 auto;">
+    <div class="card">
+
+        <div class="card-body">
+
+            <form class="forms-sample" asp-action="EditOrderRoom" method="post">
+
+                @*<div class="form-group">
+                    <label for="exampleInputName1">Check In</label>
+                    <input type="text" class="form-control" asp-for="CheckIn" />
+                    <span class="text-danger" asp-validation-for="CheckIn"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="exampleInputName1">Check Out</label>
+                    <input type="text" class="form-control" asp-for="CheckOut" />
+                    <span class="text-danger" asp-validation-for="CheckOut"></span>
+                </div>*@
+
+
+                <div class="form-group">
+                    <label for="exampleInputName1">Count</label>
+                    <input type="number" class="form-control" asp-for="Count" />
+                    <span class="text-danger" asp-validation-for="Count"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputName1">Price</label>
+                    <input type="number" class="form-control" id="exampleInputName1" asp-for="Price">
+                    <span class="text-danger" asp-validation-for="Price"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputName1">Adult</label>
+                    <input type="number" class="form-control" id="exampleInputName1" asp-for="Adult">
+                    <span class="text-danger" asp-validation-for="Adult"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputName1">Children</label>
+                    <input type="number" class="form-control" id="exampleInputName1" asp-for="Children">
+                    <span class="text-danger" asp-validation-for="Children"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputName1">Infant</label>
+                    <input type="number" class="form-control" id="exampleInputName1" asp-for="Infant">
+                    <span class="text-danger" asp-validation-for="Infant"></span>
+                </div>
+
+
+
+
+
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+                <button type="submit" class="btn btn-primary me-2">Submit</button>
+                <button asp-action="index" class="btn btn-light">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
