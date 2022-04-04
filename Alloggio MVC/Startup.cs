@@ -57,6 +57,7 @@ namespace Alloggio_MVC
             services.AddScoped<OrderRoomRepository>();
             services.AddScoped<RoomAmenitiesRepository>();
             services.AddScoped<MessageRepository>();
+            services.AddScoped<CookingRepository>();
 
             services.AddScoped<IEmailSender, GmailSender>(x =>
              new GmailSender(

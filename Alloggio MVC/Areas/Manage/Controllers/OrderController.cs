@@ -30,7 +30,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
         public IActionResult Index()
         {
 
-            return View(_orderRepository.GetAll());
+            return View(_orderRepository.GetAll(x=>x.IsDeleted == false).ToList());
         }
 
         public IActionResult OrderDetail(int id)
@@ -209,7 +209,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
                         }
 
                     }
-                    else if(Date.CheckIn.Month > currentOrderRoom.CheckIn.Month)
+                    else if (Date.CheckIn.Month > currentOrderRoom.CheckIn.Month)
                     {
 
                         for (int i = Date.CheckIn.Day; i <= MonthDayCount; i++)
