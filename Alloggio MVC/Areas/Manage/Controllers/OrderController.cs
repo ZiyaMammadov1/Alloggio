@@ -1,5 +1,6 @@
 ﻿using Core_Layer.Entities;
 using Data_Layer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
 {
 
     [Area("manage")]
-
+    [Authorize(Roles = "Admin")]
     public class OrderController : Controller
     {
         private readonly OrderRepository _orderRepository;

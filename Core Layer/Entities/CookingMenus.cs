@@ -9,9 +9,11 @@ namespace Core_Layer.Entities
     {
         public int id { get; set; }
 
+        [Required]
         [StringLength(maximumLength:50)]
         public string FoodName { get; set; }
 
+        [Required]
         [StringLength(maximumLength: 150)]
         public string FoodDescription { get; set; }
     }

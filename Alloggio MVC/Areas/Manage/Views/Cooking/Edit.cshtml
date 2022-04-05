@@ -1,0 +1,51 @@
+﻿@model CookingMenus
+
+<div class="grid-margin stretch-card" style="width:95%; height:90%; margin: 0 auto; ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title" style="font-size:30px;">Menus</h4>
+            <form asp-action="edit" method="post">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <label for="exampleInputName1">Name</label>
+                                        <input type="text" class="form-control" id="exampleInputName1" asp-for="FoodName">
+                                        <span class="text-danger" asp-validation-for="FoodName"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <label for="exampleInputName1">Description</label>
+                                        <input type="text" class="form-control" id="exampleInputName1" asp-for="FoodDescription">
+                                        <span class="text-danger" asp-validation-for="FoodDescription"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+                    <button type="submit" class="btn btn-primary me-2">Submit</button>
+                    <button asp-action="index" class="btn btn-light">Cancel</button>
+
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
