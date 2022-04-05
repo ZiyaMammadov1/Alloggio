@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "Create";
+}
+@model Setting
+<div class=" grid-margin stretch-card" style="width:50%; margin: 0 auto;">
+    <div class="card">
+
+        <div class="card-body">
+
+            <form class="forms-sample" asp-action="edit" method="post" enctype="multipart/form-data">
+
+                <input type="hidden"  asp-for="id" />
+                <input type="hidden"  asp-for="Key" />
+                <input type="hidden"  asp-for="Value" />
+
+                <div class="register_group">
+                    <div class="register_groupName">
+                        Photo
+                    </div>
+                    <div class="register_groupInput">
+                        <input class="form-control register_input" type="file" asp-for="Photo" style="border: 1px solid gray;">
+                        <span asp-validation-for="Photo" class="text-danger"></span>
+
+                    </div>
+                </div>
+
+                <br />
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+                <button type="submit" class="btn btn-primary me-2">Submit</button>
+                <button asp-action="index" class="btn btn-light">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>

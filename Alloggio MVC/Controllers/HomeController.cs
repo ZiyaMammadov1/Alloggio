@@ -72,9 +72,6 @@ namespace Alloggio_MVC.Controllers
             return View(newHomeVM);
         }
 
-
-
-
         public IActionResult Menu()
         {
             CookingMenuViewModel cookingVm = new CookingMenuViewModel
@@ -84,8 +81,6 @@ namespace Alloggio_MVC.Controllers
             };
             return View(cookingVm);
         }
-
-
 
         public IActionResult Gallery()
         {

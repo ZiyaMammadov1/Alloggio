@@ -1,0 +1,35 @@
+﻿@model List<String>
+
+<div class="grid-margin stretch-card" style="width:95%; height:90%; margin: 0 auto; ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title" style="font-size:30px;">Amenities Table</h4>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="font-size:30px; color: dodgerblue">
+                                    <img src="~/assets/image/Gallery/@item" alt="Alternate Text" style="width: 150px; height: 100px; border-radius: unset; object-fit:cover" />
+                                </td>
+                                <td><a class="btn btn-outline-warning" asp-action="edit" asp-route-key="@item">Update</a></td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
