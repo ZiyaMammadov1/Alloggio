@@ -59,7 +59,8 @@ namespace Alloggio_MVC.Controllers
                 Email = RegisterVm.Email,
                 UserName = RegisterVm.Username,
                 Phone = RegisterVm.Phone,
-                IsAdmin = false
+                IsAdmin = false,
+                IsDelete = false
             };
 
             if (RegisterVm.UploadImage != null)

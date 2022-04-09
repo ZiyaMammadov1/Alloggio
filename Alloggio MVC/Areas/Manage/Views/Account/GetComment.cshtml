@@ -1,0 +1,42 @@
+﻿@model List<Comment>
+<div class="grid-margin stretch-card" style="width:95%; height:90%; margin: 0 auto; ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title" style="font-size:30px;">Comment Table</h4>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Room name</th>
+                            <th>Createat</th>
+                            <th>Text</th>
+                            <th></th>  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="~/assets/image/account/@item.AppUser.Image" alt="No Image" />
+                                </td>
+                                <td>@item.AppUser.Fullname</td>
+                                <td>@item.Room.Name</td>
+                                <td>@item.CreatedAt</td>
+                                <td>@item.Text</td>
+
+                                <td><a class="btn btn-outline-danger" asp-action="deletecomment" asp-route-id="@item.Id">Delete</a></td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

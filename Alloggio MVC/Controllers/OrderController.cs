@@ -20,7 +20,8 @@ namespace Alloggio_MVC.Controllers
 
         private readonly UserManager<AppUser> _userManager;
         private readonly DataContext _context;
-
+        
+        
         public OrderController(UserManager<AppUser> userManager, DataContext context)
         {
             _userManager = userManager;
@@ -68,10 +69,10 @@ namespace Alloggio_MVC.Controllers
             {
                 member = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin);
             }
-            if(checkIn.Date < DateTime.Now || checkOut < DateTime.Now || checkIn > checkOut)
-            {
-                return RedirectToAction("Index","Home");
-            }
+            //if(checkIn >= DateTime.Now || checkOut < DateTime.Now || checkIn > checkOut)
+            //{
+            //    return RedirectToAction("Index","Home");
+            //}
             if (member != null)
             {
                 Core_Layer.Entities.BasketItem item = _context.BasketItems.FirstOrDefault(x => x.AppUserId == member.Id && x.RoomId == id);

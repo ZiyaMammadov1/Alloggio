@@ -1,0 +1,54 @@
+﻿@model Setting
+
+<div class="grid-margin stretch-card" style="width:95%; height:90%; margin: 0 auto; ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title" style="font-size:30px;">Setting Table</h4>
+            <form asp-action="edit" method="post">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Key</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <input type="hidden" asp-for="id"/>
+                                <td>
+                                    <div class="form-group">
+                                        <label for="exampleInputName1">Key</label>
+                                        <input type="text" class="form-control" id="exampleInputName1" asp-for="Key" disabled>
+                                        <span class="text-danger" asp-validation-for="Key"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <label for="exampleInputName1">Value</label>
+                                        <input type="text" class="form-control" id="exampleInputName1" asp-for="Value">
+                                        <span class="text-danger" asp-validation-for="Value"></span>
+                                    </div>
+                                    @if(Model.id == 7)
+                                    {
+                                        <span class="text-danger">add "subscription_emailIcon" class name on this icon</span>
+                                    }
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+                    <button type="submit" class="btn btn-primary me-2">Submit</button>
+                    <button asp-action="index" class="btn btn-light">Cancel</button>
+
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

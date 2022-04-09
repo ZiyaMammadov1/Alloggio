@@ -1,0 +1,55 @@
+﻿@model List<AppUser>
+<div class="grid-margin stretch-card" style="width:95%; height:90%; margin: 0 auto; ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title" style="font-size:30px;">Users Table</h4>
+            <a asp-controller="account" asp-action="createuser" class="btn btn-outline-linkedin">Add Admin</a>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Photo</th>
+                            <th>Fullname</th>
+                            <th>Phone</th>
+                            <th>IsAdmin</th>
+                            <th></th>
+                            <th></th>  
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="~/assets/image/account/@item.Image" alt="No Image" />
+                                </td>
+                                <td>@item.Fullname</td>
+                                <td>@item.Phone</td>
+                                <td>@item.IsAdmin</td>
+                                @if (item.IsAdmin != true)
+                                {
+                                    <td><a class="btn btn-outline-primary" asp-action="getcomment" asp-route-id="@item.Id">Comment</a></td>
+                                    <td><a class="btn btn-outline-secondary" asp-action="getorder" asp-route-id="@item.Id">Order</a></td>
+
+                                }else{
+                                    <td>-</td>
+                                    <td>-</td>
+                                }
+
+
+                                <td><a class="btn btn-outline-warning" asp-action="edituser" asp-route-id="@item.Id">Update</a></td>
+                                <td><a class="btn btn-outline-danger" asp-action="deleteuser" asp-route-id="@item.Id">Delete</a></td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,57 @@
+﻿@model AppUser
+
+<div class="grid-margin stretch-card" style="width:95%; height:90%; margin: 0 auto; ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title" style="font-size:30px;">User Info</h4>
+            <form asp-action="createuser" method="post">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                      
+                        <tbody>
+                            <tr>                                                                    
+                                <td>
+
+                                        <input type="hidden" class="form-control" id="exampleInputName1" asp-for="Fullname" value="NewAdmin">
+                        
+
+                                    <div class="form-group">
+                                        <label for="exampleInputName1">Username</label>
+                                        <p class="text-danger">Username only contains number or letter <span style="color:yellow; background-color:black">without white-space</span></p>
+                                        <input type="text" class="form-control" id="exampleInputName1" asp-for="UserName">
+                                        <span class="text-danger" asp-validation-for="UserName"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputName1">Password</label>
+                                        <input type="text" class="form-control" id="exampleInputName1" asp-for="Password">
+                                        <span class="text-danger" asp-validation-for="Password"></span>
+                                    </div>
+
+                                     <div class="form-group">
+                                        <label for="exampleInputName1">Email</label>
+                                        <input type="text" class="form-control" id="exampleInputName1" asp-for="Email">
+                                        <span class="text-danger" asp-validation-for="Email"></span>
+                                    </div>
+                                </td>
+
+                                <input  type="hidden" name="Phone" value="1231212"/>
+                               
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+                    <button type="submit" class="btn btn-primary me-2">Submit</button>
+                    <button asp-action="getuser" class="btn btn-light">Cancel</button>
+
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

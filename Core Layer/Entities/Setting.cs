@@ -11,7 +11,7 @@ namespace Core_Layer.Entities
     {
         public int id { get; set; }
 
-        [Required]
+       
         [StringLength(maximumLength:150)]
         public string Key { get; set; }
 
