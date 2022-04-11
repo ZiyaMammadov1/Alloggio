@@ -1,6 +1,4 @@
-﻿
-
-@model List<OrderRooms>
+﻿@model List<OrderRooms>
 <div class="grid-margin stretch-card" style="width:80%; height:90%; margin: 0 auto; ">
     <div class="card">
         <div class="card-body">
@@ -49,9 +47,11 @@
                                 <td>
                                     @item.IsDeleted
                                 </td>
-                                <td><a class="btn btn-outline-warning" asp-action="editOrderRoom" asp-route-id="@item.id">Edit</a></td>
-                                <td><a class="btn btn-outline-danger" asp-action="deleteOrderRoom" asp-route-id="@item.id">Delete</a></td>
-
+                                @if (ViewBag.deleted != true)
+                                {
+                                    <td><a class="btn btn-outline-warning" asp-action="editOrderRoom" asp-route-id="@item.id">Edit</a></td>
+                                    <td><a class="btn btn-outline-danger" asp-action="deleteOrderRoom" asp-route-id="@item.id">Delete</a></td>
+                                }
                             </tr>
                         </tbody>
 

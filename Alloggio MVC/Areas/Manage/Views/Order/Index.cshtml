@@ -1,10 +1,19 @@
-﻿
-
-@model List<Order>
+﻿@model List<Order>
 <div class="grid-margin stretch-card" style="width:90%; height:90%; margin: 0 auto; ">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title" style="font-size:30px;">Order Table</h4>
+            @if( ViewBag.IsDeleted == true)
+            {
+                            <a class="btn btn-primary text-white" asp-action="index">All Order Without Deleted</a>
+
+            }
+            else
+            {
+                             <a class="btn btn-danger text-white" asp-action="index" asp-route-key="deleted">All Order With Deleted</a>
+
+            
+            }
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
@@ -42,7 +51,7 @@
                                     @item.CreateAt.ToShortDateString()
                                 </td>
                                 <td>
-                                   @item.ModifiedAt.ToShortDateString()
+                                    @item.ModifiedAt.ToShortDateString()
                                 </td>
                                 <td>
                                     @item.TotalPrice
@@ -50,10 +59,16 @@
                                 <td>
                                     @item.IsDeleted
                                 </td>
+                                @if (ViewBag.IsDeleted == true)
+                                {
+                                    <td><a class="btn btn-outline-primary" asp-action="orderDetail" asp-route-id="@item.id" asp-route-key="deleted">Detail</a></td>
+
+                                }
+                                else{
                                 <td><a class="btn btn-outline-primary" asp-action="orderDetail" asp-route-id="@item.id">Detail</a></td>
                                 <td><a class="btn btn-outline-warning" asp-action="editOrder" asp-route-id="@item.id">Edit</a></td>
                                 <td><a class="btn btn-outline-danger" asp-action="deleteOrder" asp-route-id="@item.id">Delete</a></td>
-                              
+                                }
                             </tr>
                         </tbody>
 

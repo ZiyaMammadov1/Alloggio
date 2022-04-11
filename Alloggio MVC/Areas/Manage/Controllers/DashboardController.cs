@@ -39,6 +39,23 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
                 dailyAmount += order.TotalPrice;
             }
             ViewBag.Amount = dailyAmount;
+            List<decimal> Profit = new List<decimal>(11);
+            for (int i = 1; i <=12 ; i++)
+            {
+
+                decimal profit = 0;
+                var orders = _orderRepository.GetAll(x => x.CreateAt.Month == i).Where(x => x.IsDeleted == false).ToList();
+                foreach (var order in orders)
+                {
+                    profit += order.TotalPrice;
+                }
+                Profit.Insert(i-1, profit);
+            }
+            ViewBag.Profit = Profit;
+
+
+
+
             return View();
         }
 

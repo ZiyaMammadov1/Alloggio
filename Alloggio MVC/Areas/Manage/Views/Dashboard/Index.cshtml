@@ -7,7 +7,7 @@
                     <div>
                         <h4 class="font-weight-bold mb-0">Allogio Dashboard</h4>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -72,13 +72,16 @@
         </div>
 
 
-        <div class="col-lg-6 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Spirit Ford</h4>
-                    <canvas id="doughnutChart"></canvas>
+        <div class="row">
+            <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"></h4>
+                        <canvas id="areaChart"></canvas>
+                    </div>
                 </div>
             </div>
+
         </div>
 
 
@@ -89,114 +92,62 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
-    $(function () {
+        $(function () {
 
-        var doughnutPieData = {
-            datasets: [{
-                data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-                backgroundColor: [
-                    'rgba(225,179,132,0.5)',
-                    'rgba(54, 162, 235, 0.5)',
-                    'rgba(255, 206, 86, 0.5)',
-                    'rgba(75, 192, 192, 0.5)',
-                    'rgba(153, 102, 255, 0.5)',
-                    'rgba(255, 159, 64, 0.5)',
-                    'rgba(54, 162, 235, 0.5)',
-                    'rgba(255, 206, 86, 0.5)',
-                    'rgba(75, 192, 192, 0.5)',
-                    'rgba(153, 102, 255, 0.5)',
-                    'rgba(255, 129, 64, 0.5)',
-                    'rgba(174, 162, 235, 0.5)',
-                    'rgba(255, 206, 86, 0.5)',
-                    'rgba(125, 142, 192, 0.5)',
-                    'rgba(153, 102, 255, 0.5)',
-                    'rgba(255, 159, 164, 0.5)',
-                    'rgba(54, 162, 235, 0.5)',
-                    'rgba(225, 226, 86, 0.5)',
-                    'rgba(175, 192, 192, 0.5)',
-                    'rgba(153, 152, 255, 0.5)',
-                    'rgba(255, 159, 211, 0.5)',
-                    'rgba(54, 162, 25, 0.5)',
-                    'rgba(255, 206, 86, 0.5)',
-                    'rgba(175, 142, 192, 0.5)',
-                    'rgba(153, 172, 235, 0.5)',
-                    'rgba(255, 179, 164, 0.5)',
-                    'rgba(164, 162, 205, 0.5)',
-                    'rgba(255, 26, 146, 0.5)',
-                    'rgba(175, 122, 122, 0.5)',
-                    'rgba(153, 192, 25, 0.5)',
-                    'rgba(255, 223, 164, 0.5)',
-                ],
-                borderColor: [
-                    'rgba(225,179,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 129, 64, 1)',
-                    'rgba(174, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(125, 142, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 164, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(225, 226, 86, 1)',
-                    'rgba(175, 192, 192, 1)',
-                    'rgba(153, 152, 255, 1)',
-                    'rgba(255, 159, 211, 1)',
-                    'rgba(54, 162, 25, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(175, 142, 192, 1)',
-                    'rgba(153, 172, 235, 1)',
-                    'rgba(255, 179, 164, 1)',
-                    'rgba(164, 162, 205, 1)',
-                    'rgba(255, 26, 146, 1)',
-                    'rgba(175, 122, 122, 1)',
-                    'rgba(153, 192, 25, 1)',
-                    'rgba(255, 223, 164, 1)',
-                ],
-            }],
+              var areaData = {
+        labels: ["January", "February", "March", "April", "May","June", "July", "August", "September", "October","November", "December"],
+        datasets: [{
+          label: 'Profit during the month',
+          data: [@ViewBag.Profit[0], @ViewBag.Profit[1], @ViewBag.Profit[2], @ViewBag.Profit[3], @ViewBag.Profit[4], @ViewBag.Profit[5], @ViewBag.Profit[6], @ViewBag.Profit[7], @ViewBag.Profit[8], @ViewBag.Profit[9], @ViewBag.Profit[10], @ViewBag.Profit[11]],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+             'rgba(255, 99, 132, 0.2)',
+            'rgba(114, 12, 255, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 142, 0.2)',
+            'rgba(13, 102, 255, 0.2)',
+            'rgba(125, 179, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1,
+          fill: true, // 3: no fill
+        }]
+      };
 
-            // These labels appear in the legend and in the tooltips when hovering different arcs
-            labels: [
-                "asd",
-                "asd",
-                "asd",
-                "asd",
-                "asd",
-                "asd",
-                "asd",
-                "asd",
-                "asd",
-                "asd",
-                "asd",
-                "asd",
-                "asd",
-                "asd",
-            ]
-        };
-
-        var doughnutPieOptions = {
-            responsive: true,
-            animation: {
-                animateScale: true,
-                animateRotate: true
-            }
-        };
-
-        if ($("#doughnutChart").length) {
-            var doughnutChartCanvas = $("#doughnutChart").get(0).getContext("2d");
-            var doughnutChart = new Chart(doughnutChartCanvas, {
-                type: 'doughnut',
-                data: doughnutPieData,
-                options: doughnutPieOptions
-            });
+      var areaOptions = {
+        plugins: {
+          filler: {
+            propagate: true
+          }
         }
+      }
 
-    });
+          if ($("#areaChart").length) {
+      var areaChartCanvas = $("#areaChart").get(0).getContext("2d");
+      var areaChart = new Chart(areaChartCanvas, {
+        type: 'line',
+        data: areaData,
+        options: areaOptions
+      });
+    }
+
+        });
 </script>

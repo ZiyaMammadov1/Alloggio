@@ -28,19 +28,35 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             _orderRoomRepository = orderRoomRepository;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string? key)
         {
+            if (string.IsNullOrEmpty(key) && key != "deleted")
+            {
+                return View(_orderRepository.GetAll(x => x.IsDeleted == false).ToList());
+            }
+            ViewBag.IsDeleted = true;
+            return View(_orderRepository.GetAll().ToList());
 
-            return View(_orderRepository.GetAll(x=>x.IsDeleted == false).ToList());
         }
 
-        public IActionResult OrderDetail(int id)
+        public IActionResult OrderDetail(int id, string? key)
         {
-            List<OrderRooms> rooms = _orderRoomRepository.GetAll(x => x.OrderId == id).ToList();
+            List<OrderRooms> rooms = new List<OrderRooms>();
+            if (key == "deleted")
+            {
+                rooms = _orderRoomRepository.GetAll(x => x.OrderId == id).ToList();
+                ViewBag.deleted = true;
+            }
+            else
+            {
+                rooms = _orderRoomRepository.GetAll(x => x.OrderId == id).Where(x => x.IsDeleted == false).ToList();
+
+            }
             if (rooms == null)
             {
                 return NotFound();
             }
+
 
             return View(rooms);
         }
