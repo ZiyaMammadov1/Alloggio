@@ -29,7 +29,7 @@ namespace Alloggio_MVC.Controllers
             var CurrentBlog = _context.Blogs.FirstOrDefault(x=>x.id == id);
             if(CurrentBlog == null)
             {
-                return RedirectToAction("404 Error Page");
+                return RedirectToAction("notfound","home");
             }
             return View(CurrentBlog);
         }

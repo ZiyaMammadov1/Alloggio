@@ -49,7 +49,8 @@ namespace Alloggio_MVC.Controllers
             }
             else
             {
-                return RedirectToAction("404 Not found");
+                return RedirectToAction("notfound", "home");
+
             }
 
             if (SelectOrderRoom.Count == 0)
@@ -116,7 +117,8 @@ namespace Alloggio_MVC.Controllers
 
             if (RoomDetailMV.Room == null)
             {
-                return RedirectToAction("404 error page");
+                return RedirectToAction("notfound", "home");
+
             }
 
             return View(RoomDetailMV);
@@ -156,7 +158,8 @@ namespace Alloggio_MVC.Controllers
 
             if (RoomDetailMV.Room == null)
             {
-                return RedirectToAction("404 error page");
+                return RedirectToAction("notfound", "home");
+
             }
 
 

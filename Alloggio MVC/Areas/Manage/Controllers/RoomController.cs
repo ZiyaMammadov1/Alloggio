@@ -85,8 +85,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("AmenitiesIds", "Amenities not found");
-                        return View(Room);
+                        return RedirectToAction("notfound", "dashboard", "manage");
                     }
                 }
             }
@@ -144,7 +143,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             Room currentRoom = _roomRepository.Get(id);
             if (currentRoom == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
             FileManager.Delete(_env.WebRootPath, "assets/image/Room/RoomMainImage", currentRoom.Image);
             FileManager.Delete(_env.WebRootPath, "assets/image/Room/RoomPanoramicImage", currentRoom.PanoramaImage);
@@ -164,7 +163,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
 
             if (room == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
 
             room.AmenitiesIds = room.RoomAmenities.Select(c => c.Amenitieid).ToList();
@@ -188,7 +187,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
 
             if(currentRoom == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
 
             currentRoom.Name = room.Name;

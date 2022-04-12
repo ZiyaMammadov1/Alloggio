@@ -169,7 +169,7 @@ namespace Alloggio_MVC.Controllers
             AppUser member = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
             if (member == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "home");
             }
 
             List<Core_Layer.Entities.BasketItem> BasketItems = _context.BasketItems.Include(x => x.Room).Where(x => x.AppUserId == member.Id).ToList();

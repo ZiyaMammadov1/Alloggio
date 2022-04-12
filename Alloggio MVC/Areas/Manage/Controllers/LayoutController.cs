@@ -25,7 +25,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
 
             if(message == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound","dashboard","manage");
             }
             else
             {

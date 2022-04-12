@@ -35,7 +35,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
         {
             return View();
         }
-
+        
         [HttpPost]
         public async Task<IActionResult> Login(AdminLoginViewModel AdminLoginVM)
         {
@@ -82,7 +82,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             var currentUser = _userManager.Users.FirstOrDefault(x => x.Id == id);
             if (currentUser == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
             currentUser.IsDelete = true;
            await _userManager.UpdateAsync(currentUser);
@@ -105,7 +105,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             string key = comment.AppUser.Id;
             if (comment == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
             _context.UserComments.Remove(comment);
             _context.SaveChanges();
@@ -127,7 +127,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             var user = _userManager.Users.FirstOrDefault(x=>x.Id == id);
             if(user == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
             return View(user);
         }
@@ -139,7 +139,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             var currentUser = _userManager.Users.FirstOrDefault(x=>x.Id== user.Id);
             if(currentUser == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
             if (!ModelState.IsValid)
             {
@@ -214,7 +214,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
 
             if(Admin == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             } 
 
             var defaultPasswordAdded = await _userManager.AddPasswordAsync(Admin, user.Password);

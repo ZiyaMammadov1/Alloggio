@@ -51,7 +51,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             var currentCookie = _cookingRepository.Get(x => x.id == id);
             if (currentCookie == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
             return View(currentCookie);
         }
@@ -66,7 +66,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             var currentCookie = _cookingRepository.Get(x => x.id == menu.id);
             if (currentCookie == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
             currentCookie.FoodName = menu.FoodName;
             currentCookie.FoodDescription = menu.FoodDescription;
@@ -80,7 +80,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             var currentCookie = _cookingRepository.Get(x=>x.id == id);
             if(currentCookie == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
             _cookingRepository.Delete(currentCookie);
             _cookingRepository.Commit();

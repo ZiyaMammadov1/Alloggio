@@ -84,7 +84,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             Blog blog = _blogRepository.Get(x=>x.id == id);
             if(blog == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
             return View(blog);
         }
@@ -95,7 +95,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             var currentBlog = _blogRepository.Get(x=>x.id == blog.id);
             if(currentBlog == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
             if (!ModelState.IsValid)
             {
@@ -140,7 +140,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             var currentBlog = _blogRepository.Get(x=>x.id == id);
             if(currentBlog == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
             FileManager.Delete(_env.WebRootPath, "assets/image/Blog/Images", currentBlog.Image);
 

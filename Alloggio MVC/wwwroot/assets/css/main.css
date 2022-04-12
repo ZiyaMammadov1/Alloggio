@@ -908,7 +908,7 @@ header .header-inner_hamburgerImage {
 }
 
 .suit_card {
-  background-color: transparent;
+  background-color: #FAF9F5;
   font-family: 'Cormorant Garamond', serif;
   position: relative;
   border-radius: 5px;
@@ -1973,82 +1973,6 @@ header .header-inner_hamburgerImage {
   width: 100%;
 }
 
-.rules {
-  position: unset;
-  display: none;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  background-color: rgba(128, 128, 128, 0.719);
-  -webkit-transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.rules_content {
-  position: absolute;
-  top: 10%;
-  left: 17%;
-  width: 70%;
-  margin: 0 auto;
-  border-radius: 20px;
-  padding: 20px;
-  background-color: white;
-}
-
-.rules_header {
-  padding: 0 30px;
-  font-size: 30px;
-  font-family: 'Cormorant Garamond', serif;
-}
-
-.rules_rules {
-  width: 90%;
-  padding: 20px 0;
-  margin: 0 auto;
-  font-size: 16px;
-  font-weight: 300;
-  overflow: hidden;
-}
-
-.rules_button {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.rules_link {
-  display: inline-block;
-  width: 150px;
-  height: 50px;
-  font-size: 17px;
-  font-weight: 352;
-  border: 1px solid gray;
-  text-decoration: none;
-  color: black;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-transition: .3s;
-  transition: .3s;
-}
-
-.rules_link:hover {
-  color: #b56953;
-  cursor: pointer;
-}
-
 @media only screen and (max-width: 1200px) {
   body .detailWrap_checkinInput {
     font-size: 17px;
@@ -2087,18 +2011,6 @@ header .header-inner_hamburgerImage {
   body .related_roomItems {
     width: 100%;
     padding-bottom: 20px;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  body .billing_card {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
   }
 }
 
@@ -2153,21 +2065,6 @@ header .header-inner_hamburgerImage {
         -ms-flex-direction: column;
             flex-direction: column;
     row-gap: 20px;
-  }
-  body .rules_rules {
-    font-size: 12px;
-  }
-  body .rules_header {
-    font-size: 20px;
-  }
-  body .rules_link {
-    width: 110px;
-    height: 30px;
-    font-size: 12px;
-  }
-  body .rules_content {
-    left: 5%;
-    width: 90%;
   }
   body .related_roomsContent {
     -webkit-box-orient: vertical;
@@ -3247,8 +3144,6 @@ header .header-inner_hamburgerImage {
   width: 100%;
   height: 200px;
   resize: none;
-  font-size: 17px;
-  font-weight: 300;
 }
 
 .contactWrap_input {
@@ -3429,11 +3324,10 @@ header .header-inner_hamburgerImage {
   }
 }
 
-.loadingType {
+.wrap {
+  background-color: #F1EEE3;
   width: 100%;
   height: 100vh;
-  font-size: 30px;
-  font-family: 'Cormorant Garamond', serif;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3443,5 +3337,56 @@ header .header-inner_hamburgerImage {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.wrap_number {
+  font-size: 250px;
+  color: gray;
+  border-color: 1px solid black;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.wrap_type {
+  font-size: 25px;
+  font-family: 'Courier New', Courier, monospace;
+  letter-spacing: 2px;
+  font-weight: bolder;
+}
+
+@media only screen and (max-width: 576px) {
+  .wrap {
+    background-color: #F1EEE3;
+    width: 100%;
+    height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .wrap_number {
+    font-size: 130px;
+    color: gray;
+    border-color: 1px solid black;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  .wrap_type {
+    font-size: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 2px;
+    font-weight: bolder;
+  }
 }
 /*# sourceMappingURL=main.css.map */

@@ -89,6 +89,9 @@ namespace Alloggio_MVC.Controllers
             return View(ModelForGallery);
         }
 
-       
+        public IActionResult NotFound()
+        {
+            return View();
+        }
     }
 }

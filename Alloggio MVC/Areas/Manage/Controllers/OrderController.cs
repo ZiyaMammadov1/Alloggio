@@ -54,7 +54,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             }
             if (rooms == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
 
 
@@ -95,7 +95,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             var Order = _orderRepository.Get(x => x.id == id);
             if (Order == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
 
             Order.IsDeleted = true;
@@ -106,7 +106,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             var RelatedOrderRoom = _orderRoomRepository.GetAll(x => x.OrderId == id).ToList();
             if (RelatedOrderRoom == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
 
             foreach (var item in RelatedOrderRoom)
@@ -126,7 +126,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             var order = _orderRepository.Get(x => x.id == id);
             if (order == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
             return View(order);
         }
@@ -141,7 +141,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             Order CurrentOrder = _orderRepository.Get(x => x.id == order.id);
             if (CurrentOrder == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
             CurrentOrder.FullName = order.FullName;
             CurrentOrder.Email = order.Email;
@@ -163,7 +163,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             var room = _orderRoomRepository.Get(x => x.id == id);
             if (room == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
             return View(room);
         }
@@ -179,7 +179,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             var currentOrderRoom = _orderRoomRepository.Get(x => x.id == orderroom.id);
             if (currentOrderRoom == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
             currentOrderRoom.Count = orderroom.Count;
             currentOrderRoom.Price = orderroom.Price;

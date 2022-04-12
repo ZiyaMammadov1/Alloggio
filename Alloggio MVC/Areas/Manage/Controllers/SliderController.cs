@@ -76,19 +76,21 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
         public IActionResult Edit(int id)
         {
             Slider currentSlider = _sliderRepository.Get(id);
-
+            if (currentSlider == null)
+            {
+                return RedirectToAction("notfound", "dashboard", "manage");
+            }
             return View(currentSlider);
         }
 
         [HttpPost]
         public IActionResult Edit(Slider slider)
         {
-            Slider currentSlider = _sliderRepository.Get(slider.id);
+            Slider currentSlider = _sliderRepository.Get(x=>x.id==slider.id);
 
             if (currentSlider == null)
             {
-                ModelState.AddModelError("", "Slider not found");
-                return View(slider);
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
 
             currentSlider.Header = slider.Header;

@@ -54,7 +54,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             var currentSetting = _settingRepository.Get(x => x.Key == key);
             if (currentSetting == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
             return View(currentSetting);
         }

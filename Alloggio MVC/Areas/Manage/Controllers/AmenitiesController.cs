@@ -65,7 +65,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             Amenitie currentAmenity = _amenitiesRepository.Get(x=>x.id == id);
             if(currentAmenity == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
             return View(currentAmenity);
         }
@@ -77,8 +77,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
 
             if(currentAmenity == null)
             {
-                ModelState.AddModelError("","Amenity not found");
-                return View(amenitie);
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
 
             currentAmenity.Image = amenitie.Image;
@@ -94,7 +93,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             Amenitie currentAmenity = _amenitiesRepository.Get(x => x.id == id);
             if (currentAmenity == null)
             {
-                return NotFound();
+              return RedirectToAction("notfound","dashboard","manage");
             }
 
             _amenitiesRepository.Delete(currentAmenity);

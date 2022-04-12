@@ -49,7 +49,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
 
             if (image == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
 
             return View(image);
@@ -62,7 +62,7 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
 
             if (currentSetting == null)
             {
-                return NotFound();
+                return RedirectToAction("notfound", "dashboard", "manage");
             }
             if (setting.Photo == null)
             {

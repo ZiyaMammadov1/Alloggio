@@ -64,6 +64,11 @@ namespace Alloggio_MVC.Areas.Manage.Controllers
             await _signinManager.SignOutAsync();
             return RedirectToAction("login","account");
         }
+
+        public IActionResult NotFound()
+        {
+            return View();
+        }
        
     }
 }
