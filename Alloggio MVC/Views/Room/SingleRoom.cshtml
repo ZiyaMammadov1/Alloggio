@@ -100,6 +100,20 @@
                 happy with us. Please <a class="detailWrap_rulesLink">read</a> the house rules and terms of
                 cancellation. It is mandatory for each of our customers to follow these rules.
             </div>
+
+            
+<!-- Modal begin -->
+<div class="rules" style="display : none">
+    <div class="rules_content">
+        <div class="rules_rules">
+            @Model.RoomDetailViewModel.Settings["Rules"]
+        </div>
+        <div class="rules_button">
+            <a class="rules_link">Ok!</a>
+        </div>
+    </div>
+</div>
+<!-- Modal end -->
             <hr class="detailWrap_hr">
         </div>
 
@@ -273,19 +287,6 @@
     </div>
 </div>
 <!-- Related room end -->
-<!-- Modal begin -->
-<div class="rules">
-    <div class="rules_content">
-        <div class="rules_header">House Rules</div>
-        <div class="rules_rules">
-            @Model.RoomDetailViewModel.Settings["Rules"]
-        </div>
-        <div class="rules_button">
-            <a class="rules_link">Ok!</a>
-        </div>
-    </div>
-</div>
-<!-- Modal end -->
 
 
 <style>

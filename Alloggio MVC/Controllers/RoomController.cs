@@ -42,10 +42,25 @@ namespace Alloggio_MVC.Controllers
                      .OrderByDescending(x => x.id)
                      .Take(50)
                      .ToList();
-                List<Room> UnregisteredRoom = _context.Rooms.Where(x => x.BedCount == room && x.OrderRooms.Count == 0).ToList();
-
+                List<Room> UnregisteredRoom = _context.Rooms.Where(x => x.BedCount == room && x.OrderRooms.Count == 0).ToList();               
                 UnregisteredOrderRoom = UnregisteredRoom.Select(x => new OrderRooms { RoomId = x.id }).ToList();
+              
                 SelectOrderRoom.AddRange(UnregisteredOrderRoom);
+
+                List<int> TemporaryId = new List<int>();
+                List<OrderRooms> TemporaryOrder = new List<OrderRooms>();
+
+                foreach (var order in SelectOrderRoom)
+                {
+                    if (!TemporaryId.Contains(order.RoomId))
+                    {
+                        TemporaryId.Add(order.RoomId);
+                        TemporaryOrder.Add(order);
+                    }
+                   
+                }
+                SelectOrderRoom.RemoveRange(0,SelectOrderRoom.Count);
+                SelectOrderRoom.AddRange(TemporaryOrder);
             }
             else
             {
@@ -203,6 +218,10 @@ namespace Alloggio_MVC.Controllers
                 BusyTime = new OrderRooms(),
                 Checking = new Checking()
             };
+            if (singleRoomVm.RoomDetailViewModel.Room == null)
+            {
+                return RedirectToAction("notfound", "home");
+            }
 
             singleRoomVm.RoomDetailViewModel.AllComment = _context.UserComments.Where(x => x.RoomId == singleRoomVm.RoomDetailViewModel.Room.id).ToList();
 
@@ -224,6 +243,8 @@ namespace Alloggio_MVC.Controllers
             singleRoomVm.RoomDetailViewModel.RelatedRoom = _context.Rooms
                .Where(x => x.BedCount == CurrentBedCount && x.id != CurrentRoomId)
                .ToList();
+
+          
 
             return View(singleRoomVm);
         }

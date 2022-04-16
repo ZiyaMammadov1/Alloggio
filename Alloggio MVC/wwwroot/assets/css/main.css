@@ -3389,4 +3389,48 @@ header .header-inner_hamburgerImage {
     font-weight: bolder;
   }
 }
+
+.rules {
+  width: 90%;
+  margin: 0 auto;
+  padding-bottom: 10px;
+}
+
+.rules_header {
+  font-size: 22px;
+  font-weight: 200;
+}
+
+.rules_rules {
+  font-size: 17px;
+  font-weight: 200;
+  padding: 10px 0;
+}
+
+.rules_button {
+  font-size: 30px;
+  text-align: center;
+  font-weight: 300;
+  border: 1px solid gray;
+  -webkit-transition: .3s;
+  transition: .3s;
+  border-radius: 5px;
+  width: 20%;
+}
+
+.rules_button:hover {
+  background-color: whitesmoke;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.rules_link {
+  text-decoration: none;
+  color: gray;
+  font-size: 20px;
+}
+
+.rules_link:hover {
+  color: gray;
+}
 /*# sourceMappingURL=main.css.map */

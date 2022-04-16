@@ -73,7 +73,7 @@ $(document).ready(function () {
     });
 
 
-  
+
 
 
 });
@@ -225,21 +225,25 @@ $(document).ready(function () {
 //Loader hide end
 
 
+
 //Rules begin
 $(document).ready(function () {
 
-    $('.rules_link').click(function () {
-        $('.rules').css('display', 'none')
-        $('.rules').css('position', 'unset')
+    $('.detailWrap_rulesLink').click(function (e) {
+        $('.rules').css("display", "block");
+        $('.rules').css("width", "90%");
+        $('.rules').css("margin", "0 auto");
     });
-    $('.detailWrap_rulesLink').click(function () {
-        $('.rules').css('display', 'inline-block')
-        $('.rules').css('position', 'fixed')
 
+    $('.rules_button').click(function () {
+        $('.rules').css("display", "none");
+    });
+
+    $('.rules_link').click(function () {
+        $('.rules').css("display","none");
     });
 });
 //Rules end
-
 
 //Toastr option begin
 toastr.options = {
@@ -267,6 +271,6 @@ $(document).ready(function () {
         toastr["success"]($("#success-toaster").val());
     }
 });
-//Toastr js end 
+//Toastr js end
 
 
