@@ -5,14 +5,13 @@ using Data_Layer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Service_Layer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Alloggio_MVC.Areas.Manage.Controllers
-{
+{   
     [Area("manage")]
     [Authorize(Roles = "Admin")]
     public class SliderController : Controller

@@ -6,14 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\**" />
     <Compile Remove="wwwroot\assets\image\New folder\**" />
+    <Content Remove="Models\**" />
     <Content Remove="wwwroot\assets\image\New folder\**" />
+    <EmbeddedResource Remove="Models\**" />
     <EmbeddedResource Remove="wwwroot\assets\image\New folder\**" />
+    <None Remove="Models\**" />
     <None Remove="wwwroot\assets\image\New folder\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="wwwroot\assets\image\account\" />
   </ItemGroup>
 
@@ -54,7 +57,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Data Layer\Data Layer.csproj" />
-    <ProjectReference Include="..\Service Layer\Service Layer.csproj" />
   </ItemGroup>
 
   <ItemGroup>
