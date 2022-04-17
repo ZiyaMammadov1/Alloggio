@@ -75,7 +75,7 @@ namespace Alloggio_MVC.Controllers
 
             foreach (var SelectItem in SelectOrderRoom)
             {
-                if ((checkin > SelectItem.CheckOut && checkout > SelectItem.CheckOut) || (checkin < SelectItem.CheckIn && checkout < SelectItem.CheckIn))
+                if ((checkin > SelectItem.CheckOut && checkout > SelectItem.CheckOut) || (checkin < SelectItem.CheckIn && checkout < SelectItem.CheckIn) || SelectItem.IsDeleted == true)
                 {
                     AvailableRoomsId.Add(SelectItem);
                 }

@@ -352,6 +352,7 @@ namespace Alloggio_MVC.Controllers
             });
 
             await _emailSender.SendEmailAsync(forgotPasswordVM.Email, "Alloggio Hotel", $"<a href='https://localhost:44323{ResetUrl}'>Click</a> for change Password");
+            TempData["Success"] = "Link send to your email for change password";
             return RedirectToAction("index","home");
         }
 

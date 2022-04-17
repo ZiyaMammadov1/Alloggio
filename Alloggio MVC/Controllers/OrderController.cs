@@ -37,7 +37,6 @@ namespace Alloggio_MVC.Controllers
                 data = _context.BasketItems.Include(x => x.Room).Where(x => x.AppUserId == member.Id).ToList();
                 return View(data);
             }
-
             return View(data);
         }
 
@@ -50,6 +49,7 @@ namespace Alloggio_MVC.Controllers
                 _context.BasketItems.Remove(basketItem);
                 _context.SaveChanges();
             }
+            TempData["Warning"] = "Order deleted";
 
             return RedirectToAction("basket", "order");
         }
@@ -102,9 +102,14 @@ namespace Alloggio_MVC.Controllers
             }
             else
             {
+
                 return RedirectToAction("login", "account");
+
             }
-            return RedirectToAction("index", "home");
+
+            TempData["Success"] = "Order add your basket";
+            return RedirectToAction("basket");
+
         }
 
         
