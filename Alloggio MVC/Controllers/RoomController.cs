@@ -226,7 +226,7 @@ namespace Alloggio_MVC.Controllers
             singleRoomVm.RoomDetailViewModel.AllComment = _context.UserComments.Where(x => x.RoomId == singleRoomVm.RoomDetailViewModel.Room.id).ToList();
 
 
-            List<OrderRooms> Busy = _context.OrderRooms.Where(x => x.RoomId == singleRoomVm.RoomDetailViewModel.Room.id).ToList();
+            List<OrderRooms> Busy = _context.OrderRooms.Where(x => x.RoomId == singleRoomVm.RoomDetailViewModel.Room.id && x.IsDeleted==false).ToList();
 
             foreach (var BusyItem in Busy)
             {
