@@ -69,7 +69,7 @@ namespace Alloggio_MVC.Controllers
                 {
                     if (RegisterVm.UploadImage.Length < 2097152)
                     {
-                        string NewFileName = FileManager.Save(_env.WebRootPath, "assets/image/slider", RegisterVm.UploadImage);
+                        string NewFileName = FileManager.Save(_env.WebRootPath, "assets/image/account", RegisterVm.UploadImage);
                         member.Image = NewFileName;
                     }
                     else
@@ -107,7 +107,7 @@ namespace Alloggio_MVC.Controllers
                 token = code
             });
             Console.WriteLine(url);
-            await _emailSender.SendEmailAsync(RegisterVm.Email, "Confirm your account", $" <a href='https://localhost:44323{url}'>Click</a> to this link for confirm progress");
+            await _emailSender.SendEmailAsync(RegisterVm.Email, "Confirm your account", $" <a href='https://localhost:44382{url}'>Click</a> to this link for confirm progress");
 
             TempData["Success"] = "Create your profile";
 
@@ -351,9 +351,9 @@ namespace Alloggio_MVC.Controllers
                 token = ResetCode
             });
 
-            await _emailSender.SendEmailAsync(forgotPasswordVM.Email, "Alloggio Hotel", $"<a href='https://localhost:44323{ResetUrl}'>Click</a> for change Password");
+            await _emailSender.SendEmailAsync(forgotPasswordVM.Email, "Alloggio Hotel", $"<a href='https://localhost:44382{ResetUrl}'>Click</a> for change Password");
             TempData["Success"] = "Link send to your email for change password";
-            return RedirectToAction("index","home");
+            return RedirectToAction("login");
         }
 
         public IActionResult ResetPassword(string userid, string token)
