@@ -27,6 +27,9 @@
     <None Include="wwwroot\assets\css\layout\_backToTop.scss" />
     <None Include="wwwroot\assets\css\layout\_footer.scss" />
     <None Include="wwwroot\assets\css\layout\_header.scss" />
+    <None Include="wwwroot\assets\css\main.css.map" />
+    <None Include="wwwroot\assets\css\main.scss" />
+    <None Include="wwwroot\assets\css\pages\_404.scss" />
     <None Include="wwwroot\assets\css\pages\_allrooms.scss" />
     <None Include="wwwroot\assets\css\pages\_blog.scss" />
     <None Include="wwwroot\assets\css\pages\_bookingdetails.scss" />
@@ -36,9 +39,9 @@
     <None Include="wwwroot\assets\css\pages\_forgot.scss" />
     <None Include="wwwroot\assets\css\pages\_gallery.scss" />
     <None Include="wwwroot\assets\css\pages\_index.scss" />
-    <None Include="wwwroot\assets\css\pages\_loading.scss" />
     <None Include="wwwroot\assets\css\pages\_login.scss" />
     <None Include="wwwroot\assets\css\pages\_menu.scss" />
+    <None Include="wwwroot\assets\css\pages\_modal.scss" />
     <None Include="wwwroot\assets\css\pages\_ordercomplete.scss" />
     <None Include="wwwroot\assets\css\pages\_profil.scss" />
     <None Include="wwwroot\assets\css\pages\_register.scss" />

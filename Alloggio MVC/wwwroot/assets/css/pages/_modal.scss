@@ -1,19 +1,42 @@
-.rules{
+.rules {
     width: 90%;
     margin: 0 auto;
-    &_header{
+    padding-bottom: 10px;
+
+    &_header {
         font-size: 22px;
-    font-weight: 200;
+        font-weight: 200;
     }
-    &_button{
+
+    &_rules {
+        font-size: 17px;
+        font-weight: 200;
+        padding: 10px 0;
+    }
+
+    &_button {
         font-size: 30px;
         text-align: center;
-        font-weight: 200;
+        font-weight: 300;
         border: 1px solid gray;
+        transition: .3s;
+        border-radius: 5px;
+        width: 20%;
     }
-    &_link{
+
+    &_button:hover {
+        background-color: whitesmoke;
+        transition: .3s;
+    }
+
+    &_link {
         text-decoration: none;
-    color: gray;
-    font-size: 22px;
+        color: gray;
+        font-size: 20px;
+    }
+
+    &_link:hover {
+        color: gray;
+
     }
 }
