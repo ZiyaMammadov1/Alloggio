@@ -149,7 +149,7 @@ namespace Alloggio_MVC.Controllers
 
             if (member == null)
             {
-                return RedirectToAction("login", "acocunt");
+                return RedirectToAction("login", "account");
             }
 
             RoomDetailViewModel RoomDetailMV = new RoomDetailViewModel
